@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './index.css';
 
 
-const Graph = () => (
+const Graph = props => (
   <div className="Graph">
     <div className="Graph-header">
-      <h3>graph header</h3>
+      <h3>{props.coin} / USD</h3>
 
     </div>
     <div id="Graph-Live-Graph" className="Graph-liveGraph">
@@ -14,5 +15,13 @@ const Graph = () => (
   </div>
 );
 
+
+Graph.propTypes = {
+  coin: PropTypes.string,
+};
+
+Graph.defaultProps = {
+  coin: 'BTC',
+};
 
 export default Graph;
