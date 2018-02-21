@@ -33,3 +33,10 @@
 .Ticker-table-row-active{
     background: rgb(39,59,86);
 }
+
+.success{
+    color: rgb(85,185,125);
+}
+.danger{
+    color: rgb(192,88,73);
+}
