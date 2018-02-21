@@ -1,0 +1,7 @@
+.PriceBox{
+    width: 200px;
+    min-height: 110px;
+    border-left: 1px solid rgb(29,46,68);
+    border-right: 1px solid rgb(29,46,68);
+    background: rgb(33,49,71);
+}

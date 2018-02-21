@@ -6,6 +6,13 @@ import './index.css';
 const PriceRow = () => (
   <div className="PriceRow">
     <PriceBox />
+    <PriceBox />
+    <PriceBox />
+    <PriceBox />
+    <PriceBox />
+    <PriceBox />
+    <PriceBox />
+    <PriceBox />
   </div>
 );
 
