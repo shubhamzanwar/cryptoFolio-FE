@@ -11,13 +11,23 @@ class Ticker extends Component {
     this.state = {
       prices: [],
     };
-  }
-  componentDidMount() {
     axios.get('/prices').then((priceData) => {
       this.setState({
         prices: priceData.data,
       });
     });
+  }
+  componentDidMount() {
+    setInterval(
+      () => {
+        axios.get('/prices').then((priceData) => {
+          this.setState({
+            prices: priceData.data,
+          });
+        });
+      }
+      , 5000,
+    );
   }
   render() {
     return (
