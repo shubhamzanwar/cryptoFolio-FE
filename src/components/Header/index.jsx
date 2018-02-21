@@ -3,9 +3,9 @@ import './index.css';
 
 const Header = () => (
   <header className="Header">
-    <h2 className="Header-heading">
-        CryptoCoin-Folio
-    </h2>
+    <h3 className="Header-heading">
+      <i className="fa fa-briefcase" aria-hidden="true" /> CryptoCoin-Folio
+    </h3>
     <div className="Header-button-container">
       <button>
             Register

@@ -17,7 +17,7 @@
     margin-right: 20px;
     min-width: 80px;
     background: none;
-    color: white;
+    color: rgb(132,147,171);
     border: none;
     border-bottom: 4px solid rgb(14,39,89);
     box-sizing: border-box;
@@ -25,12 +25,13 @@
     padding: 0 20px;
 }
 
-.Header-button-container > button:hover{
+.Header-button-container > button:hover,
+.Header-button-container > button:focus{
     border-bottom: 4px solid rgb(77,170,233);
+    color: white;
+    outline: none;
 }
-
 .Header-heading{
     margin-left: 10px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-
