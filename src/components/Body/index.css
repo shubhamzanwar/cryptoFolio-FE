@@ -1,0 +1,8 @@
+.Body{
+    border: 1px solid white;
+    box-sizing: border-box;
+    flex-grow: 1;
+    padding: 10px;
+    margin: 30px 20px 0 20px;
+    color: white;
+}
