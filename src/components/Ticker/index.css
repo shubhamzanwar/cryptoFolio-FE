@@ -1,4 +1,35 @@
 .Ticker{
     flex-grow: 1;
     background: rgb(33,49,71);
+    overflow: auto;
+    max-height: 500px;
+}
+
+.Ticker-table{
+    width: 100%;
+    padding: 0 10px;
+}
+
+.Ticker-table-header-th{
+    padding: 20px 0 10px 0;
+    color: rgb(92,108,132);
+    text-align: center;
+}
+
+.Ticker-table-row-td{
+    text-align: center;
+    padding: 10px 0;
+    border: none;
+}
+
+.Ticker-table-row:nth-child(odd){
+    background: rgb(29,43,63);
+}
+
+.Ticker-table-row:hover{
+    background: rgb(39,59,86);
+}
+
+.Ticker-table-row-active{
+    background: rgb(39,59,86);
 }
