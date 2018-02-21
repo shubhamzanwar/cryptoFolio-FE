@@ -1,0 +1,36 @@
+.Header{
+    height: 70px;
+    display:flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    background: rgb(14,39,89);
+    color: white;
+    align-items: center;
+}
+
+.Header-button-container{
+    height: 100%;
+    display: flex;
+}
+
+.Header-button-container > button {
+    margin-right: 20px;
+    min-width: 80px;
+    background: none;
+    color: white;
+    border: none;
+    border-bottom: 4px solid rgb(14,39,89);
+    box-sizing: border-box;
+    font-size: 18px;
+    padding: 0 20px;
+}
+
+.Header-button-container > button:hover{
+    border-bottom: 4px solid rgb(77,170,233);
+}
+
+.Header-heading{
+    margin-left: 10px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
