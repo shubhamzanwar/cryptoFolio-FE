@@ -25,7 +25,7 @@ class Body extends Component {
         <PriceRow />
         <div className="Body-graph-and-ticker-container">
           <Graph coin={this.state.selectedCoin} />
-          <Ticker onClick={sym => this.setSelectedCoin(sym)} />
+          <Ticker select={sym => this.setSelectedCoin(sym)} />
         </div>
       </div>
     );
