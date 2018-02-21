@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import TickerRow from '../TickerRow';
 import './index.css';
 
 
@@ -22,27 +24,33 @@ class Ticker extends Component {
       <div className="Ticker">
         <table className="Ticker-table" cellSpacing="0" cellPadding="0">
           <thead>
-            <th className="Ticker-table-header-th">Symbol</th>
-            <th className="Ticker-table-header-th">Coin Name</th>
-            <th className="Ticker-table-header-th">Price</th>
-            <th className="Ticker-table-header-th">Volume</th>
-            <th className="Ticker-table-header-th">Change</th>
+            <tr>
+              <th className="Ticker-table-header-th">Symbol</th>
+              <th className="Ticker-table-header-th">Coin Name</th>
+              <th className="Ticker-table-header-th">Price</th>
+              <th className="Ticker-table-header-th">Volume</th>
+              <th className="Ticker-table-header-th">Change</th>
+            </tr>
           </thead>
-          {
-            this.state.prices.map(price => (
-              <tr className="Ticker-table-row">
-                <td className="Ticker-table-row-td">{price.Symbol}</td>
-                <td className="Ticker-table-row-td">Bitcoin</td>
-                <td className="Ticker-table-row-td">{price.Price}</td>
-                <td className="Ticker-table-row-td">{price.Volume.toFixed(3)}</td>
-                <td className={price.Change > 0 ? 'Ticker-table-row-td success' : 'Ticker-table-row-td danger'}>{price.Change.toFixed(3)}</td>
-              </tr>
+          <tbody>
+            {
+              this.state.prices.map(price => (
+                <TickerRow
+                  price={price}
+                  select={sym => this.props.select(sym)}
+                  key={price.Symbol}
+                />
               ))
-          }
+            }
+          </tbody>
         </table>
       </div>
     );
   }
 }
+
+Ticker.propTypes = {
+  select: PropTypes.func.isRequired,
+};
 
 export default Ticker;

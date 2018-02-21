@@ -15,28 +15,3 @@
     color: rgb(92,108,132);
     text-align: center;
 }
-
-.Ticker-table-row-td{
-    text-align: center;
-    padding: 10px 0;
-    border: none;
-}
-
-.Ticker-table-row:nth-child(odd){
-    background: rgb(29,43,63);
-}
-
-.Ticker-table-row:hover{
-    background: rgb(39,59,86);
-}
-
-.Ticker-table-row-active{
-    background: rgb(39,59,86);
-}
-
-.success{
-    color: rgb(85,185,125);
-}
-.danger{
-    color: rgb(192,88,73);
-}
