@@ -7,3 +7,10 @@
     display: flex;
     flex-direction: column;
 }
+
+.Body-graph-and-ticker-container{
+    display: flex;
+    min-height: 100px;
+    box-sizing: border-box;
+    margin-top: 30px;
+}
