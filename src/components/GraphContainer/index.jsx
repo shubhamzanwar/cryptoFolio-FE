@@ -8,11 +8,13 @@ class GraphContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
+      prices: [],
+      volume: [],
     };
     axios.get(`/liveGraph?coin=${this.props.coin}`).then((priceData) => {
       this.setState({
-        data: priceData.data,
+        prices: priceData.data.prices,
+        volume: priceData.data.volume,
       });
     });
   }
@@ -21,10 +23,10 @@ class GraphContainer extends Component {
       () => {
         axios.get(`/liveGraph?coin=${this.props.coin}`).then((priceData) => {
           this.setState({
-            data: priceData.data,
+            prices: priceData.data.prices,
+            volume: priceData.data.volume,
           });
         });
-        console.log('interval called');
       }
       , 5000,
     );
@@ -36,7 +38,11 @@ class GraphContainer extends Component {
           <h3>{this.props.coin} / USD <i className="fa fa-caret-down" aria-hidden="true" /></h3>
 
         </div>
-        <Graph prices={this.state.data} coin={this.props.coin} />
+        <Graph
+          prices={this.state.prices}
+          volume={this.state.volume}
+          coin={this.props.coin}
+        />
       </div>
     );
   }

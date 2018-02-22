@@ -15,14 +15,55 @@ class Graph extends Component {
         zoomType: false,
       },
       yAxis: [{
-        gridLineWidth: 0,
-        minorGridLineWidth: 0,
+        labels: {
+          align: 'left',
+          x: -3,
+        },
+        title: {
+          text: 'CandleSticks',
+        },
+        gridLineDashStyle: 'longdash',
+        gridLineColor: '#3e8869',
+        height: '70%',
+        lineWidth: 2,
+        resize: {
+          enabled: true,
+        },
+      }, {
+        labels: {
+          align: 'left',
+          x: -3,
+        },
+        gridLineDashStyle: 'longdash',
+        gridLineColor: '#3e8869',
+        title: {
+          text: 'Volume',
+        },
+        top: '70%',
+        height: '30%',
+        offset: 0,
+        lineWidth: 2,
       }],
+      tooltip: {
+        split: true,
+      },
+
       series: [{
-        name: `${this.props.coin} / USD`,
         type: 'candlestick',
+        name: `${this.props.coin} / USD`,
         data: this.props.prices,
-        turboThreshold: 0,
+        dataGrouping: {
+          enabled: false,
+        },
+      }, {
+        type: 'column',
+        name: `${this.props.coin} Volume`,
+        color: '#ccc',
+        data: this.props.volume,
+        dataGrouping: {
+          enabled: false,
+        },
+        yAxis: 1,
       }],
       navigator: {
         enabled: false,
@@ -41,11 +82,13 @@ class Graph extends Component {
 
 Graph.propTypes = {
   prices: PropTypes.arrayOf(),
+  volume: PropTypes.arrayOf(),
   coin: PropTypes.string,
 };
 
 Graph.defaultProps = {
   prices: [],
+  volume: [],
   coin: 'BTC',
 };
 
