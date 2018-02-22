@@ -5,7 +5,6 @@ import Ticker from '../Ticker';
 import Orders from '../Orders';
 import './index.css';
 
-
 class Body extends Component {
   constructor() {
     super();
