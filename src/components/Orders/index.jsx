@@ -15,14 +15,16 @@ const Orders = (props) => {
   return (
     <div className="Orders-div">
       <h3 className="Orders-title">{props.title}</h3>
-      <table className="Orders-table" cellSpacing="0" cellPadding="0">
-        <tr>
-          <th className="Orders-table-heading">PRICE</th>
-          <th className="Orders-table-heading">QUANTITY</th>
-          <th className="Orders-table-heading">TOTAL</th>
-        </tr>
-        {table}
-      </table>
+      <div className="Orders-table-wrapper">
+        <table className="Orders-table" cellSpacing="0" cellPadding="0">
+          <tr>
+            <th className="Orders-table-heading">PRICE</th>
+            <th className="Orders-table-heading">QUANTITY</th>
+            <th className="Orders-table-heading">TOTAL</th>
+          </tr>
+          {table}
+        </table>
+      </div>
     </div>
   );
 };

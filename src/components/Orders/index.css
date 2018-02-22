@@ -1,13 +1,17 @@
 .Orders-div{
     flex-grow: 1;
-    overflow: auto;
-    max-height: 500px;
     margin-top: 30px;
+    max-height: 500px;
 }
 .Orders-table{
     width: 100%;
     padding: 0 10px;
     background: rgb(33,49,71);
+}
+
+.Orders-table-wrapper{
+    overflow: auto;
+    height: 500px;
 }
 
 .Orders-table-heading{
