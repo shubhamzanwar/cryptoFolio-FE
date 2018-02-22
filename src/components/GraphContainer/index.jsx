@@ -24,8 +24,9 @@ class GraphContainer extends Component {
             data: priceData.data,
           });
         });
+        console.log('interval called');
       }
-      , 60000,
+      , 5000,
     );
   }
   render() {
