@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import './index.css';
 
 const Orders = (props) => {
-  const keys = Object.keys(props.data);
-  const dataToBeRendered = props.data[props.key];
+  const dataToBeRendered = props.data[props.keys];
   const table = dataToBeRendered.map(row =>
     (
       <tr className="Orders-row-tr">
@@ -1032,7 +1031,7 @@ Orders.defaultProps = {
       total: '1.49782585',
     }],
   },
-  key: 'asks',
+  keys: 'asks',
 };
 
 export default Orders;
