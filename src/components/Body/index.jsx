@@ -4,7 +4,6 @@ import Graph from '../Graph';
 import Ticker from '../Ticker';
 import './index.css';
 
-
 class Body extends Component {
   constructor() {
     super();
