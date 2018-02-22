@@ -14,6 +14,7 @@ const Orders = (props) => {
     ));
   return (
     <div className="Orders-div">
+      <h3 className="Orders-title">{props.title}</h3>
       <table className="Orders-table" cellSpacing="0" cellPadding="0">
         <tr>
           <th className="Orders-table-heading">PRICE</th>
@@ -28,6 +29,7 @@ const Orders = (props) => {
 Orders.propTypes = {
   data: PropTypes.instanceOf({}),
   keys: PropTypes.string,
+  title: PropTypes.string,
 };
 Orders.defaultProps = {
   data: {
@@ -1035,6 +1037,7 @@ Orders.defaultProps = {
     }],
   },
   keys: 'asks',
+  title: '',
 };
 
 export default Orders;

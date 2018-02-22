@@ -2,17 +2,21 @@
     flex-grow: 1;
     overflow: auto;
     max-height: 500px;
-    padding-left: 5%;
+    margin-top: 30px;
 }
 .Orders-table{
-    width: 33%;
+    width: 100%;
     padding: 0 10px;
+    background: rgb(33,49,71);
 }
 
 .Orders-table-heading{
     padding: 20px 0 10px 0;
     color: rgb(92,108,132);
     text-align: center;
+}
+.Orders-title{
+    padding-left: 15px;
 }
 
 .Orders-row-tr:nth-child(even){

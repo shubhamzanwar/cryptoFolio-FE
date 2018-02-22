@@ -28,7 +28,14 @@ class Body extends Component {
           <Ticker select={sym => this.setSelectedCoin(sym)} />
         </div>
         <div className="Body-orders">
-          <Orders keys="asks" /><Orders keys="bids" />
+          <Orders
+            keys="asks"
+            title="Asks Table"
+          />
+          <Orders
+            keys="bids"
+            title="Bids Table"
+          />
         </div>
       </div>
     );
