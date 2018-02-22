@@ -43,38 +43,33 @@ class SignupBody extends Component {
                 <input
                   type="text"
                   name="fullname"
-                  placeholder="Your Full Name"
                   required
-                  value="abc"
+                  placeholder="Enter your Full Name"
                 />
                 <input
                   type="email"
                   name="email"
-                  placeholder="Your Email"
+                  placeholder="Enter your Email ID"
                   required
-                  value="abc@gmail.com"
                 />
                 <input
                   type="password"
                   name="password"
-                  placeholder="Create Password"
+                  placeholder="Enter Password"
                   required
-                  value="abc"
                 />
                 <input
                   type="password"
                   name="confirmpassword"
-                  placeholder="Re-enter Password"
+                  placeholder="Confirm Password"
                   required
-                  value="abc"
                 />
                 <input
                   type="number"
                   name="contact"
-                  placeholder="Contact Number"
+                  placeholder="Enter your Contact Number"
                   max="9999999999"
                   required
-                  value="999"
                 />
               </div>
               <div className="signup-submit">
