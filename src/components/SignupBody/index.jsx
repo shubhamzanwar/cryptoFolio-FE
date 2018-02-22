@@ -22,19 +22,16 @@ class SignupBody extends Component {
             <div className="signup-bullets">
               <ul>
                 <li>
-              Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit,<br />
-              officia deserunt mollit anim id est laborum.
+              Get real time updates about your favortie coins<br />
+              with our live ticker and graph feature.
                 </li>
                 <li>
-              Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit,<br />
-              officia deserunt mollit anim id est laborum.
+              See What people are talking about<br />
+              Twitter feed from the official handles for the coins of your choice.
                 </li>
                 <li>
-              Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit,<br />
-              officia deserunt mollit anim id est laborum.
+              Manage your investments<br />
+              Create a free portfolio to keep track of the coins you own.
                 </li>
               </ul>
             </div>
