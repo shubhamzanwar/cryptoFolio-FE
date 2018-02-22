@@ -7,7 +7,7 @@ import './index.css';
 const PriceRow = props => (
   <div className="PriceRow">
     {
-      props.boxContent.map(box => <PriceBox box={box} />)
+      props.boxContent.map((box, index) => <PriceBox box={box} key={index + 1} />)
     }
   </div>
 );
