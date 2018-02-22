@@ -1,0 +1,25 @@
+.Orders-div{
+    flex-grow: 1;
+    overflow: auto;
+    max-height: 500px;
+    padding-left: 5%;
+}
+.Orders-table{
+    width: 33%;
+    padding: 0 10px;
+}
+
+.Orders-table-heading{
+    padding: 20px 0 10px 0;
+    color: rgb(92,108,132);
+    text-align: center;
+}
+
+.Orders-row-tr:nth-child(even){
+    background: rgb(29,43,63);
+}
+.Orders-row-td{
+    text-align: center;
+    padding: 10px 0;
+    border: none;
+}
