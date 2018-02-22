@@ -13,3 +13,9 @@
     box-sizing: border-box;
     margin-top: 30px;
 }
+
+.Body-orders{
+    display:flex;
+    width:66%;
+    flex-direction:row;
+}
