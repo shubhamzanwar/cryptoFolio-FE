@@ -1,6 +1,7 @@
 .signup-body-div{
   background: url('./signup.png');
-  background-size: cover;
+  background-size: 102%;
+  background-position: center;
   display: flex;
   flex: 1;
 }
@@ -13,13 +14,16 @@
 }
 .signup-text {
   width: 50%;
-  display: block;
-  margin: 0 0 0 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 5% 0 0 10%;
   color: white;
 }
 .signup-heading{
   font-size: 50px;
   padding: 20px;
+  text-align: center;
 }
 .signup-form-div{
   width: 50%;
@@ -35,6 +39,7 @@
 .signup-bullets{
   display: block;
   margin: auto;
+  flex-grow: 1;
   /* margin-right: 20px; */
   font-size: 18px;
 }
