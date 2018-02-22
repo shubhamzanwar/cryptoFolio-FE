@@ -10,11 +10,19 @@ class GraphContainer extends Component {
     this.state = {
       prices: [],
       volume: [],
+      lastLow: 0,
+      lastHigh: 0,
+      lastClose: 0,
+      lastOpen: 0,
     };
     axios.get(`/liveGraph?coin=${this.props.coin}`).then((priceData) => {
       this.setState({
         prices: priceData.data.prices,
         volume: priceData.data.volume,
+        lastLow: priceData.data.prices[1439][3],
+        lastOpen: priceData.data.prices[1439][1],
+        lastHigh: priceData.data.prices[1439][2],
+        lastClose: priceData.data.prices[1439][4],
       });
     });
   }
@@ -25,6 +33,10 @@ class GraphContainer extends Component {
           this.setState({
             prices: priceData.data.prices,
             volume: priceData.data.volume,
+            lastLow: priceData.data.prices[1439][3],
+            lastOpen: priceData.data.prices[1439][1],
+            lastHigh: priceData.data.prices[1439][2],
+            lastClose: priceData.data.prices[1439][4],
           });
         });
       }
@@ -35,8 +47,8 @@ class GraphContainer extends Component {
     return (
       <div className="GraphContainer">
         <div className="GraphContainer-header">
-          <h3>{this.props.coin} / USD <i className="fa fa-caret-down" aria-hidden="true" /></h3>
-
+          <h3>{this.props.coin} / USD</h3>
+          <p>Last Minute <span>Open: {this.state.lastOpen}</span> <span>High: {this.state.lastHigh}</span> <span>Low: {this.state.lastLow}</span> <span>Close: {this.state.lastClose}</span></p>
         </div>
         <Graph
           prices={this.state.prices}

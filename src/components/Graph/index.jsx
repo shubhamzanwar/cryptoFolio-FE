@@ -13,6 +13,7 @@ class Graph extends Component {
       chart: {
         backgroundColor: '#213147',
         zoomType: false,
+        height: 500,
       },
       yAxis: [{
         labels: {
