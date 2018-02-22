@@ -3,14 +3,18 @@
   background-size: 102%;
   background-position: center;
   display: flex;
+  flex-direction: column;
   flex: 1;
 }
 .signup-body{
   display: flex;
+  flex-grow: 1;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
   margin: auto;
   padding: 20px;
+  background: rgba(25, 65, 175, 0.225);
 }
 .signup-text {
   width: 50%;
