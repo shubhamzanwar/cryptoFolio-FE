@@ -25,7 +25,10 @@ const Orders = (props) => {
     </div>
   );
 };
-
+Orders.propTypes = {
+  data: PropTypes.instanceOf({}),
+  keys: PropTypes.string,
+};
 Orders.defaultProps = {
   data: {
     asks:
