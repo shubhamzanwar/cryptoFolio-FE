@@ -1,0 +1,28 @@
+.GraphContainer{
+    min-height: 600px;
+    width: 66%;
+    margin-right: 30px;
+    background: rgb(33,49,71);
+}
+.GraphContainer-header{
+    margin: 15px 10px 0 10px;
+    padding: 20px;
+    background: rgb(39, 59,86);
+}
+
+.GraphContainer-header>h3{
+    margin: 0;
+    padding:0;
+}
+.GraphContainer-header>p{
+    margin: 0;
+    padding: 0;
+    padding-top: 10px;
+    color: rgb(87,104,128);
+}
+
+.GraphContainer-liveGraph{
+    margin: 0 10px;
+    padding: 20px;
+
+}

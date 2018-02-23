@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PriceRow from '../PriceRow';
-import Graph from '../Graph';
+import GraphContainer from '../GraphContainer';
 import Ticker from '../Ticker';
+import Orders from '../Orders';
 import './index.css';
 
 class Body extends Component {
@@ -23,8 +24,18 @@ class Body extends Component {
       <div className="Body">
         <PriceRow />
         <div className="Body-graph-and-ticker-container">
-          <Graph coin={this.state.selectedCoin} />
+          <GraphContainer coin={this.state.selectedCoin} />
           <Ticker select={sym => this.setSelectedCoin(sym)} />
+        </div>
+        <div className="Body-orders">
+          <Orders
+            keys="asks"
+            title="Asks Table"
+          />
+          <Orders
+            keys="bids"
+            title="Bids Table"
+          />
         </div>
       </div>
     );
