@@ -1,36 +1,36 @@
 import React, { Component } from 'react';
 import './index.css';
 
-
-class SignupBody extends Component {
-  registerUser = (e) => {
-    e.preventDefault();
-    const data = new FormData(e.target);
-    const fullName = data.get('fullname');
-    const email = data.get('email');
-    const password = data.get('password');
-    const confirmPassword = data.get('confirmpassword');
-    const mobileNumbe = data.get('contact');
-    if(password === confirmPassword){
-      const payload = {
-        fullName,
-        email,
-        password,
-        confirmPassword,
-        mobileNumbe,
-      }
-      fetch('/signup', {
-        method: 'POST',
-        body: JSON.stringify(payload),
-      })
+const registerUser = (e) => {
+  e.preventDefault();
+  const data = new FormData(e.target);
+  const fullName = data.get('fullname');
+  const email = data.get('email');
+  const password = data.get('password');
+  const confirmPassword = data.get('confirmpassword');
+  const mobileNumbe = data.get('contact');
+  if (password === confirmPassword) {
+    const payload = {
+      fullName,
+      email,
+      password,
+      confirmPassword,
+      mobileNumbe,
+    };
+    fetch('/signup', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    })
       .then((response) => {
         if (response.status === 201) {
-          console.log("Success");
+          return 0;
         }
         return null;
       });
-    }
   }
+};
+
+class SignupBody extends Component {
   render() {
     return (
       <div className="signup-body-div">
@@ -48,7 +48,7 @@ class SignupBody extends Component {
                 <li>
               See What people are talking about<br />
               Twitter feed from the official handles for the coins of your choice.
-               </li>
+                </li>
                 <li>
               Manage your investments<br />
               Create a free portfolio to keep track of the coins you own.
@@ -57,7 +57,7 @@ class SignupBody extends Component {
             </div>
           </div>
           <div className="signup-form-div">
-            <form className="signup-form" onSubmit={this.registerUser}>
+            <form className="signup-form" onSubmit={registerUser}>
               <div className="signup-form-padding">
                 <div className="signup-register">Register</div><br />
                 <input
@@ -93,8 +93,8 @@ class SignupBody extends Component {
                 />
               </div>
               <div className="signup-submit">
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                 >
                   Create your account
                 </button>
