@@ -26,7 +26,8 @@ class Graph extends Component {
         gridLineDashStyle: 'longdash',
         gridLineColor: '#3e8869',
         height: '70%',
-        lineWidth: 2,
+        lineWidth: 0,
+        lineColor: '#FFF',
         resize: {
           enabled: true,
         },
@@ -42,8 +43,9 @@ class Graph extends Component {
         },
         top: '70%',
         height: '30%',
+        lineWidth: 0,
+        lineColor: '#FFF',
         offset: 0,
-        lineWidth: 2,
       }],
       tooltip: {
         split: true,
@@ -59,7 +61,7 @@ class Graph extends Component {
       }, {
         type: 'column',
         name: `${this.props.coin} Volume`,
-        color: '#4DB6AC',
+        color: '#F00',
         data: this.props.volume,
         dataGrouping: {
           enabled: true,
