@@ -26,7 +26,7 @@
 
 .Header-button-container > button:hover,
 .Header-button-container > button:focus,
-.button-active
+.button-active > .register-button
 {
     border-bottom: 4px solid rgb(77,170,233);
     color: white;
