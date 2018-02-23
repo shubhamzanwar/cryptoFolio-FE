@@ -86,6 +86,12 @@
 .signup-form-padding{
   padding: 40px 20px 0;  
 }
+.signup-list{
+  font-style: italic;
+  font-size: 24px;
+  display: block;
+  margin-bottom: 5px;
+}
 @media screen and (max-width: 700px) {
   .signup-body{
     flex-direction: column-reverse;

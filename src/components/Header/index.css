@@ -31,7 +31,9 @@
     border-bottom: 4px solid rgb(77,170,233);
     color: white;
     outline: none;
+    cursor: pointer;
 }
 .Header-heading{
     margin-left: 10px;
+    cursor: pointer;
 }

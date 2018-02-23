@@ -6,7 +6,10 @@ class Header extends Component {
   render() {
     return (
       <header className="Header">
-        <h3 className="Header-heading">
+        <h3
+          className="Header-heading"
+          onClick={() => this.props.navigatePage(1)}
+        >
           <i className="fa fa-briefcase" aria-hidden="true" /> CryptoCoin-Folio
         </h3>
         <div className="Header-button-container">
