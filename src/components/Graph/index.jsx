@@ -54,15 +54,15 @@ class Graph extends Component {
         name: `${this.props.coin} / USD`,
         data: this.props.prices,
         dataGrouping: {
-          enabled: false,
+          enabled: true,
         },
       }, {
         type: 'column',
         name: `${this.props.coin} Volume`,
-        color: '#ccc',
+        color: '#4DB6AC',
         data: this.props.volume,
         dataGrouping: {
-          enabled: false,
+          enabled: true,
         },
         yAxis: 1,
       }],
