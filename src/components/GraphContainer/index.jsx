@@ -48,7 +48,12 @@ class GraphContainer extends Component {
       <div className="GraphContainer">
         <div className="GraphContainer-header">
           <h3>{this.props.coin} / USD</h3>
-          <p>Last Minute <span>Open: {this.state.lastOpen}</span> <span>High: {this.state.lastHigh}</span> <span>Low: {this.state.lastLow}</span> <span>Close: {this.state.lastClose}</span></p>
+          <p>Last Minute
+            <span> Open: {this.state.lastOpen} </span>
+            <span>High: {this.state.lastHigh} </span>
+            <span>Low: {this.state.lastLow} </span>
+            <span>Close: {this.state.lastClose} </span>
+          </p>
         </div>
         <Graph
           prices={this.state.prices}
