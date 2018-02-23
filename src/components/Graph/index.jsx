@@ -18,8 +18,8 @@ class Graph extends Component {
       yAxis: [{
         labels: {
           align: 'left',
-          x: -3,
         },
+        opposite: false,
         title: {
           text: 'CandleSticks',
         },
@@ -34,8 +34,8 @@ class Graph extends Component {
       }, {
         labels: {
           align: 'left',
-          x: -3,
         },
+        opposite: false,
         gridLineDashStyle: 'longdash',
         gridLineColor: '#3e8869',
         title: {
