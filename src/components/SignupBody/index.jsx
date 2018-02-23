@@ -1,15 +1,35 @@
 import React, { Component } from 'react';
-import Header from '../Header';
 import './index.css';
 
 
 class SignupBody extends Component {
-  // constructor() {
-  //   super();
-  // }
-
-  registerUser = (data) => {
-    console.log(data);
+  registerUser = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const fullName = data.get('fullname');
+    const email = data.get('email');
+    const password = data.get('password');
+    const confirmPassword = data.get('confirmpassword');
+    const mobileNumbe = data.get('contact');
+    if(password === confirmPassword){
+      const payload = {
+        fullName,
+        email,
+        password,
+        confirmPassword,
+        mobileNumbe,
+      }
+      fetch('/signup', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+      })
+      .then((response) => {
+        if (response.status === 201) {
+          console.log("Success");
+        }
+        return null;
+      });
+    }
   }
   render() {
     return (
@@ -21,26 +41,26 @@ class SignupBody extends Component {
             </div>
             <div className="signup-bullets">
               <ul>
-                <li>
-              Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit,<br />
-              officia deserunt mollit anim id est laborum.
-                </li>
-                <li>
-              Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit,<br />
-              officia deserunt mollit anim id est laborum.
-                </li>
-                <li>
-              Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit,<br />
-              officia deserunt mollit anim id est laborum.
-                </li>
-              </ul>
+              <li>
+            Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit,<br />
+            officia deserunt mollit anim id est laborum.
+              </li>
+              <li>
+            Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit,<br />
+            officia deserunt mollit anim id est laborum.
+              </li>
+              <li>
+            Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit,<br />
+            officia deserunt mollit anim id est laborum.
+              </li>
+            </ul>
             </div>
           </div>
           <div className="signup-form-div">
-            <form className="signup-form">
+            <form className="signup-form" onSubmit={this.registerUser}>
               <div className="signup-form-padding">
                 <div className="signup-register">Register</div><br />
                 <input
@@ -48,28 +68,24 @@ class SignupBody extends Component {
                   name="fullname"
                   placeholder="Your Full Name"
                   required
-                  value="abc"
                 />
                 <input
                   type="email"
                   name="email"
                   placeholder="Your Email"
                   required
-                  value="abc@gmail.com"
                 />
                 <input
                   type="password"
                   name="password"
                   placeholder="Create Password"
                   required
-                  value="abc"
                 />
                 <input
                   type="password"
                   name="confirmpassword"
                   placeholder="Re-enter Password"
                   required
-                  value="abc"
                 />
                 <input
                   type="number"
@@ -77,11 +93,14 @@ class SignupBody extends Component {
                   placeholder="Contact Number"
                   max="9999999999"
                   required
-                  value="999"
                 />
               </div>
               <div className="signup-submit">
-                <button type="submit" onSubmit={(value) => this.registerUser(value.target)}>Create your account</button>
+                <button 
+                  type="submit" 
+                >
+                  Create your account
+                </button>
               </div>
             </form>
           </div>

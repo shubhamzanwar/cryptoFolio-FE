@@ -9,7 +9,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      homepage: 1,
+      homepage: 0,
       activeButton: 0,
     };
   }
