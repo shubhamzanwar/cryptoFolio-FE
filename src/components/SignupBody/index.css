@@ -1,6 +1,6 @@
 .signup-body-div{
   background: url('./signup.png');
-  background-size: 102%;
+  background-size: cover;
   background-position: center;
   display: flex;
   flex-direction: column;
