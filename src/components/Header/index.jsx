@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import './index.css';
 
@@ -13,9 +13,9 @@ const Header = () => (
       </h3>
     </Link>
     <div className="Header-button-container">
-      <Link className="register-button-a" to="/signup">
+      <NavLink className="register-button-a" activeClassName="Header-button-selected" to="/signup">
         <p>Register</p>
-      </Link>
+      </NavLink>
       <Link className="login-button-a" to="/login">
         <p>Login</p>
       </Link>
