@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import Header from '../Header';
 import SignupBody from '../SignupBody';
 import Body from '../Body';
@@ -21,9 +22,10 @@ class App extends Component {
     return (
       <div className="App">
         <Header active={this.state.homepage} navigatePage={page => this.navigatePage(page)} />
-        {
-          this.state.homepage ? <Body /> : <SignupBody />
-        }
+        <Switch>
+          <Route exact path="/" component={Body} />
+          <Route path="/signup" component={SignupBody} />
+        </Switch>
       </div>
     );
   }
