@@ -30,11 +30,11 @@ class Body extends Component {
         <div className="Body-orders">
           <Orders
             keys="asks"
-            title="Asks Table"
+            title="Buy Orders"
           />
           <Orders
             keys="bids"
-            title="Bids Table"
+            title="Sell Orders"
           />
         </div>
       </div>
