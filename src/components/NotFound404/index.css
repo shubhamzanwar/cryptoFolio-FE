@@ -1,0 +1,20 @@
+.NotFound{
+    /* border: 1px solid white; */
+    margin: 20px;
+    padding: 20px;
+    color: white;
+    background: rgb(33,49,71);
+    text-align: center;
+}
+
+.NotFound-error-code{
+    font-size: 50px;
+}
+
+.NotFound-error-message{
+    font-size: 30px;
+}
+
+.NotFound:hover{
+    color: rgb(132,147,171);
+}
