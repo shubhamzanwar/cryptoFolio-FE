@@ -1,5 +1,4 @@
 .NotFound{
-    /* border: 1px solid white; */
     margin: 20px;
     padding: 20px;
     color: white;
@@ -17,4 +16,17 @@
 
 .NotFound:hover{
     color: rgb(132,147,171);
+}
+
+.NotFound-go-back-home-button{
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    background: #28a745;
+    border-radius: 5px;
+}
+
+.NotFound-go-back-home-button:hover{
+    background: #007E33;
+
 }
