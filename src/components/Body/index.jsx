@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import { orderBy } from 'lodash';
 import PriceRow from '../PriceRow';
 import GraphContainer from '../GraphContainer';
 import Ticker from '../Ticker';
@@ -10,7 +12,26 @@ class Body extends Component {
     super();
     this.state = {
       selectedCoin: 'BTC',
+      prices: [],
     };
+    axios.get('/prices').then((priceData) => {
+      this.setState({
+        prices: priceData.data,
+      });
+    });
+  }
+
+  componentDidMount() {
+    setInterval(
+      () => {
+        axios.get('/prices').then((priceData) => {
+          this.setState({
+            prices: priceData.data,
+          });
+        });
+      }
+      , 5000,
+    );
   }
 
   setSelectedCoin(sym) {
@@ -22,10 +43,13 @@ class Body extends Component {
   render() {
     return (
       <div className="Body">
-        <PriceRow />
+        <PriceRow prices={orderBy(this.state.prices, ['Price', 'Change'], ['desc', 'desc']).slice(0, 8)} />
         <div className="Body-graph-and-ticker-container">
           <GraphContainer coin={this.state.selectedCoin} />
-          <Ticker select={sym => this.setSelectedCoin(sym)} />
+          <Ticker
+            select={sym => this.setSelectedCoin(sym)}
+            prices={this.state.prices}
+          />
         </div>
         <div className="Body-orders">
           <Orders
