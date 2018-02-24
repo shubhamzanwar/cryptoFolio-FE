@@ -7,17 +7,17 @@ import './index.css';
 const PriceRow = props => (
   <div className="PriceRow">
     {
-      props.boxContent.map((box, index) => <PriceBox box={box} key={index + 1} />)
+      props.prices.map(box => <PriceBox box={box} key={box.Symbol} />)
     }
   </div>
 );
 
 PriceRow.propTypes = {
-  boxContent: PropTypes.arrayOf(),
+  prices: PropTypes.arrayOf(),
 };
 
 PriceRow.defaultProps = {
-  boxContent: [
+  prices: [
     {
       String: 'BTC / EUR',
       price: 111986,

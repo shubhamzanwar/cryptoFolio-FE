@@ -5,16 +5,16 @@ import './index.css';
 
 const PriceBox = props => (
   <div className="PriceBox">
-    <h3>{props.box.String}  <i className={props.box.change > 0 ? 'fa fa-long-arrow-up PriceBox-change-success' : 'fa fa-long-arrow-down PriceBox-change-danger'} /></h3>
-    <p className="PriceBox-price">{props.box.price} <span className={props.box.change > 0 ? 'PriceBox-change PriceBox-change-success' : 'PriceBox-change PriceBox-change-danger'} >{props.box.change}%</span></p>
+    <h3>{props.box.Symbol} / USD <i className={props.box.Change > 0 ? 'fa fa-long-arrow-up PriceBox-change-success' : 'fa fa-long-arrow-down PriceBox-change-danger'} /></h3>
+    <p className="PriceBox-price">{props.box.Price} <span className={props.box.Change > 0 ? 'PriceBox-change PriceBox-change-success' : 'PriceBox-change PriceBox-change-danger'} >{props.box.Change.toFixed(3)}%</span></p>
   </div>
 );
 
 PriceBox.propTypes = {
   box: PropTypes.shape({
-    String: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    change: PropTypes.number.isRequired,
+    Symbol: PropTypes.string.isRequired,
+    Price: PropTypes.number.isRequired,
+    Change: PropTypes.number.isRequired,
   }),
 };
 
