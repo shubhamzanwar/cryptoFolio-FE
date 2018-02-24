@@ -16,9 +16,9 @@ const Header = () => (
       <NavLink className="register-button-a" activeClassName="Header-button-selected" to="/signup">
         <p>Register</p>
       </NavLink>
-      <Link className="login-button-a" to="/login">
+      <NavLink className="login-button-a" to="/login" activeClassName="Header-button-selected">
         <p>Login</p>
-      </Link>
+      </NavLink>
     </div>
   </header>
 );
