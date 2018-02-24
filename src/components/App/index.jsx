@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Header from '../Header';
 import SignupBody from '../SignupBody';
 import Body from '../Body';
+import NotFound from '../NotFound404';
 import './index.css';
 
 
@@ -12,6 +13,7 @@ const App = () => (
     <Switch>
       <Route exact path="/" component={Body} />
       <Route path="/signup" component={SignupBody} />
+      <Route path="*" exact component={NotFound} />
     </Switch>
   </div>
 );
