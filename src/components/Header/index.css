@@ -12,21 +12,32 @@
     display: flex;
 }
 
-.Header-button-container > button {
+.Header-home-link{
+    text-decoration: none;
+    color: white;
+}
+
+
+.register-button-a,
+.login-button-a
+{
+    display: block;
+    text-decoration: none;
+    text-align: center;
     margin-right: 20px;
     min-width: 80px;
     background: none;
     color: rgb(132,147,171);
-    border: none;
-    border-bottom: 4px solid rgb(14,39,89);
+    border-bottom  : 4px solid rgb(14,39,89);
     box-sizing: border-box;
     font-size: 18px;
     padding: 0 20px;
 }
 
-.Header-button-container > button:hover,
-.Header-button-container > button:focus,
-.button-active > .register-button
+.register-button-a:hover,
+.register-button-a:focus,
+.login-button-a:hover,
+.login-button-a:focus
 {
     border-bottom: 4px solid rgb(77,170,233);
     color: white;
@@ -35,5 +46,4 @@
 }
 .Header-heading{
     margin-left: 10px;
-    cursor: pointer;
 }

@@ -1,41 +1,26 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './index.css';
 
-class Header extends Component {
-  render() {
-    return (
-      <header className="Header">
-        <h3
-          className="Header-heading"
-          onClick={() => this.props.navigatePage(true)}
-        >
-          <i className="fa fa-briefcase" aria-hidden="true" /> CryptoCoin-Folio
-        </h3>
-        <div className={this.props.active ? 'Header-button-container' : 'Header-button-container button-active'}>
-          <button
-            onClick={() => this.props.navigatePage(false)}
-            className="register-button"
-          >
-            Register
-          </button>
-          <button>
-            Login
-          </button>
-        </div>
-      </header>
-    );
-  }
-}
-
-Header.propTypes = {
-  active: PropTypes.bool,
-  navigatePage: PropTypes.func.isRequired,
-};
-
-Header.defaultProps = {
-  active: true,
-};
+const Header = () => (
+  <header className="Header">
+    <Link className="Header-home-link" to="/">
+      <h3
+        className="Header-heading"
+      >
+        <i className="fa fa-briefcase" aria-hidden="true" /> CryptoCoin-Folio
+      </h3>
+    </Link>
+    <div className="Header-button-container">
+      <Link className="register-button-a" to="/signup">
+        <p>Register</p>
+      </Link>
+      <Link className="login-button-a" to="/login">
+        <p>Login</p>
+      </Link>
+    </div>
+  </header>
+);
 
 export default Header;
