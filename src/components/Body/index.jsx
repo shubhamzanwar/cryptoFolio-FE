@@ -53,10 +53,12 @@ class Body extends Component {
         </div>
         <div className="Body-orders">
           <Orders
+            coin={this.state.selectedCoin}
             keys="asks"
             title="Buy Orders"
           />
           <Orders
+            coin={this.state.selectedCoin}
             keys="bids"
             title="Sell Orders"
           />
