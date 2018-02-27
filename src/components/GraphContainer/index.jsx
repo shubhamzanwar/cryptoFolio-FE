@@ -15,7 +15,18 @@ class GraphContainer extends Component {
       lastClose: 0,
       lastOpen: 0,
     };
-    axios.get(`/liveGraph?coin=${this.props.coin}`).then((priceData) => {
+    this.getdata(this.props.coin);
+    this.interval = null;
+  }
+  componentWillUpdate(nextProps) {
+    if (nextProps.coin !== this.props.coin) {
+      this.getdata(nextProps.coin);
+      clearInterval(this.interval);
+      this.interval = setInterval(() => this.getdata(nextProps.coin), 5000);
+    }
+  }
+  getdata(coin) {
+    axios.get(`/liveGraph?coin=${coin}`).then((priceData) => {
       this.setState({
         prices: priceData.data.prices,
         volume: priceData.data.volume,
@@ -25,23 +36,6 @@ class GraphContainer extends Component {
         lastClose: priceData.data.prices[1439][4],
       });
     });
-  }
-  componentDidMount() {
-    setInterval(
-      () => {
-        axios.get(`/liveGraph?coin=${this.props.coin}`).then((priceData) => {
-          this.setState({
-            prices: priceData.data.prices,
-            volume: priceData.data.volume,
-            lastLow: priceData.data.prices[1439][3],
-            lastOpen: priceData.data.prices[1439][1],
-            lastHigh: priceData.data.prices[1439][2],
-            lastClose: priceData.data.prices[1439][4],
-          });
-        });
-      }
-      , 5000,
-    );
   }
   render() {
     return (
