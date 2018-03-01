@@ -45,9 +45,9 @@ class Orders extends React.Component {
         <div className="Orders-table-wrapper">
           <table className="Orders-table" cellSpacing="0" cellPadding="0">
             <tr>
-              <th className="Orders-table-heading">PRICE</th>
+              <th className="Orders-table-heading">PRICE (USDT)</th>
               <th className="Orders-table-heading">QUANTITY</th>
-              <th className="Orders-table-heading">TOTAL</th>
+              <th className="Orders-table-heading">TOTAL (USDT)</th>
             </tr>
             {table}
           </table>
