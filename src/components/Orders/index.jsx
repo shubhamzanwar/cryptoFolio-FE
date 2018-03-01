@@ -41,7 +41,7 @@ class Orders extends React.Component {
       ));
     return (
       <div className="Orders-div">
-        <h3 className="Orders-title">{this.props.title}</h3>
+        <h3 className="Orders-title">{this.props.title} ({this.props.coin})</h3>
         <div className="Orders-table-wrapper">
           <table className="Orders-table" cellSpacing="0" cellPadding="0">
             <tr>
