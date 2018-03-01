@@ -2,15 +2,45 @@
     flex-grow: 1;
     background: rgb(33,49,71);
     overflow: auto;
+    padding: 15px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.MyCoins-Header {
+    background-color: #293A54;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    justify-content: center;
+}
+
+.MyCoins-Header-Title-CoinCount {
+    font-size: 10px;
+    margin: 0px;
+}
+
+.MyCoins-Header-Title {
+    margin: 0px;
+    color: white;
+    display: flex;
+    flex: 1
+}
+
+.MyCoins-Header-AddButton {
+    color: #55A6D8;
+    display: flex;
 }
 
 .MyCoins-table{
     width: 100%;
     padding: 0 10px;
     text-align: center;
+    font-size: 12px;
+    border-spacing: 10px;
 }
 
 .MyCoins-table-header-th{
     padding: 20px 0 10px 0;
     color: rgb(92,108,132);
+    padding: 4px;
 }
