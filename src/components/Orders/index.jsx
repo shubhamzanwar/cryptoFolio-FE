@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import books from '../../helpers/books';
+import axios from 'axios';
 import './index.css';
 
 class Orders extends React.Component {
@@ -9,14 +9,20 @@ class Orders extends React.Component {
     this.state = {
       data: {},
     };
+    this.getdata(this.props.coin);
+    this.interval = null;
   }
-  componentDidMount() {
-    console.log('hi');
-    const dataPromise = books(this.props.coin);
-    dataPromise.then((dataForCoin) => {
-      console.log(dataForCoin);
+  componentWillUpdate(nextProps) {
+    if (nextProps.coin !== this.props.coin) {
+      this.getdata(nextProps.coin);
+      clearInterval(this.interval);
+      this.interval = setInterval(() => this.getdata(nextProps.coin), 20000);
+    }
+  }
+  getdata(coin) {
+    axios.get(`/orders/${coin}`).then((data) => {
       this.setState({
-        data: dataForCoin,
+        data,
       });
     });
   }
@@ -24,8 +30,7 @@ class Orders extends React.Component {
     if (Object.keys(this.state.data).length === 0) {
       return <p>Loading</p>;
     }
-    console.log(this.state.data);
-    const dataToBeRendered = this.state.data[this.props.keys];
+    const dataToBeRendered = this.state.data.data[this.props.keys];
     const table = dataToBeRendered.map(row =>
       (
         <tr className="Orders-row-tr">
