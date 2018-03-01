@@ -18,4 +18,10 @@
     display:flex;
     width:66%;
     flex-direction:row;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.Body-order-source>p{
+    color: rgb(87, 127, 180);
 }
