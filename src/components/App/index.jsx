@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import Header from '../Header';
 import SignupBody from '../SignupBody';
 import Body from '../Body';
@@ -21,4 +21,4 @@ const App = () => (
 );
 
 
-export default App;
+export default withRouter(App);
