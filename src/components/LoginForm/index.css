@@ -5,12 +5,18 @@
     padding-top: 10px;
     border-radius: 5px;
     width: 25%;
-    min-width: 250px;
+    min-width: 350px;
     margin-right: 100px;
     justify-content: space-between;
     align-items: stretch;
 }
-
+.LoginForm-error{
+    padding: 10px;
+    border: 1px solid red;
+    background: lightpink;
+    font-weight: 700;
+    margin: 10px;
+}
 .LoginForm-input{
     border: none;
     border-radius: 4px;
