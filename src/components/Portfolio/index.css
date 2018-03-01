@@ -7,12 +7,9 @@
 .Portfolio-Graphs {
     display: flex;
     flex-direction: column;
-    height: 100px;
     flex: 1
 }
 
 .Portfolio-Table {
-    display: flex;
-    height: 100px;
     flex: 1
 }
