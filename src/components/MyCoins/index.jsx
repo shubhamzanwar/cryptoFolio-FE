@@ -1,10 +1,51 @@
 import React, { Component } from 'react';
+
 import './index.css';
+import MyCoinRow from '../MyCoinRow';
+
+const demoValue = [
+  {
+    Symbol: 'BTC',
+    Name: 'Bitcoin',
+    PurchasedPrice: 1231,
+    CurrentPrice: 1232,
+    Volume: 321,
+    Total: 123,
+    Change: 10.1,
+  },
+  {
+    Symbol: 'BTC',
+    Name: 'Bitcoin',
+    PurchasedPrice: 1231,
+    CurrentPrice: 1232,
+    Volume: 321,
+    Total: 123,
+    Change: 10.1,
+  },
+  {
+    Symbol: 'BTC',
+    Name: 'Bitcoin',
+    PurchasedPrice: 1231,
+    CurrentPrice: 1232,
+    Volume: 321,
+    Total: 123,
+    Change: 10.1,
+  },
+];
 
 class MyCoins extends Component {
+
+  editCoin = () => {
+    alert('Edit');
+  }
+
   render() {
     return (
       <div className="MyCoins">
+        <div className="MyCoins-Header">
+          <p className="MyCoins-Header-Title">My Coins</p>
+          <span className="MyCoins-Header-AddButton"><i class="fas fa-plus"></i> Add Coin</span>
+        </div>
         <table className="MyCoins-table" cellSpacing="0" cellPadding="0">
           <thead>
             <tr>
@@ -19,36 +60,7 @@ class MyCoins extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>BTC</td>
-              <td>BitCoin</td>
-              <td>$534</td>
-              <td>534</td>
-              <td>2.3</td>
-              <td>7675</td>
-              <td>10.02%</td>
-              <td>edit</td>
-            </tr>
-            <tr>
-              <td>BTC</td>
-              <td>BitCoin</td>
-              <td>$534</td>
-              <td>534</td>
-              <td>2.3</td>
-              <td>7675</td>
-              <td>10.02%</td>
-              <td>edit</td>
-            </tr>
-            <tr>
-              <td>BTC</td>
-              <td>BitCoin</td>
-              <td>$534</td>
-              <td>534</td>
-              <td>2.3</td>
-              <td>7675</td>
-              <td>10.02%</td>
-              <td>edit</td>
-            </tr>
+            {demoValue.map(transaction => <MyCoinRow transaction={transaction} editCoin={this.editCoin}/>)};
           </tbody>
         </table>
       </div>
