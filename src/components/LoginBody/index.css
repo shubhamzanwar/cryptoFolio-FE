@@ -1,6 +1,10 @@
 .LoginBody{
     flex-grow: 1;
+    display: flex;
     color: white;
     background: url('../SignupBody/signup.png');
     background-size: cover;
+    background-position: center;
+    align-items: center;
+    justify-content: flex-end;
 }
