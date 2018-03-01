@@ -5,6 +5,13 @@
     background: url('../SignupBody/signup.png');
     background-size: cover;
     background-position: center;
+   
+}
+.LoginBody-tint{
+    flex-grow: 1;
+    display: flex;
+    color: white;
     align-items: center;
     justify-content: flex-end;
+    background: rgba(25, 65, 175, 0.225);
 }
