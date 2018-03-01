@@ -5,11 +5,12 @@
 }
 
 .Portfolio-Graphs {
-    display: flex;
+    padding: 10px;
     flex-direction: column;
     flex: 1
 }
 
 .Portfolio-Table {
+    padding: 10px;
     flex: 1
 }
