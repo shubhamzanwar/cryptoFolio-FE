@@ -1,0 +1,16 @@
+.MyCoins{
+    flex-grow: 1;
+    background: rgb(33,49,71);
+    overflow: auto;
+}
+
+.MyCoins-table{
+    width: 100%;
+    padding: 0 10px;
+    text-align: center;
+}
+
+.MyCoins-table-header-th{
+    padding: 20px 0 10px 0;
+    color: rgb(92,108,132);
+}

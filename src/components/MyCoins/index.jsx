@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './index.css';
 
 class MyCoins extends Component {
   render() {
@@ -18,6 +19,26 @@ class MyCoins extends Component {
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td>BTC</td>
+              <td>BitCoin</td>
+              <td>$534</td>
+              <td>534</td>
+              <td>2.3</td>
+              <td>7675</td>
+              <td>10.02%</td>
+              <td>edit</td>
+            </tr>
+            <tr>
+              <td>BTC</td>
+              <td>BitCoin</td>
+              <td>$534</td>
+              <td>534</td>
+              <td>2.3</td>
+              <td>7675</td>
+              <td>10.02%</td>
+              <td>edit</td>
+            </tr>
             <tr>
               <td>BTC</td>
               <td>BitCoin</td>
