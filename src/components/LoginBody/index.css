@@ -1,0 +1,6 @@
+.LoginBody{
+    flex-grow: 1;
+    color: white;
+    background: url('../SignupBody/signup.png');
+    background-size: cover;
+}
