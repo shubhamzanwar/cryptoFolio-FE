@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-eslint": "^8.2.2",
     "highcharts": "^6.0.7",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
