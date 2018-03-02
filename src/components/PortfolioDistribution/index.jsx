@@ -45,7 +45,13 @@ class PortfolioDistribution extends Component {
           </div>
           <div className="GraphLabel">
             <div className="GraphLabelItemContainer">
-              { tempData.map(coin => <PortfolioDistributionLabel value={coin.y} symbol={coin.name} color={coin.color} />)}
+              { tempData.map(coin => (
+                <PortfolioDistributionLabel
+                  value={coin.y}
+                  symbol={coin.name}
+                  color={coin.color}
+                />))
+              }
             </div>
           </div>
         </div>

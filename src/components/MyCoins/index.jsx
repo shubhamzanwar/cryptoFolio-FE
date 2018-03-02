@@ -34,7 +34,6 @@ const demoValue = [
 ];
 
 class MyCoins extends Component {
-
   editCoin = () => {
     alert('Edit');
   }
@@ -44,7 +43,7 @@ class MyCoins extends Component {
       <div className="MyCoins">
         <div className="MyCoins-Header">
           <p className="MyCoins-Header-Title">My Coins</p>
-          <span className="MyCoins-Header-AddButton"><i class="fas fa-plus"></i> Add Coin</span>
+          <span className="MyCoins-Header-AddButton"><i className="fas fa-plus" /> Add Coin</span>
         </div>
         <table className="MyCoins-table" cellSpacing="0" cellPadding="0">
           <thead className="MyCoins-table-header">
@@ -60,7 +59,10 @@ class MyCoins extends Component {
             </tr>
           </thead>
           <tbody className="MyCoins-table-body">
-            {demoValue.map(transaction => <MyCoinRow transaction={transaction} editCoin={this.editCoin}/>)};
+            {demoValue.map(transaction => (<MyCoinRow
+              transaction={transaction}
+              editCoin={this.editCoin}
+            />))};
           </tbody>
         </table>
       </div>

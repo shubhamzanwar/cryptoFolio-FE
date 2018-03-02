@@ -7,8 +7,18 @@ class PortfolioDistributionLabel extends Component {
   render() {
     return (
       <div className="GraphLabelItem">
-        <span className="GraphLabelItem-Value" style={{ color: this.props.color }}>{this.props.value}</span>
-        <span className="GraphLabelItem-Symbol" style={{ color: this.props.color }}>{this.props.symbol}</span>
+        <span
+          className="GraphLabelItem-Value"
+          style={{ color: this.props.color }}
+        >
+          {this.props.value}
+        </span>
+        <span
+          className="GraphLabelItem-Symbol"
+          style={{ color: this.props.color }}
+        >
+          {this.props.symbol}
+        </span>
       </div>
     );
   }
