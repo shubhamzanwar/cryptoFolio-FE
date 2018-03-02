@@ -46,13 +46,17 @@
     font-weight: 700;
 }
 
-.Investment-Invested span {
+.Investment-Invested-span {
     color: springgreen;
 }
 
 
-.Investment-Current span {
+.Investment-Current-span-profit {
     color: springgreen;
+}
+
+.Investment-Current-span-loss {
+    color: red;
 }
 
 .Investment-Graph1 {
