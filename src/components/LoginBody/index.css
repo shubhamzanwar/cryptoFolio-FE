@@ -16,3 +16,9 @@
     justify-content: flex-end;
     background: rgba(25, 65, 175, 0.225);
 }
+
+@media screen and (max-width: 768px){
+    .LoginBody-tint{
+        justify-content: center;
+    }
+}

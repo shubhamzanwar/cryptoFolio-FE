@@ -45,3 +45,10 @@
     display: block;
     margin: auto;
 }
+
+
+@media screen and (max-width: 768px){
+    .LoginForm{
+        margin: 0;
+    }
+}
