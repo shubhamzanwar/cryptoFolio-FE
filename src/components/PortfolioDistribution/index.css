@@ -13,6 +13,7 @@
     flex-direction: row;
     padding: 10px;
     align-items: center;
+    min-height: 45px;
 }
 
 .Distribution-Header-Title {
