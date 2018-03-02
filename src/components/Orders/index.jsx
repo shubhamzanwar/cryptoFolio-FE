@@ -34,9 +34,9 @@ class Orders extends React.Component {
     const table = dataToBeRendered.map(row =>
       (
         <tr className="Orders-row-tr">
-          <td className="Orders-row-td">{row.price}</td>
-          <td className="Orders-row-td">{row.quantity}</td>
-          <td className="Orders-row-td">{row.total}</td>
+          <td className="Orders-row-td">{Number(row.price).toFixed(3)}</td>
+          <td className="Orders-row-td">{Number(row.quantity).toFixed(3)}</td>
+          <td className="Orders-row-td">{Number(row.total).toFixed(3)}</td>
         </tr>
       ));
     return (

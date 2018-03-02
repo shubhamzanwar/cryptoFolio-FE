@@ -5,3 +5,10 @@
     flex-wrap:wrap;
     justify-content: center;
 }
+
+
+@media screen and (max-width: 1315px) {
+    .PriceRow{
+        display:none;
+    }
+  }

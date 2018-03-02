@@ -5,6 +5,7 @@
     color: white;
     display: flex;
     flex-direction: column;
+    width: 85%;
 }
 
 .Body-graph-and-ticker-container{
@@ -18,10 +19,57 @@
     display:flex;
     width:66%;
     flex-direction:row;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
+    justify-content: space-between;
 }
 
 .Body-order-source>p{
     color: rgb(87, 127, 180);
+}
+
+@media screen and (max-width: 1200px) {
+    .Body-orders{
+        flex-direction:column;
+        width: 100%;
+    }
+    .Ticker-table-row-td{
+        font-size: 13px;
+    }
+    .Ticker-table-header-th{
+        font-size: 14px;
+    }
+}
+
+
+@media screen and (max-width: 1020px) {
+    .Body-orders{
+        flex-direction:column;
+    }
+    .Body-graph-and-ticker-container{
+        flex-direction: column-reverse;
+    }
+    .Ticker{
+        margin-bottom: 30px;
+    }
+    .GraphContainer{
+        width: 100%;
+    }
+    .Ticker-table-row-td{
+        font-size: 15px;
+    }
+    .Ticker-table-header-th{
+        font-size: 16px;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .Body-orders{
+        flex-direction:column;
+    }
+    .Ticker-table-row-td{
+        font-size: 12px;
+    }
+    .Ticker-table-header-th{
+        font-size: 13px;
+    }
 }

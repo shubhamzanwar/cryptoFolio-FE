@@ -1,10 +1,10 @@
 .Orders-div{
-    flex-grow: 1;
     max-height: 500px;
-    margin-bottom:20px;
+    margin-bottom:60px;
+    width: 48%;
 }
 .Orders-table{
-    width: 90%;
+    width: 100%;
     background: rgb(33,49,71);
 }
 
@@ -29,4 +29,18 @@
     text-align: center;
     padding: 10px 0;
     border: none;
+}
+
+
+
+@media screen and (max-width: 1200px) {
+    .Orders-div{
+        width: 100%;
+    }
+    .Orders-row-tr{
+        font-size: 12px;
+    }
+    .Orders-table-heading{
+        font-size: 13px;
+    }
 }
