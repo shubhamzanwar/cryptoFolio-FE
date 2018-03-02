@@ -20,7 +20,7 @@ const demoValue = [
     CurrentPrice: 1232,
     Volume: 321,
     Total: 123,
-    Change: 10.1,
+    Change: -9.1,
   },
   {
     Symbol: 'BTC',
