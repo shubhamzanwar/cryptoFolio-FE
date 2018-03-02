@@ -15,10 +15,31 @@ class PortfolioDistribution extends Component {
         <div className="Distribution-GraphContainer">
           <div className="Graph" />
           <div className="GraphLabel">
-            <div className="GraphLabelItem">
-              <span>42%<br />BCH</span>
-              <span>42%<br />BCH</span><br />
-              <span>42%<br />BCH</span><br />
+            <div className="GraphLabelItemContainer">
+              <div className="GraphLabelItem">
+                <span className="GraphLabelItem-Value">42%</span>
+                <span className="GraphLabelItem-Symbol">BCH</span>
+              </div>
+              <div className="GraphLabelItem">
+                <span className="GraphLabelItem-Value">42%</span>
+                <span className="GraphLabelItem-Symbol">BCH</span>
+              </div>
+              <div className="GraphLabelItem">
+                <span className="GraphLabelItem-Value">42%</span>
+                <span className="GraphLabelItem-Symbol">BCH</span>
+              </div>
+              <div className="GraphLabelItem">
+                <span className="GraphLabelItem-Value">42%</span>
+                <span className="GraphLabelItem-Symbol">BCH</span>
+              </div>
+              <div className="GraphLabelItem">
+                <span className="GraphLabelItem-Value">42%</span>
+                <span className="GraphLabelItem-Symbol">BCH</span>
+              </div>
+              <div className="GraphLabelItem">
+                <span className="GraphLabelItem-Value">42%</span>
+                <span className="GraphLabelItem-Symbol">BCH</span>
+              </div>
             </div>
           </div>
         </div>
