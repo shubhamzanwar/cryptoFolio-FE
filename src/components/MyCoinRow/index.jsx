@@ -10,7 +10,10 @@ const MyCoinRow = props => (
     <td className="MyCoin-table-row-td">{props.transaction.CurrentPrice}</td>
     <td className="MyCoin-table-row-td">{props.transaction.Volume}</td>
     <td className="MyCoin-table-row-td">{props.transaction.Total}</td>
-    <td className="MyCoin-table-row-td">{props.transaction.Change}</td>
+    <td className={props.transaction.Change > 0 ? 'MyCoin-table-row-td MyCoin-table-row-td-profit' : 'MyCoin-table-row-td MyCoin-table-row-td-loss'}>
+      {props.transaction.Change}
+      <i className={props.transaction.Change > 0 ? 'fas fa-arrow-circle-up' : 'fas fa-arrow-circle-down'} />
+    </td>
     <td className="MyCoin-table-row-td-EditCoin">{props.editCoin}</td>
   </tr>
 );
