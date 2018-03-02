@@ -22,8 +22,14 @@ class Investment extends Component {
         </div>
         <div className="Investment-Body">
           <div className="Investment-Values">
-            <p className="Investment-Invested">Invested<br /><span>$ {this.props.invested}</span></p>
-            <p className="Investment-Current">Current Value<br /><span>$ {this.props.currentValue}</span></p>
+            <p className="Investment-Invested">
+              Invested<br />
+              <span className="Investment-Invested-span">$ {this.props.invested}</span>
+            </p>
+            <p className="Investment-Current">
+              Current Value<br />
+              <span className={this.props.currentValue < this.props.invested ? 'Investment-Current-span-loss' : 'Investment-Current-span-profit'}>$ {this.props.currentValue}</span>
+            </p>
           </div>
           <div className="Investment-Graph1">
             <div className="Investment-bar">
