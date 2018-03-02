@@ -71,10 +71,7 @@
 
 .Investment-progress {
     display: flex;
-    width: 74%;
-    margin-left: 26%;
     height: 40px;
-    background-color: #03d603;
     align-items: center;
     border-radius: 5px;
   }
