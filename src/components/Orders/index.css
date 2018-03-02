@@ -1,11 +1,10 @@
 .Orders-div{
     flex-grow: 1;
-    margin-top: 30px;
     max-height: 500px;
+    margin-bottom:20px;
 }
 .Orders-table{
-    width: 100%;
-    padding: 0 10px;
+    width: 90%;
     background: rgb(33,49,71);
 }
 
