@@ -8,10 +8,10 @@ class Investment extends Component {
         <div className="Investment-Header">
           <p className="Investment-Header-Title">Ethereum</p>
         </div>
-        <div>
+        <div className="Investment-Body">
           <div className="Investment-Values">
-            <p className="Investment-Invested">Invested<br /><span className="Investment-Invested-value">$ 27,000</span></p>
-            <p className="Investment-Current">Invested<br /><span className="Investment-Current-value">$ 27,000</span></p>
+            <p className="Investment-Invested">Invested<br /><span>$ 27,000</span></p>
+            <p className="Investment-Current">Current Value<br /><span>$ 27,000</span></p>
           </div>
           <div className="Investment-Graph1">
             <div className="Investment-bar">
