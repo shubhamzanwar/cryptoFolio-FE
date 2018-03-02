@@ -7,8 +7,8 @@ class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      emailid: 'zanwar.shubham@gmail.com',
-      password: 'Shubham1',
+      emailid: '',
+      password: '',
     };
   }
   saveEmail(value) {
