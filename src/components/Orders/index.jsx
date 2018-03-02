@@ -16,7 +16,7 @@ class Orders extends React.Component {
     if (nextProps.coin !== this.props.coin) {
       this.getdata(nextProps.coin);
       clearInterval(this.interval);
-      this.interval = setInterval(() => this.getdata(nextProps.coin), 20000);
+      this.interval = setInterval(() => this.getdata(nextProps.coin), 5000);
     }
   }
   getdata(coin) {
