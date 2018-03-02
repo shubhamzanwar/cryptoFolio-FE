@@ -3,17 +3,18 @@
     flex-direction: column;
     padding: 10px;
     margin: 10px;
+    width: 40px;
 }
 
 .GraphLabelItem-Value {
-    border-bottom: solid;
-    border-width: 2px;
     color: white;
     align-self: center;
     padding-bottom: 10px;
 }
 
 .GraphLabelItem-Symbol {
+    border-top: solid;
+    border-width: 2px;
     padding-top: 10px;
     color: white;
     align-self: center;
