@@ -41,6 +41,7 @@
     border: none;
     font-size: 14px;
     color: rgb(100, 150, 150);
+    outline: none;
 }
 
 .Distribution-Tabs-Button button.selected {
