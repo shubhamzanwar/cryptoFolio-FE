@@ -62,7 +62,7 @@ class MyCoins extends Component {
             {demoValue.map(transaction => (<MyCoinRow
               transaction={transaction}
               editCoin={this.editCoin}
-            />))};
+            />))}
           </tbody>
         </table>
       </div>
