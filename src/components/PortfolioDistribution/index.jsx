@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import PortfolioDistributionChart from '../PortifolioDistributionChart';
+import PortfolioDistributionLabel from '../PortofolioDistributionLabel';
 import './index.css';
 
 const tempData = [{
@@ -12,18 +13,19 @@ const tempData = [{
   y: 96.33,
   color: 'rgb(239, 179, 59)',
 }, {
-  name: 'Firefox',
+  name: 'PSD',
   y: 39.38,
   color: '#50ef3b',
 }, {
-  name: 'Safari',
+  name: 'WDS',
   y: 4.77,
 }, {
-  name: 'Opera',
+  name: 'PQR',
   y: 0.91,
 }, {
-  name: 'Proprietary or Undetectable',
+  name: 'ABC',
   y: 0.2,
+  color: 'yellow',
 }];
 
 class PortfolioDistribution extends Component {
@@ -43,30 +45,7 @@ class PortfolioDistribution extends Component {
           </div>
           <div className="GraphLabel">
             <div className="GraphLabelItemContainer">
-              <div className="GraphLabelItem">
-                <span className="GraphLabelItem-Value">42%</span>
-                <span className="GraphLabelItem-Symbol">BCH</span>
-              </div>
-              <div className="GraphLabelItem">
-                <span className="GraphLabelItem-Value">42%</span>
-                <span className="GraphLabelItem-Symbol">BCH</span>
-              </div>
-              <div className="GraphLabelItem">
-                <span className="GraphLabelItem-Value">42%</span>
-                <span className="GraphLabelItem-Symbol">BCH</span>
-              </div>
-              <div className="GraphLabelItem">
-                <span className="GraphLabelItem-Value">42%</span>
-                <span className="GraphLabelItem-Symbol">BCH</span>
-              </div>
-              <div className="GraphLabelItem">
-                <span className="GraphLabelItem-Value">42%</span>
-                <span className="GraphLabelItem-Symbol">BCH</span>
-              </div>
-              <div className="GraphLabelItem">
-                <span className="GraphLabelItem-Value">42%</span>
-                <span className="GraphLabelItem-Symbol">BCH</span>
-              </div>
+              { tempData.map(coin => <PortfolioDistributionLabel value={coin.y} symbol={coin.name} color={coin.color} />)}
             </div>
           </div>
         </div>

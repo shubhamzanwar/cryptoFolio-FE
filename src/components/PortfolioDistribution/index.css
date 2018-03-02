@@ -48,6 +48,12 @@
     color: white;
     border: none;
     font-size: 14px;
+    margin: 3px;
+}
+
+.Distribution-Tabs-Button button:hover {
+    color: white;
+    font-size: 14px;
 }
 
 .Distribution-GraphContainer {
@@ -66,30 +72,4 @@
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
-}
-
-.GraphLabelItem {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    margin: 10px;
-}
-
-.GraphLabelItem-Value {
-    border-bottom: solid;
-    border-width: 2px;
-    color: yellow;
-    align-self: center;
-    padding-bottom: 10px;
-}
-
-.GraphLabelItem-Symbol {
-    padding-top: 10px;
-    color: yellow;
-    align-self: center;
-}
-
-.GraphLabelItem span{
-    display: inline-flex;
-    font-size: 14px;
 }
