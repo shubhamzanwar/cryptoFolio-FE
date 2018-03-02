@@ -47,7 +47,7 @@ class MyCoins extends Component {
           <span className="MyCoins-Header-AddButton"><i class="fas fa-plus"></i> Add Coin</span>
         </div>
         <table className="MyCoins-table" cellSpacing="0" cellPadding="0">
-          <thead>
+          <thead className="MyCoins-table-header">
             <tr>
               <th className="MyCoins-table-header-th">Coin</th>
               <th className="MyCoins-table-header-th">Name</th>
@@ -59,7 +59,7 @@ class MyCoins extends Component {
               <th className="MyCoins-table-header-th">Edit</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="MyCoins-table-body">
             {demoValue.map(transaction => <MyCoinRow transaction={transaction} editCoin={this.editCoin}/>)};
           </tbody>
         </table>
