@@ -43,7 +43,7 @@ class MyCoins extends Component {
       <div className="MyCoins">
         <div className="MyCoins-Header">
           <p className="MyCoins-Header-Title">My Coins</p>
-          <span className="MyCoins-Header-AddButton"><i className="fas fa-plus" /> Add Coin</span>
+          <span className="MyCoins-Header-AddButton"><i className="fas fa-plus" />&nbsp;&nbsp;Add Coin</span>
         </div>
         <table className="MyCoins-table" cellSpacing="0" cellPadding="0">
           <thead className="MyCoins-table-header">

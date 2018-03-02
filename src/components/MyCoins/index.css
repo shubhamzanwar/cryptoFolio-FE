@@ -36,6 +36,11 @@
     align-self: center;
 }
 
+.MyCoins-Header-AddButton:hover {
+    color: white;
+    cursor: pointer;
+}
+
 .MyCoins-table{
     width: 100%;
     padding: 0 10px;
