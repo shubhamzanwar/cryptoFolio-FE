@@ -1,13 +1,21 @@
-.MyCoin-table-row{
-    text-align: center;
-    border: none;
-    color: white;
-}
-
 .MyCoin-table-row:nth-child(odd){
     background: rgb(29,43,63);
 }
 
+.MyCoin-table-row-td-Symbol {
+    padding-left: 10px;
+}
+
+.MyCoin-table-row-td-Symbol {
+    padding-right: 10px;
+}
+
+.MyCoin-table-row-td-Name {
+    color: rgb(74,172,233);
+}
+
 .MyCoin-table-row:hover{
-    background: rgb(39,59,86);
+    border: solid;
+    border-width: 1px;
+    border-color: rgb(74,172,233);
 }

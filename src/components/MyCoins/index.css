@@ -2,7 +2,6 @@
     flex-grow: 1;
     background: rgb(33,49,71);
     overflow: auto;
-    padding: 15px;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -11,7 +10,7 @@
     display: flex;
     flex-direction: row;
     padding: 10px;
-    justify-content: center;
+    margin: 15px;
 }
 
 .MyCoins-Header-Title-CoinCount {
@@ -30,18 +29,27 @@
 .MyCoins-Header-AddButton {
     color: #55A6D8;
     display: flex;
+    font-size: 15px;
+    align-self: center;
 }
 
 .MyCoins-table{
     width: 100%;
     padding: 0 10px;
     text-align: center;
-    font-size: 12px;
-    border-spacing: 10px;
+    border-collapse: collapse;
 }
 
 .MyCoins-table-header-th{
     padding: 20px 0 10px 0;
     color: rgb(92,108,132);
-    padding: 4px;
+    font-size: 14px;
+    font-weight: 100;
+    text-transform: uppercase;
+}
+
+.MyCoins-table-body td{
+    padding: 15px 0 15px 0;
+    color: white;
+    font-size: 16px;
 }
