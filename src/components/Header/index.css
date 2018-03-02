@@ -5,11 +5,10 @@
     background: rgb(14,39,89);
     color: white;
     align-items: center;
-    justify-content: center;
     width: 100%;
 }
 .Header-container{
-    width: 85%;
+    width: 100%;
     height: 70px;
     display:flex;
     justify-content: space-between;
