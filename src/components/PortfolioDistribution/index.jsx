@@ -1,5 +1,30 @@
 import React, { Component } from 'react';
+
+import PortfolioDistributionChart from '../PortifolioDistributionChart';
 import './index.css';
+
+const tempData = [{
+  name: 'XRP',
+  y: 56.33,
+  color: 'rgb(232, 74, 161)',
+}, {
+  name: 'BTC',
+  y: 96.33,
+  color: 'rgb(239, 179, 59)',
+}, {
+  name: 'Firefox',
+  y: 39.38,
+  color: '#50ef3b',
+}, {
+  name: 'Safari',
+  y: 4.77,
+}, {
+  name: 'Opera',
+  y: 0.91,
+}, {
+  name: 'Proprietary or Undetectable',
+  y: 0.2,
+}];
 
 class PortfolioDistribution extends Component {
   render() {
@@ -13,7 +38,9 @@ class PortfolioDistribution extends Component {
           </div>
         </div>
         <div className="Distribution-GraphContainer">
-          <div className="Graph" />
+          <div className="Graph">
+            <PortfolioDistributionChart portfolioData={tempData} />
+          </div>
           <div className="GraphLabel">
             <div className="GraphLabelItemContainer">
               <div className="GraphLabelItem">
