@@ -3,6 +3,8 @@
     background: rgb(33,49,71);
     overflow: auto;
     font-family: 'Roboto', sans-serif;
+    margin: 10px;
+    padding: 10px;
 }
 
 .MyCoins-Header {

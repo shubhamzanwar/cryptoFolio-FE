@@ -2,8 +2,9 @@
     flex-grow: 1;
     background: rgb(33,49,71);
     overflow: auto;
-    padding: 15px;
     font-family: 'Roboto', sans-serif;
+    margin: 10px;
+    padding: 10px;
 }
 
 .Investment-Header {
