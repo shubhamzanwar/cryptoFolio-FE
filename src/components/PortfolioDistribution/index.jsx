@@ -7,6 +7,10 @@ class PortfolioDistribution extends Component {
       <div className="Distribution">
         <div className="Distribution-Header">
           <p className="Distribution-Header-Title">My Coins</p>
+          <div className="Distribution-Tabs-Button">
+            <button className="selected">Investment</button>
+            <button>Current Value</button>
+          </div>
         </div>
         <div className="Distribution-GraphContainer">
           <div className="Graph" />
