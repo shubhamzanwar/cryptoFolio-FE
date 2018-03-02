@@ -5,20 +5,26 @@ import './index.css';
 
 const Header = () => (
   <header className="Header">
-    <Link className="Header-home-link" to="/">
-      <h3
-        className="Header-heading"
-      >
-        <i className="fa fa-briefcase" aria-hidden="true" /> CryptoCoin-Folio
-      </h3>
-    </Link>
-    <div className="Header-button-container">
-      <NavLink className="register-button-a" activeClassName="Header-button-selected" to="/signup">
-        <p>Register</p>
-      </NavLink>
-      <NavLink className="login-button-a" to="/login" activeClassName="Header-button-selected">
-        <p>Login</p>
-      </NavLink>
+    <div className="Header-container">
+      <Link className="Header-home-link" to="/">
+        <h3
+          className="Header-heading"
+        >
+          <i className="fa fa-briefcase" aria-hidden="true" /> CryptoCoin-Folio
+        </h3>
+      </Link>
+      <div className="Header-button-container">
+        <NavLink
+          className="register-button-a"
+          activeClassName="Header-button-selected"
+          to="/signup"
+        >
+          <p>Register</p>
+        </NavLink>
+        <NavLink className="login-button-a" to="/login" activeClassName="Header-button-selected">
+          <p>Login</p>
+        </NavLink>
+      </div>
     </div>
   </header>
 );
