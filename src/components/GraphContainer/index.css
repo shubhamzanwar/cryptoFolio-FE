@@ -1,6 +1,6 @@
 .GraphContainer{
     min-height: 600px;
-    width: 66%;
+    min-width: 66%;
     margin-right: 30px;
     background: rgb(33,49,71);
 }

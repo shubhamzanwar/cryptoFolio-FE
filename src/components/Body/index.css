@@ -5,10 +5,17 @@
     color: white;
     display: flex;
     flex-direction: column;
-    width: 85%;
+    width: 90%;
 }
 
 .Body-graph-and-ticker-container{
+    display: flex;
+    min-height: 100px;
+    box-sizing: border-box;
+    margin-top: 30px;
+}
+
+.Body-orders-and-twitter-container{
     display: flex;
     min-height: 100px;
     box-sizing: border-box;

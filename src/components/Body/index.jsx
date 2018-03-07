@@ -52,22 +52,19 @@ class Body extends Component {
             prices={this.state.prices}
           />
         </div>
-        <div className="Body-order-source">
-          <p>Binance Order Book</p>
-        </div>
-        <div className="Body-orders">
-          <Orders
-            coin={this.state.selectedCoin}
-            keys="asks"
-            title="Buy Orders"
-          />
-
-          <Orders
-            coin={this.state.selectedCoin}
-            keys="bids"
-            title="Sell Orders"
-          />
-
+        <div className="Body-orders-and-twitter-container">
+          <div className="Body-orders">
+            <Orders
+              coin={this.state.selectedCoin}
+              keys="asks"
+              title="Buy Orders"
+            />
+            <Orders
+              coin={this.state.selectedCoin}
+              keys="bids"
+              title="Sell Orders"
+            />
+          </div>
         </div>
       </div>
     );
