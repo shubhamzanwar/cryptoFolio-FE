@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import LoginForm from '../LoginForm';
 import './index.css';
+import { Redirect } from 'react-router';
 
 
 class LoginBody extends Component {
@@ -24,12 +25,13 @@ class LoginBody extends Component {
     };
     axios(options)
       .then((response) => {
+        console.log(response.data);
         if (response.data.code === 200) {
           this.setState({
             token: response.data.token,
             name: response.data.fullName,
-            message: 'success',
           });
+          this.props.history.push('/');
         } else {
           this.setState({
             message: response.data.message,
