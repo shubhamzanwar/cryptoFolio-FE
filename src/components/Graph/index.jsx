@@ -10,6 +10,18 @@ class Graph extends Component {
       rangeSelector: {
         enabled: false,
       },
+      plotOptions: {
+        candlestick: {
+          color: 'rgb(55, 222, 231)',
+          upColor: '#fff',
+        },
+        series: {
+          animation: {
+            duration: 2000,
+          },
+          animationLimit: 0,
+        },
+      },
       chart: {
         backgroundColor: '#213147',
         zoomType: false,
@@ -24,7 +36,7 @@ class Graph extends Component {
           text: 'CandleSticks',
         },
         gridLineDashStyle: 'longdash',
-        gridLineColor: '#3e8869',
+        gridLineColor: 'rgba(242, 127, 0, 0.4)',
         height: '70%',
         lineWidth: 0,
         lineColor: '#FFF',
@@ -37,7 +49,7 @@ class Graph extends Component {
         },
         opposite: false,
         gridLineDashStyle: 'longdash',
-        gridLineColor: '#3e8869',
+        gridLineColor: 'rgba(242, 127, 0, 0.4)',
         title: {
           text: 'Volume',
         },
@@ -58,10 +70,14 @@ class Graph extends Component {
         dataGrouping: {
           enabled: true,
         },
+        animation: {
+          duration: 2000,
+        },
+        animationLimit: 0,
       }, {
         type: 'column',
         name: `${this.props.coin} Volume`,
-        color: '#F00',
+        color: 'rgb(0, 173, 239)',
         data: this.props.volume,
         dataGrouping: {
           enabled: true,
