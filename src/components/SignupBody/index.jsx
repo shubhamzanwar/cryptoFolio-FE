@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './index.css';
 import ErrorMessage from '../ErrorMessage';
-
+import { Redirect } from 'react-router'
 
 class SignupBody extends Component {
   constructor() {
@@ -36,7 +36,7 @@ class SignupBody extends Component {
       })
         .then((response) => {
           if (response.status === 201) {
-            return 0;
+            this.props.history.push('/login');
           }
           return null;
         });
