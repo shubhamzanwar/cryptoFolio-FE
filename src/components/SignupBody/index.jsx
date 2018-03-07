@@ -35,10 +35,27 @@ class SignupBody extends Component {
         body: JSON.stringify(payload),
       })
         .then((response) => {
-          if (response.status === 201) {
-            this.props.history.push('/login');
+          switch(response.status){
+            case 201: 
+              this.props.history.push('/login');
+              break;
+            
+            case 409: 
+              this.setState({
+                error: 'You are already registered',
+              });
+              break;
+            
+            case 422: 
+              this.setState({
+                error: 'Please provide correct details',
+              });
+              break;
+            
+            default: this.setState({
+              error: 'Sorry! some internal error occured',
+            });
           }
-          return null;
         });
     }
   };
