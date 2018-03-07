@@ -13,7 +13,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: auto;
   padding: 20px;
   background: rgba(25, 65, 175, 0.225);
 }
@@ -22,7 +21,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 5% 0 0 10%;
   color: white;
 }
 .signup-heading{
@@ -63,7 +61,7 @@
   border-radius: 4px;
   font-size: 16px;
   padding: 20px;
-  margin: 10px 20px;
+  margin: 10px 10px;
   box-sizing: border-box;
 }
 .signup-submit{
@@ -93,7 +91,7 @@
   display: block;
   margin-bottom: 5px;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
   .signup-body{
     flex-direction: column-reverse;
   }

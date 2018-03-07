@@ -37,21 +37,21 @@ class SignupBody extends Component {
         <div className="signup-body">
           <div className="signup-text">
             <div className="signup-heading">
-            Why Should I Register ?
+              Why Should I Register ?
             </div>
             <div className="signup-bullets">
               <ul>
                 <li>
-              Get real time updates about your favortie coins<br />
-              with our live ticker and graph feature.
+                  Get real time updates about your favortie coins<br />
+                  with our live ticker and graph feature
                 </li>
                 <li>
-              See What people are talking about<br />
-              Twitter feed from the official handles for the coins of your choice.
+                  See What people are talking about<br />
+                  Twitter feed from the official handles for the coins of your choice
                 </li>
                 <li>
-              Manage your investments<br />
-              Create a free portfolio to keep track of the coins you own.
+                  Manage your investments<br />
+                  Create a free portfolio to keep track of the coins you own
                 </li>
               </ul>
             </div>
