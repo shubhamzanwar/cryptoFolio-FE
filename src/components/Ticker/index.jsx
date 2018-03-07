@@ -22,6 +22,7 @@ const Ticker = props => (
                 <TickerRow
                   price={price}
                   select={sym => props.select(sym)}
+                  row={props.row}
                   key={price.Symbol}
                 />
               ))
@@ -33,10 +34,12 @@ const Ticker = props => (
 
 Ticker.propTypes = {
   prices: PropTypes.arrayOf(),
+  row: PropTypes.string,
 };
 
 Ticker.defaultProps = {
   prices: [],
+  row: 'BTC',
 };
 
 export default Ticker;

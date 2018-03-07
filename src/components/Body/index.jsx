@@ -48,6 +48,7 @@ class Body extends Component {
           <GraphContainer coin={this.state.selectedCoin} />
           <Ticker
             select={sym => this.setSelectedCoin(sym)}
+            row={this.state.selectedCoin}
             prices={this.state.prices}
           />
         </div>

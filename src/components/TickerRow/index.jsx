@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './index.css';
 
 const TickerRow = props => (
-  <tr className="Ticker-table-row" onClick={() => props.select(props.price.Symbol)}>
+  <tr className={props.row === props.price.Symbol ? 'Ticker-table-row selected-row' : 'Ticker-table-row'} onClick={() => props.select(props.price.Symbol)}>
     <td className="Ticker-table-row-td">{props.price.Symbol}</td>
     <td className="Ticker-table-row-td">{props.price.Name}</td>
     <td className="Ticker-table-row-td">{props.price.Price}</td>
@@ -21,10 +21,12 @@ TickerRow.propTypes = {
     Change: PropTypes.number.isRequired,
   }),
   select: PropTypes.func.isRequired,
+  row: PropTypes.string,
 };
 
 TickerRow.defaultProps = {
   price: {},
+  row: 'BTC',
 };
 
 export default TickerRow;

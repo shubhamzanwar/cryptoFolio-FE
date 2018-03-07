@@ -1,9 +1,11 @@
 .Ticker-table-row-td{
     text-align: center;
     padding: 10px 0;
-    border: none;
 }
-
+.Ticker-table-row{
+    border-left: 1px solid white;
+    border-collapse: unset;
+}
 .Ticker-table-row:nth-child(odd){
     background: rgb(29,43,63);
 }
@@ -12,13 +14,14 @@
     background: rgb(39,59,86);
 }
 
-.Ticker-table-row-active{
-    background: rgb(39,59,86);
-}
-
 .success{
     color: rgb(85,185,125);
 }
 .danger{
     color: rgb(192,88,73);
+}
+
+.selected-row{
+    background: rgb(39,59,86) !important;
+    box-shadow: -3px 0px 0px 0px rgb(0, 173, 239);
 }
