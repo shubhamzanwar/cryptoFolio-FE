@@ -15,7 +15,7 @@
 }
 
 .PriceBox:hover{
-    border-bottom: 3px solid rgb(235,235,235);
+    border-bottom: 3px solid rgb(0, 173, 239);
     background: rgb(39,59,86);
 }
 
