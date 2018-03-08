@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router'
+import PropTypes from 'prop-types';
 import Form from '../Form';
 import './index.css';
 
@@ -10,21 +10,18 @@ class SignupBody extends Component {
       error: null,
     };
   }
-  registerUser = (e) => {
-    console.log('clicked');
+  registerUser(e) {
     e.preventDefault();
     const data = new FormData(e.target);
-    console.log(data);
     const fullName = data.get('fullname');
     const email = data.get('email');
     const password = data.get('password');
     const confirmPassword = data.get('confirmpassword');
     const mobileNumbe = data.get('contact');
-    console.log(fullName);
     if (password !== confirmPassword) {
       this.setState({
         error: 'Ops! Password Mismatch',
-      })
+      });
     } else {
       const payload = {
         fullName,
@@ -38,30 +35,30 @@ class SignupBody extends Component {
         body: JSON.stringify(payload),
       })
         .then((response) => {
-          switch(response.status){
-            case 201: 
+          switch (response.status) {
+            case 201:
               this.props.history.push('/login');
               break;
-            
-            case 409: 
+
+            case 409:
               this.setState({
                 error: 'You are already registered',
               });
               break;
-            
-            case 422: 
+
+            case 422:
               this.setState({
                 error: 'Please provide correct details',
               });
               break;
-            
+
             default: this.setState({
               error: 'Sorry! some internal error occured',
             });
           }
         });
     }
-  };
+  }
 
   render() {
     return (
@@ -88,12 +85,12 @@ class SignupBody extends Component {
               </ul>
             </div>
           </div>
-          
-          <Form 
+
+          <Form
             error={this.state.error}
-            submit={(e)=>{this.registerUser(e)}}
-            formHeading='Register'
-            buttonMessage='Create your account'
+            submit={(e) => { this.registerUser(e); }}
+            formHeading="Register"
+            buttonMessage="Create your account"
           >
             <input
               type="text"
@@ -133,5 +130,10 @@ class SignupBody extends Component {
   }
 }
 
+SignupBody.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default SignupBody;
