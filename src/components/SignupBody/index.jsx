@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './index.css';
-import ErrorMessage from '../ErrorMessage';
 import { Redirect } from 'react-router'
+import Form from '../Form';
+import './index.css';
 
 class SignupBody extends Component {
   constructor() {
@@ -11,13 +11,16 @@ class SignupBody extends Component {
     };
   }
   registerUser = (e) => {
+    console.log('clicked');
     e.preventDefault();
     const data = new FormData(e.target);
+    console.log(data);
     const fullName = data.get('fullname');
     const email = data.get('email');
     const password = data.get('password');
     const confirmPassword = data.get('confirmpassword');
     const mobileNumbe = data.get('contact');
+    console.log(fullName);
     if (password !== confirmPassword) {
       this.setState({
         error: 'Ops! Password Mismatch',
@@ -86,53 +89,44 @@ class SignupBody extends Component {
             </div>
           </div>
           <div className="signup-form-div">
-            <form className="signup-form" onSubmit={this.registerUser}>
-              <div className="signup-form-padding">
-              <div className="signup-register">Register</div><br />
-              {this.state.error ? 
-                <ErrorMessage message={this.state.error} />
-                : ''                
-              }
-                <input
-                  type="text"
-                  name="fullname"
-                  required
-                  placeholder="Enter your Full Name"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Enter your Email ID"
-                  required
-                />
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Enter Password"
-                  required
-                />
-                <input
-                  type="password"
-                  name="confirmpassword"
-                  placeholder="Confirm Password"
-                  required
-                />
-                <input
-                  type="number"
-                  name="contact"
-                  placeholder="Enter your Contact Number"
-                  max="9999999999"
-                  required
-                />
-              </div>
-              <div className="signup-submit">
-                <button
-                  type="submit"
-                >
-                  Create your account
-                </button>
-              </div>
-            </form>
+          <Form 
+            error={this.state.error}
+            submit={(e)=>{this.registerUser(e)}}
+            formHeading='Register'
+            buttonMessage='Create your account'
+          >
+            <input
+              type="text"
+              name="fullname"
+              required
+              placeholder="Enter your Full Name"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your Email ID"
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter Password"
+              required
+            />
+            <input
+              type="password"
+              name="confirmpassword"
+              placeholder="Confirm Password"
+              required
+            />
+            <input
+              type="number"
+              name="contact"
+              placeholder="Enter your Contact Number"
+              max="9999999999"
+              required
+            />
+          </Form>
           </div>
         </div>
       </div>

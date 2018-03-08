@@ -28,17 +28,7 @@
   padding: 20px;
   text-align: center;
 }
-.signup-form-div{
-  width: 50%;
-}
-.signup-form {
-  display: block;
-  margin: auto;
-  background: rgb(14,39,89);
-  width:70%;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
+
 .signup-bullets{
   display: block;
   margin: auto;
@@ -50,59 +40,26 @@
   padding: 12px;
   line-height: 1.5em;
 }
-.signup-register{
-  color: white;
-  font-size: 25px;
-  text-indent: 20px; 
-}
-.signup-form input{
-  width: 95%;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  padding: 20px;
-  display: block;
-  margin: 15px auto;
-  box-sizing: border-box;
-}
-.signup-submit{
-  background-color: rgb(25,33,50);
+.signup-form-div{
+  flex: 1;
   width: 100%;
-  padding: 30px;
+  padding: 7%;
   box-sizing: border-box;
-  margin-top: 20px;
 }
-.signup-submit button{
-  background: rgb(240,115,1);
-  border: none;
-  color: white;
-  font-size: 16px;
-  padding: 20px 10%;
-  /* width: 250px; */
-  border-radius: 5px;
-  display: block;
-  margin: auto;
+.signup-form-div input{
+    width: 93%;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: block;
+    margin: 15px auto;
+    box-sizing: border-box;
 }
-.signup-form-padding{
-  padding: 40px 20px 0;  
-}
-.signup-list{
-  font-style: italic;
-  font-size: 24px;
-  display: block;
-  margin-bottom: 5px;
-}
+
 @media screen and (max-width: 900px) {
   .signup-body{
     flex-direction: column-reverse;
-  }
-  .signup-form-div{
-    width: 100%;
-  }
-  .signup-form{
-    width: 95%;
-  }
-  .signup-text{
-    width: 95%;
   }
 }

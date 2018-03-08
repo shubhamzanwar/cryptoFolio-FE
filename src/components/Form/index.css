@@ -1,0 +1,47 @@
+.form-div{
+  width: 100%;
+}
+.form-form {
+  display: block;
+  margin: auto;
+  background: rgb(14,39,89);
+  width:100%;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.form-heading{
+  color: white;
+  font-size: 25px;
+  text-indent: 10px; 
+}
+.form-submit{
+  background-color: rgb(25,33,50);
+  width: 100%;
+  padding: 30px;
+  box-sizing: border-box;
+  margin-top: 20px;
+}
+.form-submit button{
+  background: rgb(240,115,1);
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding: 20px 10%;
+  border-radius: 5px;
+  display: block;
+  margin: auto;
+}
+.form-padding{
+  padding: 40px 20px 0;  
+}
+@media screen and (max-width: 900px) {
+  .form-div{
+    width: 100%;
+  }
+  .form-form{
+    width: 95%;
+  }
+  .form-text{
+    width: 95%;
+  }
+}
