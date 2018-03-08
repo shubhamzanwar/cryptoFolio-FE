@@ -43,7 +43,7 @@
 .signup-form-div{
   flex: 1;
   width: 100%;
-  padding: 0% 7%;
+  margin: 0% 10%;
   box-sizing: border-box;
 }
 .signup-form-div input{
@@ -59,7 +59,10 @@
 }
 
 @media screen and (max-width: 900px) {
-  .signup-body{
-    flex-direction: column-reverse;
+  .signup-text{
+    display: none;
+  }
+  .signup-form-div{
+    padding: 0;
   }
 }
