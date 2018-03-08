@@ -43,7 +43,7 @@
 .signup-form-div{
   flex: 1;
   width: 100%;
-  padding: 7%;
+  padding: 0% 7%;
   box-sizing: border-box;
 }
 .signup-form-div input{
