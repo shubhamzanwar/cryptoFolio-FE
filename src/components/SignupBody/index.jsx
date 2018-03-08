@@ -88,7 +88,7 @@ class SignupBody extends Component {
               </ul>
             </div>
           </div>
-          <div className="signup-form-div">
+          
           <Form 
             error={this.state.error}
             submit={(e)=>{this.registerUser(e)}}
@@ -127,7 +127,6 @@ class SignupBody extends Component {
               required
             />
           </Form>
-          </div>
         </div>
       </div>
     );

@@ -1,11 +1,12 @@
 .form-div{
-  width: 100%;
+  flex: 1;
 }
 .form-form {
   display: block;
   margin: auto;
   background: rgb(14,39,89);
-  width:100%;
+  min-width: 400px;
+  width:60%;
   border-radius: 5px;
   box-sizing: border-box;
 }
@@ -34,12 +35,29 @@
 .form-padding{
   padding: 40px 20px 0;  
 }
+.form-children-div{
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+.form-children-div input{
+    width: 90%;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: block;
+    margin: 15px auto;
+    box-sizing: border-box;
+}
 @media screen and (max-width: 900px) {
   .form-div{
     width: 100%;
   }
   .form-form{
     width: 95%;
+    min-width: 0;
   }
   .form-text{
     width: 95%;

@@ -17,7 +17,9 @@ class SignupBody extends Component {
                 : ''
               }
           </div>
-          {this.props.children}
+          <div className="form-children-div">
+            {this.props.children}
+          </div>
           <div className="form-submit">
             <button
               type="submit"

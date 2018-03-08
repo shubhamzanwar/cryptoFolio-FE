@@ -40,29 +40,9 @@
   padding: 12px;
   line-height: 1.5em;
 }
-.signup-form-div{
-  flex: 1;
-  width: 100%;
-  margin: 0% 10%;
-  box-sizing: border-box;
-}
-.signup-form-div input{
-    width: 93%;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    padding: 20px;
-    box-sizing: border-box;
-    display: block;
-    margin: 15px auto;
-    box-sizing: border-box;
-}
 
 @media screen and (max-width: 900px) {
   .signup-text{
     display: none;
-  }
-  .signup-form-div{
-    padding: 0;
   }
 }
