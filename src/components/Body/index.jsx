@@ -5,6 +5,7 @@ import PriceRow from '../PriceRow';
 import GraphContainer from '../GraphContainer';
 import Ticker from '../Ticker';
 import Orders from '../Orders';
+import TwitterBox from '../twitterBox';
 import './index.css';
 
 class Body extends Component {
@@ -65,6 +66,7 @@ class Body extends Component {
               title="Sell Orders"
             />
           </div>
+          <TwitterBox />
         </div>
       </div>
     );
