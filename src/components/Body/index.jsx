@@ -66,7 +66,9 @@ class Body extends Component {
               title="Sell Orders"
             />
           </div>
-          <TwitterBox />
+          <TwitterBox
+            coin={this.state.selectedCoin}
+          />
         </div>
       </div>
     );
