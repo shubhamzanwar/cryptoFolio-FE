@@ -52,7 +52,7 @@ Investment.propTypes = {
 
 Investment.defaultProps = {
   invested: 10,
-  currentValue: 8,
+  currentValue: 12,
 };
 
 
