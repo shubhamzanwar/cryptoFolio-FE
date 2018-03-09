@@ -8,12 +8,12 @@ class Portfolio extends Component {
   render() {
     return (
       <div className="Portfolio">
-        <div className="Portfolio-Graphs">
+        <div className="Portfolio-Left-Container">
           <Investment />
-          <PortfolioDistribution />
-        </div>
-        <div className="Portfolio-Table">
           <MyCoins />
+        </div>
+        <div className="Portfolio-Right-Container">
+          <PortfolioDistribution />
         </div>
       </div>
     );

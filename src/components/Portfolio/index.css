@@ -4,11 +4,11 @@
     height: 100px;
 }
 
-.Portfolio-Graphs {
+.Portfolio-Left-Container {
     flex-direction: column;
     flex: 1
 }
 
-.Portfolio-Table {
+.Portfolio-Right-Container {
     flex: 1
 }
