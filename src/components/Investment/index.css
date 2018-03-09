@@ -38,12 +38,12 @@
 
 .Investment-Invested {
     flex: 1;
-    font-weight: 700;
+    font-weight: 300;
 }
 
 .Investment-Current {
     text-align: right;
-    font-weight: 700;
+    font-weight: 300;
 }
 
 .Investment-Invested-span {
