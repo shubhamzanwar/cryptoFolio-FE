@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import './index.css';
 import MyCoinRow from '../MyCoinRow';
+import AddCoinModal from './../AddCoinModal';
 
 const demoValue = [
   {
@@ -34,6 +35,18 @@ const demoValue = [
 ];
 
 class MyCoins extends Component {
+  state = {
+    open: false,
+  };
+
+  onOpenModal = () => {
+    this.setState({ open: true });
+  };
+
+  onCloseModal = () => {
+    this.setState({ open: false });
+  };
+
   editCoin = () => {
     alert('Edit');
   }
@@ -41,9 +54,10 @@ class MyCoins extends Component {
   render() {
     return (
       <div className="MyCoins">
+        <AddCoinModal state={this.state.open} onCloseModal={this.onCloseModal} />
         <div className="MyCoins-Header">
           <p className="MyCoins-Header-Title">My Coins</p>
-          <span className="MyCoins-Header-AddButton"><i className="fas fa-plus" />&nbsp;&nbsp;Add Coin</span>
+          <span className="MyCoins-Header-AddButton" onClick={this.onOpenModal} role="presentation"><i className="fas fa-plus" />&nbsp;&nbsp;Add Coin</span>
         </div>
         <table className="MyCoins-table" cellSpacing="0" cellPadding="0">
           <thead className="MyCoins-table-header">
