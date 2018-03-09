@@ -5,6 +5,7 @@ import PriceRow from '../PriceRow';
 import GraphContainer from '../GraphContainer';
 import Ticker from '../Ticker';
 import Orders from '../Orders';
+import TwitterBox from '../twitterBox';
 import './index.css';
 
 class Body extends Component {
@@ -48,25 +49,26 @@ class Body extends Component {
           <GraphContainer coin={this.state.selectedCoin} />
           <Ticker
             select={sym => this.setSelectedCoin(sym)}
+            row={this.state.selectedCoin}
             prices={this.state.prices}
           />
         </div>
-        <div className="Body-order-source">
-          <p>Binance Order Book</p>
-        </div>
-        <div className="Body-orders">
-          <Orders
+        <div className="Body-orders-and-twitter-container">
+          <div className="Body-orders">
+            <Orders
+              coin={this.state.selectedCoin}
+              keys="asks"
+              title="Buy Orders"
+            />
+            <Orders
+              coin={this.state.selectedCoin}
+              keys="bids"
+              title="Sell Orders"
+            />
+          </div>
+          <TwitterBox
             coin={this.state.selectedCoin}
-            keys="asks"
-            title="Buy Orders"
           />
-
-          <Orders
-            coin={this.state.selectedCoin}
-            keys="bids"
-            title="Sell Orders"
-          />
-
         </div>
       </div>
     );

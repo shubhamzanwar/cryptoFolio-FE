@@ -1,11 +1,15 @@
 .Body{
     box-sizing: border-box;
     flex-grow: 1;
-    margin: 30px 20px 0 20px;
+    margin: 30px 20px 20px 20px;
     color: white;
     display: flex;
     flex-direction: column;
+
+
+
     width: 87%;
+
 }
 
 .Body-graph-and-ticker-container{
@@ -15,9 +19,17 @@
     margin-top: 30px;
 }
 
+.Body-orders-and-twitter-container{
+    display: flex;
+    min-height: 100px;
+    box-sizing: border-box;
+    margin-top: 30px;
+}
+
 .Body-orders{
     display:flex;
-    width:66%;
+    min-width:66%;
+    margin-right: 30px;
     flex-direction:row;
     justify-content: space-between;
 }
@@ -30,6 +42,9 @@
     .Body-orders{
         flex-direction:column;
         width: 100%;
+    }
+    .Body-orders-and-twitter-container{
+        flex-direction: column;
     }
     .Ticker-table-row-td{
         font-size: 13px;
