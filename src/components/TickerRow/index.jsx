@@ -8,7 +8,7 @@ const TickerRow = props => (
     <td className="Ticker-table-row-td">{props.price.Name}</td>
     <td className="Ticker-table-row-td">{props.price.Price}</td>
     <td className="Ticker-table-row-td">{props.price.Volume.toFixed(3)}</td>
-    <td className={props.price.Change > 0 ? 'Ticker-table-row-td success' : 'Ticker-table-row-td danger'}>{props.price.Change.toFixed(3)} <i className={props.price.Change > 0 ? 'fa fa-long-arrow-up' : 'fa fa-long-arrow-down'} /></td>
+    <td className={props.price.Change > 0 ? 'Ticker-table-row-td success' : 'Ticker-table-row-td danger'}>{props.price.Change.toFixed(3)} <i className={props.price.Change > 0 ? 'fas fa-long-arrow-alt-up' : 'fas fa-long-arrow-alt-down '} /></td>
   </tr>
 );
 
