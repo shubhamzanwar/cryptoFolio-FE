@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import LoginForm from '../LoginForm';
 import './index.css';
-import { Redirect } from 'react-router';
-
 
 class LoginBody extends Component {
   constructor(props) {
@@ -25,21 +23,26 @@ class LoginBody extends Component {
     };
     axios(options)
       .then((response) => {
-        console.log(response.data);
-        if (response.data.code === 200) {
-          this.setState({
-            token: response.data.token,
-            name: response.data.fullName,
-          });
-          this.props.history.push('/');
-        } else {
-          this.setState({
-            message: response.data.message,
+        console.log(response.data.code);
+        switch (response.data.code) {
+          case 200:
+            this.setState({
+              token: response.data.token,
+              name: response.data.fullName,
+            });
+            this.props.history.push('/');
+            break;
+
+          default: this.setState({
+            message: 'Username or password incorrect',
           });
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.message);
+        this.setState({
+          message: 'Sorry! some internal error occured',
+        });
       });
   }
   render() {
