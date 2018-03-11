@@ -11,7 +11,7 @@ const AddCoinModal = props => (
       <label className="addCoinModal_addCoinForm_input_label" htmlFor="coinPurchasedPrice">Quantity<input className="addCoinModal_addCoinForm_input" id="coinPurchasedPrice" type="number" placeholder="Quantity" /></label><br />
       <label className="addCoinModal_addCoinForm_input_label" htmlFor="coinPurchasedPrice">Purchased Price<input className="addCoinModal_addCoinForm_input" id="coinPurchasedPrice" type="number" placeholder="Purchased Price" /></label><br />
       <button className="addCoinModal_addCoinForm_submit" type="submit">Add Coin</button>
-    </form>g
+    </form>
   </Modal>
 );
 
