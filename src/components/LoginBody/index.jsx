@@ -11,6 +11,11 @@ class LoginBody extends Component {
       message: '',
     };
   }
+  componentWillMount() {
+    if (window.localStorage.getItem('cryptologgedin')) {
+      this.props.history.push('/');
+    }
+  }
   login(email, password) {
     const options = {
       url: '/login',

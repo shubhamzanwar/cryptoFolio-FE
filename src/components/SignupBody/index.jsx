@@ -10,6 +10,11 @@ class SignupBody extends Component {
       error: null,
     };
   }
+  componentWillMount() {
+    if (window.localStorage.getItem('cryptologgedin')) {
+      this.props.history.push('/');
+    }
+  }
   registerUser(e) {
     e.preventDefault();
     const data = new FormData(e.target);
