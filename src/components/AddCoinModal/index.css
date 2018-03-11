@@ -4,24 +4,29 @@
 
 .addCoinModal_addCoinForm {
     width: 300px;
-    text-align: center;
+    text-align: left;
     padding: 20px;
 }
 
-.addCoinModal_addCoinForm_input {
+.addCoinModal_addCoinForm_input_label {
     font-size: 16px;
     font-family: Roboto;
+}
+
+.addCoinModal_addCoinForm_input {
     padding: 8px;
-    margin: 8px;
+    font-size: 16px;
+    font-family: Roboto;
     background-color: white;
     border: 1px;
     border-color: rgb(39, 59,86);;
     border-style: solid;
     width: 280px;
-    color: white;
+    color:rgb(39, 59,86);
 }
 
 .addCoinModal_addCoinForm_submit {
+    align-self: center;
     background-color:rgb(39, 59,86);
     padding: 10px;
     color: white;
