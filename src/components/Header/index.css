@@ -1,0 +1,122 @@
+.Header{
+    height: 70px;
+    display:flex;
+    justify-content: space-between;
+    background: rgb(14,39,89);
+    color: white;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.Header-container{
+    width: 87%;
+    height: 70px;
+    display:flex;
+    justify-content: space-between;
+    background: rgb(14,39,89);
+    color: white;
+}
+
+.Header-button-container{
+    height: 100%;
+    display: flex;
+}
+
+.Header-home-link{
+    text-decoration: none;
+    color: white;
+}
+
+
+.register-button-a,
+.login-button-a
+{
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    margin-right: 20px;
+    min-width: 80px;
+    background: none;
+    color: rgb(132,147,171);
+    border-bottom  : 4px solid rgb(14,39,89);
+    box-sizing: border-box;
+    font-size: 18px;
+    padding: 0 20px;
+}
+
+.register-button-a:hover,
+.register-button-a:focus,
+.login-button-a:hover,
+.login-button-a:focus,
+.Header-button-selected
+{
+    border-bottom: 4px solid rgb(77,170,233);
+    color: white;
+    outline: none;
+    cursor: pointer;
+}
+.Header-heading{
+    margin-left: 10px;
+}
+
+
+.Header-user-bar{
+    width: 55%;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Header-logout-link{
+    width:100%;
+    border-radius: 5px;
+    display:none;
+    position:absolute;
+    background: white;
+}
+
+.Header-user{
+    position: relative;
+}
+
+.Header-user:hover > .Header-logout-link{
+    display:block;
+}
+
+.Header-logout-button{
+    width:100%;
+    background: none;
+    color:black;    
+    outline: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.Header-logout-button:hover{
+    color: rgb(14,39,89);
+}
+
+
+@media screen and (max-width: 768px) {
+    .Header-container{
+        width: 100%;
+        padding-left: 15px;
+    }
+    .Header-heading{
+        font-size: 15px;
+        margin-left: 0;
+    }
+    .register-button-a,
+    .login-button-a
+    {
+        margin-right: 7px;
+    }
+    .register-button-a > p,
+    .login-button-a > p
+    {
+        font-size: 15px;
+        padding: 0;
+    }
+}
