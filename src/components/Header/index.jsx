@@ -5,19 +5,11 @@ import './index.css';
 
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loggedin: window.localStorage.getItem('cryptologgedin') === 'true',
-    };
-  }
   logout() {
     window.localStorage.setItem('cryptologgedin', false);
     window.localStorage.setItem('cryptotoken', null);
     window.localStorage.setItem('cryptousername', null);
-    this.setState({
-      loggedin: false,
-    });
+    this.forceUpdate();
   }
   render() {
     return (
@@ -31,7 +23,7 @@ class Header extends Component {
             </h3>
           </Link>
           {
-          this.state.loggedin ?
+          window.localStorage.getItem('cryptologgedin') === 'true' ?
             <div className="Header-user-bar">
               <div className="Header-button-container">
                 <NavLink
