@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import LoginForm from '../LoginForm';
 import './index.css';
@@ -7,10 +8,13 @@ class LoginBody extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      token: '', // will be added to the store
-      name: '', // will be added to the store
       message: '',
     };
+  }
+  componentWillMount() {
+    if (window.localStorage.getItem('cryptologgedin')) {
+      this.props.history.push('/');
+    }
   }
   login(email, password) {
     const options = {
@@ -23,14 +27,12 @@ class LoginBody extends Component {
     };
     axios(options)
       .then((response) => {
-        console.log(response.data.code);
         switch (response.data.code) {
           case 200:
-            this.setState({
-              token: response.data.token,
-              name: response.data.fullName,
-            });
-            this.props.history.push('/');
+            window.localStorage.setItem('cryptotoken', response.data.token);
+            window.localStorage.setItem('cryptousername', response.data.username);
+            window.localStorage.setItem('cryptologgedin', true);
+            (this.props.history).push('/');
             break;
 
           default: this.setState({
@@ -38,8 +40,7 @@ class LoginBody extends Component {
           });
         }
       })
-      .catch((err) => {
-        console.log(err.message);
+      .catch(() => {
         this.setState({
           message: 'Sorry! some internal error occured',
         });
@@ -58,6 +59,13 @@ class LoginBody extends Component {
     );
   }
 }
+
+
+LoginBody.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 
 export default LoginBody;
