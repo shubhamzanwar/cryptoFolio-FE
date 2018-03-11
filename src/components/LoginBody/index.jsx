@@ -26,6 +26,7 @@ class LoginBody extends Component {
           case 200:
             window.localStorage.setItem('cryptotoken', response.data.token);
             window.localStorage.setItem('cryptousername', response.data.username);
+            window.localStorage.setItem('cryptologgedin', true);
             (this.props.history).push('/');
             break;
 
