@@ -12,7 +12,7 @@ class LoginBody extends Component {
     };
   }
   componentWillMount() {
-    if (window.localStorage.getItem('cryptologgedin')) {
+    if (window.localStorage.getItem('cryptologgedin') === 'true') {
       this.props.history.push('/');
     }
   }
