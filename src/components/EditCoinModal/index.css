@@ -1,0 +1,36 @@
+.editCoinModal {
+    background-color: rgb(39, 59,86);
+}
+
+.editCoinModal_editCoinForm {
+    width: 300px;
+    text-align: left;
+    padding: 20px;
+}
+
+.editCoinModal_editCoinForm_input_label {
+    font-size: 16px;
+    font-family: Roboto;
+}
+
+.editCoinModal_editCoinForm_input {
+    padding: 8px;
+    font-size: 16px;
+    font-family: Roboto;
+    background-color: white;
+    border: 1px;
+    border-color: rgb(39, 59,86);;
+    border-style: solid;
+    width: 280px;
+    color:rgb(39, 59,86);
+}
+
+.editCoinModal_editCoinForm_submit {
+    align-self: center;
+    background-color:rgb(39, 59,86);
+    padding: 10px;
+    color: white;
+    font-size: 20px;
+    margin: 15px;
+    border-radius: 4px;
+}
