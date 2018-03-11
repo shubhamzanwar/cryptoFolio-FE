@@ -33,7 +33,9 @@ class MyCoinRow extends Component {
         <td
           className="MyCoin-table-row-td-EditCoin"
           onClick={() => { this.onOpenModal(); }}
-        />
+        >
+          <i className="far fa-edit" />
+        </td>
       </tr>
     );
   }
