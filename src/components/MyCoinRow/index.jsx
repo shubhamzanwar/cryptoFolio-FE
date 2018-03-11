@@ -1,25 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './index.css';
+import EditCoinModal from './../EditCoinModal';
 
-const MyCoinRow = props => (
-  <tr className="MyCoin-table-row">
-    <td className="MyCoin-table-row-td-Symbol">{props.transaction.Symbol}</td>
-    <td className="MyCoin-table-row-td-Name">{props.transaction.Name}</td>
-    <td className="MyCoin-table-row-td">{props.transaction.PurchasedPrice}</td>
-    <td className="MyCoin-table-row-td">{props.transaction.CurrentPrice}</td>
-    <td className="MyCoin-table-row-td">{props.transaction.Volume}</td>
-    <td className="MyCoin-table-row-td">{props.transaction.Total}</td>
-    <td className={props.transaction.Change > 0 ? 'MyCoin-table-row-td MyCoin-table-row-td-profit' : 'MyCoin-table-row-td MyCoin-table-row-td-loss'}>
-      {props.transaction.Change}
-      <i className={props.transaction.Change > 0 ? 'fas fa-arrow-circle-up' : 'fas fa-arrow-circle-down'} />
-    </td>
-    <td
-      className="MyCoin-table-row-td-EditCoin"
-      onClick={() => { props.editCoin(); }}
-    />
-  </tr>
-);
+class MyCoinRow extends Component {
+  state = {
+    open: false,
+  };
+
+  onOpenModal = () => {
+    this.setState({ open: true });
+  };
+
+  onCloseModal = () => {
+    this.setState({ open: false });
+  };
+
+  render() {
+    return (
+      <tr className="MyCoin-table-row">
+        <EditCoinModal state={this.state.open} onCloseModal={this.onCloseModal} data={{ name: 'Bitcoin', quantity: 0.12, price: 3121 }} />
+        <td className="MyCoin-table-row-td-Symbol">{this.props.transaction.Symbol}</td>
+        <td className="MyCoin-table-row-td-Name">{this.props.transaction.Name}</td>
+        <td className="MyCoin-table-row-td">{this.props.transaction.PurchasedPrice}</td>
+        <td className="MyCoin-table-row-td">{this.props.transaction.CurrentPrice}</td>
+        <td className="MyCoin-table-row-td">{this.props.transaction.Volume}</td>
+        <td className="MyCoin-table-row-td">{this.props.transaction.Total}</td>
+        <td className={this.props.transaction.Change > 0 ? 'MyCoin-table-row-td MyCoin-table-row-td-profit' : 'MyCoin-table-row-td MyCoin-table-row-td-loss'}>
+          {this.props.transaction.Change}
+          <i className={this.props.transaction.Change > 0 ? 'fas fa-arrow-circle-up' : 'fas fa-arrow-circle-down'} />
+        </td>
+        <td
+          className="MyCoin-table-row-td-EditCoin"
+          onClick={() => { this.onOpenModal(); }}
+        />
+      </tr>
+    );
+  }
+}
 
 MyCoinRow.propTypes = {
   transaction: PropTypes.shape({
