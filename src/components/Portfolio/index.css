@@ -1,5 +1,7 @@
 .Portfolio {
+    width: 95%;
     display: flex;
+    flex-grow: 1;
     flex-direction: row;
     height: 100px;
 }
@@ -11,4 +13,10 @@
 
 .Portfolio-Right-Container {
     flex: 1
+}
+
+@media screen and (max-width: 1300px){
+    .Portfolio {
+        flex-direction: column;
+    }
 }
