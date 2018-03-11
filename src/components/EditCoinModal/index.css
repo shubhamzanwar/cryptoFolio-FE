@@ -34,3 +34,10 @@
     margin: 15px;
     border-radius: 4px;
 }
+
+.editCoinModal_editCoinForm_delete {
+    border: 0px;
+    background-color: transparent;
+    display: flex;
+    color: white;
+}
