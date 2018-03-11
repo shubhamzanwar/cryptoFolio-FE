@@ -14,7 +14,10 @@ const MyCoinRow = props => (
       {props.transaction.Change}
       <i className={props.transaction.Change > 0 ? 'fas fa-arrow-circle-up' : 'fas fa-arrow-circle-down'} />
     </td>
-    <td className="MyCoin-table-row-td-EditCoin">{props.editCoin}</td>
+    <td
+      className="MyCoin-table-row-td-EditCoin"
+      onClick={() => { props.editCoin(); }}
+    />
   </tr>
 );
 
