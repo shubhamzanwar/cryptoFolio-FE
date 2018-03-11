@@ -21,6 +21,7 @@ const Header = () => (
                   className="register-button-a"
                   activeClassName="Header-button-selected"
                   to="/"
+                  exact
                 >
                   <p>Home</p>
                 </NavLink>
