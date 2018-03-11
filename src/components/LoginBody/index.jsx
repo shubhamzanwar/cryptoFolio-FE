@@ -3,7 +3,6 @@ import axios from 'axios';
 import LoginForm from '../LoginForm';
 import './index.css';
 
-
 class LoginBody extends Component {
   constructor(props) {
     super(props);
@@ -24,20 +23,26 @@ class LoginBody extends Component {
     };
     axios(options)
       .then((response) => {
-        if (response.data.code === 200) {
-          this.setState({
-            token: response.data.token,
-            name: response.data.fullName,
-            message: 'success',
-          });
-        } else {
-          this.setState({
-            message: response.data.message,
+        console.log(response.data.code);
+        switch (response.data.code) {
+          case 200:
+            this.setState({
+              token: response.data.token,
+              name: response.data.fullName,
+            });
+            this.props.history.push('/');
+            break;
+
+          default: this.setState({
+            message: 'Username or password incorrect',
           });
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.message);
+        this.setState({
+          message: 'Sorry! some internal error occured',
+        });
       });
   }
   render() {

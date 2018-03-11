@@ -1,49 +1,9 @@
 .LoginForm{
-    display: flex;
+     display: flex;
+     flex: 1;
     flex-direction: column;
-    background: rgb(14,39,89);
-    padding-top: 10px;
-    border-radius: 5px;
-    width: 25%;
-    min-width: 350px;
-    margin-right: 100px;
-    justify-content: space-between;
-    align-items: stretch;
-}
-.LoginForm-error{
-    padding: 10px;
-    border: 1px solid red;
-    background: lightpink;
-    font-weight: 700;
-    margin: 10px;
-}
-.LoginForm-input{
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    padding: 20px;
-    margin: 10px 30px;
-    box-sizing: border-box;
-}
-
-.LoginForm-button-div{
-    margin-top: 15px;
-    background-color: rgb(25,33,50);
-    width: 100%;
-    padding: 30px;
-    box-sizing: border-box;
-    margin-top: 30px;
-}
-
-.LoginForm-button{
-    background: rgb(240,115,1);
-    border: none;
-    color: white;
-    font-size: 16px;
-    padding: 20px 10%;
-    border-radius: 5px;
-    display: block;
-    margin: auto;
+    justify-content: center;
+    align-items: center;
 }
 
 
