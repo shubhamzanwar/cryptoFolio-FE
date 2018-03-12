@@ -80,7 +80,8 @@ class Portfolio extends Component {
       })
       .then((result) => {
         const trans = this.state.userTransactions;
-        trans[payload.coin].push(result);
+        trans[payload.coin] = trans[payload.coin] || [];
+        trans[payload.coin].push({ ...result, coinSymbol: payload.coin });
         this.setState({
           userTransactions: trans,
         });
