@@ -54,8 +54,8 @@ class PortfolioDistribution extends Component {
             <div className="GraphLabelItemContainer">
               { this.state.pieData.map(coin => (
                 <PortfolioDistributionLabel
-                  value={coin.quantity}
-                  symbol={coin.coinName}
+                  value={coin.y}
+                  symbol={coin.name}
                 />))
               }
             </div>
