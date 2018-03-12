@@ -12,6 +12,7 @@ const groupByCoin = transactions => transactions.reduce((acc, curr) => {
 }, {});
 
 const summarize = (transactionsObject) => {
+  let totalInvested = 0;
   const transactions = Object.values(transactionsObject).map((coinTransactions) => {
     const { coinName } = coinTransactions[0];
     const { coinSymbol } = coinTransactions[0];
@@ -22,6 +23,7 @@ const summarize = (transactionsObject) => {
       quantity += transaction.quantity;
       invested += transaction.quantity * transaction.price;
     });
+    totalInvested += invested;
     return {
       coinName,
       coinSymbol,
@@ -29,7 +31,7 @@ const summarize = (transactionsObject) => {
       invested,
     };
   });
-  return transactions;
+  return [transactions, totalInvested];
 };
 
 class Portfolio extends Component {
@@ -88,14 +90,17 @@ class Portfolio extends Component {
     return (
       <div className="Portfolio">
         <div className="Portfolio-Left-Container">
-          <Investment />
+          <Investment
+            invested={summarize(this.state.userTransactions)[1]}
+            currentValue={this.state.currentValue}
+          />
           <MyCoins
-            userTransactions={summarize(this.state.userTransactions)}
+            userTransactions={summarize(this.state.userTransactions)[0]}
             addCoin={(e) => { this.addCoin(e); }}
           />
         </div>
         <div className="Portfolio-Right-Container">
-          <PortfolioDistribution userTransactions={summarize(this.state.userTransactions)} />
+          <PortfolioDistribution userTransactions={summarize(this.state.userTransactions)[0]} />
         </div>
       </div>
     );
