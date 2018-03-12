@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-
+import { Link, NavLink, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './index.css';
 
 
@@ -10,7 +10,7 @@ class Header extends Component {
     window.localStorage.setItem('cryptotoken', null);
     window.localStorage.setItem('cryptousername', null);
     this.forceUpdate();
-    window.location = '/';
+    this.props.history.push('/');
   }
   render() {
     return (
@@ -79,4 +79,10 @@ class Header extends Component {
   }
 }
 
-export default Header;
+Header.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
+
+export default withRouter(Header);
