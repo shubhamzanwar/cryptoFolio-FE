@@ -48,6 +48,7 @@ class MyCoins extends Component {
           state={this.state.open}
           modifyType={this.state.modifyType}
           onCloseModal={this.onCloseModal}
+          addCoin={(e) => { this.props.addCoin(e); }}
         />
         <div className="MyCoins-Header">
           <p className="MyCoins-Header-Title">My Coins</p>
