@@ -15,22 +15,13 @@ const demoValue = [
     Change: 10.1,
   },
   {
-    Symbol: 'BTC',
-    Name: 'Bitcoin',
+    Symbol: 'ETH',
+    Name: 'Etherium',
     PurchasedPrice: 1231,
     CurrentPrice: 1232,
     Volume: 321,
     Total: 123,
     Change: -9.1,
-  },
-  {
-    Symbol: 'BTC',
-    Name: 'Bitcoin',
-    PurchasedPrice: 1231,
-    CurrentPrice: 1232,
-    Volume: 321,
-    Total: 123,
-    Change: 10.1,
   },
 ];
 
