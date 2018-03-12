@@ -4,36 +4,6 @@ import './index.css';
 import MyCoinRow from '../MyCoinRow';
 import AddCoinModal from './../AddCoinModal';
 
-const demoValue = [
-  {
-    Symbol: 'BTC',
-    Name: 'Bitcoin',
-    PurchasedPrice: 1231,
-    CurrentPrice: 1232,
-    Volume: 321,
-    Total: 123,
-    Change: 10.1,
-  },
-  {
-    Symbol: 'BTC',
-    Name: 'Bitcoin',
-    PurchasedPrice: 1231,
-    CurrentPrice: 1232,
-    Volume: 321,
-    Total: 123,
-    Change: -9.1,
-  },
-  {
-    Symbol: 'BTC',
-    Name: 'Bitcoin',
-    PurchasedPrice: 1231,
-    CurrentPrice: 1232,
-    Volume: 321,
-    Total: 123,
-    Change: 10.1,
-  },
-];
-
 class MyCoins extends Component {
   state = {
     open: false,
@@ -83,7 +53,7 @@ class MyCoins extends Component {
             </tr>
           </thead>
           <tbody className="MyCoins-table-body">
-            {demoValue.map(transaction => (<MyCoinRow
+            {this.props.userTransactions.map(transaction => (<MyCoinRow
               transaction={transaction}
               editCoin={this.editCoin}
             />))}
@@ -95,3 +65,35 @@ class MyCoins extends Component {
 }
 
 export default MyCoins;
+MyCoins.defaultProps = {
+  userTransaction: [
+    {
+      Symbol: 'BTC',
+      Name: 'Bitcoin',
+      PurchasedPrice: 1231,
+      CurrentPrice: 1232,
+      Volume: 321,
+      Total: 123,
+      Change: 10.1,
+    },
+    {
+      Symbol: 'BTC',
+      Name: 'Bitcoin',
+      PurchasedPrice: 1231,
+      CurrentPrice: 1232,
+      Volume: 321,
+      Total: 123,
+      Change: -9.1,
+    },
+    {
+      Symbol: 'BTC',
+      Name: 'Bitcoin',
+      PurchasedPrice: 1231,
+      CurrentPrice: 1232,
+      Volume: 321,
+      Total: 123,
+      Change: 10.1,
+    },
+  ],
+};
+
