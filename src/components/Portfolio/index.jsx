@@ -57,12 +57,12 @@ class Portfolio extends Component {
         });
     }
   }
-  addCoin(e) {
+  addCoin(e, type) {
     e.preventDefault();
     const data = new FormData(e.target);
     const payload = {
       coin: data.get('name'),
-      price: data.get('quantity'),
+      price: type === 'addCoin' ? data.get('quantity') : -1 * data.get('quantity'),
       quantity: data.get('price'),
     };
     fetch('/editPortfolioCoin', {
@@ -91,7 +91,7 @@ class Portfolio extends Component {
           <Investment />
           <MyCoins
             userTransactions={summarize(this.state.userTransactions)}
-            addCoin={(e) => { this.addCoin(e); }}
+            addCoin={(e, type) => { this.addCoin(e, type); }}
           />
         </div>
         <div className="Portfolio-Right-Container">
