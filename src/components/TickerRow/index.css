@@ -5,6 +5,7 @@
 .Ticker-table-row{
     border-left: 1px solid white;
     border-collapse: unset;
+    cursor: pointer;
 }
 .Ticker-table-row:nth-child(odd){
     background: rgb(29,43,63);
