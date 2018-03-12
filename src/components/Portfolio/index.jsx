@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import MyCoins from '../MyCoins';
 import Investment from '../Investment';
 import PortfolioDistribution from '../PortfolioDistribution';
@@ -48,5 +49,10 @@ class Portfolio extends Component {
   }
 }
 
+Portfolio.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Portfolio;
