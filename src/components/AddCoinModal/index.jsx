@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import './index.css';
 
 const AddCoinModal = props => (
-  <Modal open={props.state} onClose={props.onCloseModal} little styles={{ modal: { backgroundColor: 'rgb(0, 164, 236)' } }}>
-    <h2>{props.modifyType === 'addCoin' ? 'Add Coin' : 'Remove Coin'}</h2>
+  <Modal open={props.state} onClose={props.onCloseModal} little styles={{ modal: { backgroundColor: 'rgb(255, 255, 255)', borderRadius: '10px' } }}>
+    <h2 className="addCoinModal_header">{props.modifyType === 'addCoin' ? 'Add Coin' : 'Remove Coin'}</h2>
     <form className="addCoinModal_addCoinForm">
-      <label className="addCoinModal_addCoinForm_input_label" htmlFor="coindName">Coin Name<input className="addCoinModal_addCoinForm_input" id="coindName" type="text" placeholder="Coin Name" /></label><br />
-      <label className="addCoinModal_addCoinForm_input_label" htmlFor="coinPurchasedPrice">Quantity<input className="addCoinModal_addCoinForm_input" id="coinPurchasedPrice" type="number" placeholder="Quantity" /></label><br />
-      <label className="addCoinModal_addCoinForm_input_label" htmlFor="coinPurchasedPrice">Purchased Price<input className="addCoinModal_addCoinForm_input" id="coinPurchasedPrice" type="number" placeholder="Purchased Price" /></label><br />
-      <button className="addCoinModal_addCoinForm_submit" type="submit">Add Coin</button>
+      <label className="addCoinModal_addCoinForm_input_label" htmlFor="coindName">Coin Name<input className="addCoinModal_addCoinForm_input" id="coindName" type="text" placeholder="Coin Name" /></label>
+      <label className="addCoinModal_addCoinForm_input_label" htmlFor="coinPurchasedPrice">Quantity<input className="addCoinModal_addCoinForm_input" id="coinPurchasedPrice" type="number" placeholder="Quantity" /></label>
+      <label className="addCoinModal_addCoinForm_input_label" htmlFor="coinPurchasedPrice">{props.modifyType === 'addCoin' ? 'Purchased Price' : 'Sold Price'}<input className="addCoinModal_addCoinForm_input" id="coinPurchasedPrice" type="number" placeholder={props.modifyType === 'addCoin' ? 'Purchased Price' : 'Sold Price'} /></label>
+      <button className="addCoinModal_addCoinForm_submit" type="submit">{props.modifyType === 'addCoin' ? 'Add Coin' : 'Remove Coin'}</button>
     </form>
   </Modal>
 );
