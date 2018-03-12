@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import MyCoins from '../MyCoins';
 import Investment from '../Investment';
 import PortfolioDistribution from '../PortfolioDistribution';
+import AddCoinModal from './../AddCoinModal';
+import EditCoinListModal from './../EditCoinListModal';
 import './index.css';
 
 const groupByCoin = transactions => transactions.reduce((acc, curr) => {
@@ -39,8 +41,14 @@ class Portfolio extends Component {
     super(props);
     this.state = {
       userTransactions: {},
+      addModal: false,
+      editModal: false,
+      modifyType: 'addCoin',
+      editingCoin: 'BTC',
     };
   }
+
+
   componentDidMount() {
     const isLoggedinUser = window.localStorage.getItem('cryptologgedin');
     if (isLoggedinUser === 'false') {
@@ -51,7 +59,15 @@ class Portfolio extends Component {
         method: 'GET',
         headers: { authtoken },
       })
-        .then(response => response.json())
+        .then((response) => {
+          if (response.status === 401) {
+            window.localStorage.setItem('cryptotoken', null);
+            window.localStorage.setItem('cryptousername', null);
+            window.localStorage.setItem('cryptologgedin', false);
+            this.props.history.push('/');
+          }
+          return response.json();
+        })
         .then((response) => {
           this.setState({
             userTransactions: groupByCoin(response),
@@ -59,6 +75,28 @@ class Portfolio extends Component {
         });
     }
   }
+
+  onOpenAddModal = () => {
+    this.setState({ addModal: true, modifyType: 'addCoin' });
+  };
+
+  onOpenRemoveModal = () => {
+    this.setState({ addModal: true, modifyType: 'removeCoin' });
+  };
+
+  onCloseAddModal = () => {
+    this.setState({ addModal: false });
+  };
+
+  onOpenEditModal = (coin) => {
+    this.setState({ editModal: true, editingCoin: coin });
+  };
+
+
+  onCloseEditModal = () => {
+    this.setState({ editModal: false });
+  }
+
   addCoin(e) {
     e.preventDefault();
     const data = new FormData(e.target);
@@ -87,9 +125,22 @@ class Portfolio extends Component {
         });
       });
   }
+
+
   render() {
     return (
       <div className="Portfolio">
+        <AddCoinModal
+          state={this.state.addModal}
+          modifyType={this.state.modifyType}
+          onCloseModal={this.onCloseAddModal}
+          addCoin={(e) => { this.addCoin(e); }}
+        />
+        <EditCoinListModal
+          state={this.state.editModal}
+          onCloseModal={this.onCloseEditModal}
+          coinName={this.state.editingCoin}
+        />
         <div className="Portfolio-Left-Container">
           <Investment
             invested={summarize(this.state.userTransactions)[1]}
@@ -97,7 +148,9 @@ class Portfolio extends Component {
           />
           <MyCoins
             userTransactions={summarize(this.state.userTransactions)[0]}
-            addCoin={(e) => { this.addCoin(e); }}
+            addCoin={() => this.onOpenAddModal()}
+            editCoin={coin => this.onOpenEditModal(coin)}
+            removeCoin={() => this.onOpenRemoveModal()}
           />
         </div>
         <div className="Portfolio-Right-Container">
