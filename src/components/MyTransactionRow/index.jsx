@@ -29,8 +29,8 @@ class MyTransactionRow extends Component {
             }}
         />
         <td className="MyTransactionCoin-table-row-td">{this.props.index}</td>
-        <td className="MyTransactionCoin-table-row-td">{this.props.transaction.quantity}</td>
         <td className="MyTransactionCoin-table-row-td">{this.props.transaction.price}</td>
+        <td className="MyTransactionCoin-table-row-td">{this.props.transaction.quantity}</td>
         <td
           className="MyTransactionCoin-table-row-td-EditCoin"
           onClick={() => { this.onOpenModal(); }}

@@ -140,6 +140,7 @@ class Portfolio extends Component {
           state={this.state.editModal}
           onCloseModal={this.onCloseEditModal}
           coinName={this.state.editingCoin}
+          transactions={this.state.userTransactions[this.state.editingCoin]}
         />
         <div className="Portfolio-Left-Container">
           <Investment
