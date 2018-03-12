@@ -29,7 +29,6 @@ const summarize = (transactionsObject) => {
       invested,
     };
   });
-  console.log(transactions);
   return transactions;
 };
 
@@ -54,7 +53,6 @@ class Portfolio extends Component {
     })
       .then(response => response.json())
       .then((response) => {
-        console.log(response);
         this.setState({
           userTransactions: groupByCoin(response),
         });
@@ -73,7 +71,6 @@ class Portfolio extends Component {
       body: JSON.stringify(payload),
       headers: { authtoken: window.localStorage.getItem('cryptotoken') },
     })
-      // .then(result => result.json())
       .then((result) => {
         if (result.status === 201) {
           return result.json();
@@ -81,21 +78,10 @@ class Portfolio extends Component {
         return null;
       })
       .then((result) => {
-        console.log(result);
         const trans = this.state.userTransactions;
         trans[payload.coin].push(result);
         this.setState({
           userTransactions: trans,
-          // userTransactions: this.state.userTransactions[payload.coin].push({
-          //   coinName: ,
-          //   coinSymbol: 'BTC',
-          //   currentPrice: payload.price,
-          //   fromId: 1,
-          //   id: 1,
-          //   price: payload.price,
-          //   quantity: payload.quantity,
-          //   toId: 2,
-          // }),
         });
       });
   }
