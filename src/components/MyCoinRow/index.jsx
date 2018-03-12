@@ -24,10 +24,10 @@ class MyCoinRow extends Component {
           onCloseModal={this.onCloseModal}
           coinName="BTC"
         />
-        <td className="MyCoin-table-row-td-Symbol">{this.props.transaction.Symbol}</td>
-        <td className="MyCoin-table-row-td-Name">{this.props.transaction.Name}</td>
-        <td className="MyCoin-table-row-td">{this.props.transaction.Quantity}</td>
-        <td className="MyCoin-table-row-td">{this.props.transaction.CurrentPrice}</td>
+        <td className="MyCoin-table-row-td-Symbol">{this.props.transaction.coinSymbol}</td>
+        <td className="MyCoin-table-row-td-Name">{this.props.transaction.coinName}</td>
+        <td className="MyCoin-table-row-td">{this.props.transaction.quantity}</td>
+        <td className="MyCoin-table-row-td">$ {this.props.transaction.invested}</td>
         <td
           className="MyCoin-table-row-td-EditCoin"
           onClick={() => { this.onOpenModal(); }}
@@ -41,14 +41,10 @@ class MyCoinRow extends Component {
 
 MyCoinRow.propTypes = {
   transaction: PropTypes.shape({
-    Symbol: PropTypes.string.isRequired,
-    Name: PropTypes.string.isRequired,
-    PurchasedPrice: PropTypes.number.isRequired,
-    Quantity: PropTypes.number.isRequired,
-    CurrentPrice: PropTypes.number.isRequired,
-    Volume: PropTypes.number.isRequired,
-    Total: PropTypes.number.isRequired,
-    Change: PropTypes.number.isRequired,
+    coinSymbol: PropTypes.string.isRequired,
+    coinName: PropTypes.string.isRequired,
+    quantity: PropTypes.number.isRequired,
+    invested: PropTypes.number.isRequired,
   }),
 };
 

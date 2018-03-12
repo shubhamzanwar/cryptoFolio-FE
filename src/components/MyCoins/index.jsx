@@ -4,26 +4,20 @@ import './index.css';
 import MyCoinRow from '../MyCoinRow';
 import AddCoinModal from './../AddCoinModal';
 
-const demoValue = [
-  {
-    Symbol: 'BTC',
-    Name: 'Bitcoin',
-    Quantity: 0.11,
-    CurrentPrice: 1232,
-  },
-  {
-    Symbol: 'ETH',
-    Name: 'Etherium',
-    Quantity: 0.12,
-    CurrentPrice: 1232,
-  },
-];
 
 class MyCoins extends Component {
-  state = {
-    open: false,
-    modifyType: null,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      transactions: [],
+      open: false,
+      modifyType: null,
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.updateState(nextProps.userTransactions);
+  }
 
   onOpenAddModal = () => {
     this.setState({ open: true, modifyType: 'addCoin' });
@@ -36,6 +30,16 @@ class MyCoins extends Component {
   onCloseModal = () => {
     this.setState({ open: false });
   };
+
+  updateState(userTransactions) {
+    this.setState({
+      transactions: userTransactions,
+    });
+  }
+
+  editCoin = () => {
+    alert('Edit');
+  }
 
   render() {
     return (
@@ -56,12 +60,12 @@ class MyCoins extends Component {
               <th className="MyCoins-table-header-th">Coin</th>
               <th className="MyCoins-table-header-th">Name</th>
               <th className="MyCoins-table-header-th">Quantity</th>
-              <th className="MyCoins-table-header-th">Current Price</th>
+              <th className="MyCoins-table-header-th">Invested</th>
               <th className="MyCoins-table-header-th">Edit</th>
             </tr>
           </thead>
           <tbody className="MyCoins-table-body">
-            {demoValue.map(transaction => (<MyCoinRow
+            {this.state.transactions.map(transaction => (<MyCoinRow
               transaction={transaction}
               editCoin={this.editCoin}
             />))}
@@ -72,4 +76,37 @@ class MyCoins extends Component {
   }
 }
 
+MyCoins.defaultProps = {
+  userTransactions: [
+    {
+      Symbol: 'BTC',
+      Name: 'Bitcoin',
+      PurchasedPrice: 1231,
+      CurrentPrice: 1232,
+      Volume: 321,
+      Total: 123,
+      Change: 10.1,
+    },
+    {
+      Symbol: 'BTC',
+      Name: 'Bitcoin',
+      PurchasedPrice: 1231,
+      CurrentPrice: 1232,
+      Volume: 321,
+      Total: 123,
+      Change: -9.1,
+    },
+    {
+      Symbol: 'BTC',
+      Name: 'Bitcoin',
+      PurchasedPrice: 1231,
+      CurrentPrice: 1232,
+      Volume: 321,
+      Total: 123,
+      Change: 10.1,
+    },
+  ],
+};
+
 export default MyCoins;
+
