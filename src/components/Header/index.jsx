@@ -10,6 +10,7 @@ class Header extends Component {
     window.localStorage.setItem('cryptotoken', null);
     window.localStorage.setItem('cryptousername', null);
     this.forceUpdate();
+    window.location = '/';
   }
   render() {
     return (
