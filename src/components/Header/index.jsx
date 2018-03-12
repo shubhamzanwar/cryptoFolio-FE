@@ -20,7 +20,7 @@ class Header extends Component {
             <h3
               className="Header-heading"
             >
-              <i className="fa fa-briefcase" aria-hidden="true" /> CryptoFolio
+              <i className="fa fa-briefcase" aria-hidden="true" /> Crypto Folio
             </h3>
           </Link>
           {
