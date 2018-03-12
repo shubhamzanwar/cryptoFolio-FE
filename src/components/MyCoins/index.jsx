@@ -8,22 +8,14 @@ const demoValue = [
   {
     Symbol: 'BTC',
     Name: 'Bitcoin',
-    // PurchasedPrice: 1231,
     Quantity: 0.11,
     CurrentPrice: 1232,
-    // Volume: 321,
-    // Total: 123,
-    // Change: 10.1,
   },
   {
     Symbol: 'ETH',
     Name: 'Etherium',
-    // PurchasedPrice: 1231,
     Quantity: 0.12,
     CurrentPrice: 1232,
-    // Volume: 321,
-    // Total: 123,
-    // Change: -9.1,
   },
 ];
 
@@ -44,10 +36,6 @@ class MyCoins extends Component {
   onCloseModal = () => {
     this.setState({ open: false });
   };
-
-  editCoin = () => {
-    alert('Edit');
-  }
 
   render() {
     return (
