@@ -18,7 +18,6 @@ class Orders extends React.Component {
       clearInterval(this.interval);
       this.interval = setInterval(() => this.getdata(nextProps.coin), 5000);
     }
-    this.interval = setInterval(() => this.getdata(nextProps.coin), 5000);
   }
 
   getdata(coin) {
