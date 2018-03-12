@@ -17,7 +17,6 @@ class MyCoinRow extends Component {
   };
 
   render() {
-    console.log('hey', this.props.transaction);
     return (
       <tr className="MyCoin-table-row">
         <EditCoinModal state={this.state.open} onCloseModal={this.onCloseModal} data={{ name: 'Bitcoin', quantity: 0.12, price: 3121 }} />

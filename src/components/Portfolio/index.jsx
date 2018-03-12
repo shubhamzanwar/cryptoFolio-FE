@@ -32,7 +32,6 @@ class Portfolio extends Component {
       });
   }
   render() {
-    console.log(this.state.userTransactions);
     return (
       <div className="Portfolio">
         <div className="Portfolio-Left-Container">
