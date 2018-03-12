@@ -11,6 +11,27 @@ const groupByCoin = transactions => transactions.reduce((acc, curr) => {
   return acc;
 }, {});
 
+const summarize = (transactionsObject) => {
+  const transactions = Object.values(transactionsObject).map((coinTransactions) => {
+    const { coinName } = coinTransactions[0];
+    const { coinSymbol } = coinTransactions[0];
+    let quantity = 0;
+    let invested = 0;
+
+    coinTransactions.forEach((transaction) => {
+      quantity += transaction.quantity;
+      invested += transaction.quantity * transaction.price;
+    });
+    return {
+      coinName,
+      coinSymbol,
+      quantity,
+      invested,
+    };
+  });
+  return transactions;
+};
+
 class Portfolio extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +56,6 @@ class Portfolio extends Component {
         this.setState({
           userTransactions: groupByCoin(response),
         });
-        console.log(groupByCoin(response));
       });
   }
   render() {
@@ -44,11 +64,11 @@ class Portfolio extends Component {
         <div className="Portfolio-Left-Container">
           <Investment />
           <MyCoins
-            userTransactions={Object.values(this.state.userTransactions)}
+            userTransactions={summarize(this.state.userTransactions)}
           />
         </div>
         <div className="Portfolio-Right-Container">
-          <PortfolioDistribution />
+          <PortfolioDistribution userTransactions={summarize(this.state.userTransactions)} />
         </div>
       </div>
     );
