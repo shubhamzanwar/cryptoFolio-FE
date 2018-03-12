@@ -8,20 +8,22 @@ const demoValue = [
   {
     Symbol: 'BTC',
     Name: 'Bitcoin',
-    PurchasedPrice: 1231,
+    // PurchasedPrice: 1231,
+    Quantity: 0.11,
     CurrentPrice: 1232,
-    Volume: 321,
-    Total: 123,
-    Change: 10.1,
+    // Volume: 321,
+    // Total: 123,
+    // Change: 10.1,
   },
   {
     Symbol: 'ETH',
     Name: 'Etherium',
-    PurchasedPrice: 1231,
+    // PurchasedPrice: 1231,
+    Quantity: 0.12,
     CurrentPrice: 1232,
-    Volume: 321,
-    Total: 123,
-    Change: -9.1,
+    // Volume: 321,
+    // Total: 123,
+    // Change: -9.1,
   },
 ];
 
@@ -65,11 +67,8 @@ class MyCoins extends Component {
             <tr>
               <th className="MyCoins-table-header-th">Coin</th>
               <th className="MyCoins-table-header-th">Name</th>
-              <th className="MyCoins-table-header-th">Purchased Date</th>
+              <th className="MyCoins-table-header-th">Quantity</th>
               <th className="MyCoins-table-header-th">Current Price</th>
-              <th className="MyCoins-table-header-th">Volume (24 Hr)</th>
-              <th className="MyCoins-table-header-th">Total</th>
-              <th className="MyCoins-table-header-th">Change</th>
               <th className="MyCoins-table-header-th">Edit</th>
             </tr>
           </thead>
