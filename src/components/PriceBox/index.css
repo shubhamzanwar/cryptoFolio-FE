@@ -1,0 +1,32 @@
+.PriceBox{
+    min-height: 110px;
+    min-width: 120px;
+    padding-left: 10px;
+    border-left: 1px solid rgb(29,46,68);
+    border-right: 1px solid rgb(29,46,68);
+    background: rgb(33,49,71);
+    border-bottom: 3px solid rgb(33,49,71);
+    flex-grow: 1;
+}
+
+.PriceBox-price{
+    font-size: 14px;
+    color: rgb(92,108,132);
+}
+
+.PriceBox:hover{
+    border-bottom: 3px solid rgb(0, 173, 239);
+    background: rgb(39,59,86);
+}
+
+.PriceBox-change{
+    padding-left: 10px;
+}
+
+.PriceBox-change-success{
+    color: rgb(85,185,125);
+}
+
+.PriceBox-change-danger{
+    color: rgb(192,88,73);
+}

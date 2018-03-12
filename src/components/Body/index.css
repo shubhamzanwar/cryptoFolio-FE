@@ -1,0 +1,87 @@
+.Body{
+    box-sizing: border-box;
+    flex-grow: 1;
+    margin: 30px 20px 20px 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    width: 87%;
+
+}
+
+.Body-graph-and-ticker-container{
+    display: flex;
+    min-height: 100px;
+    box-sizing: border-box;
+    margin-top: 30px;
+}
+
+.Body-orders-and-twitter-container{
+    display: flex;
+    min-height: 100px;
+    box-sizing: border-box;
+    margin-top: 30px;
+}
+
+.Body-orders{
+    display:flex;
+    min-width:66%;
+    margin-right: 30px;
+    flex-direction:row;
+    justify-content: space-between;
+}
+
+.Body-order-source>p{
+    color: rgb(87, 127, 180);
+}
+
+@media screen and (max-width: 1200px) {
+    .Body-orders{
+        flex-direction:column;
+        width: 100%;
+    }
+    .Body-orders-and-twitter-container{
+        flex-direction: column;
+    }
+    .Ticker-table-row-td{
+        font-size: 13px;
+    }
+    .Ticker-table-header-th{
+        font-size: 14px;
+    }
+}
+
+
+@media screen and (max-width: 1020px) {
+    .Body-orders{
+        flex-direction:column;
+    }
+    .Body-graph-and-ticker-container{
+        flex-direction: column-reverse;
+    }
+    .Ticker{
+        margin-bottom: 30px;
+    }
+    .GraphContainer{
+        width: 100%;
+    }
+    .Ticker-table-row-td{
+        font-size: 15px;
+    }
+    .Ticker-table-header-th{
+        font-size: 16px;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .Body-orders{
+        flex-direction:column;
+    }
+    .Ticker-table-row-td{
+        font-size: 12px;
+    }
+    .Ticker-table-header-th{
+        font-size: 13px;
+    }
+}

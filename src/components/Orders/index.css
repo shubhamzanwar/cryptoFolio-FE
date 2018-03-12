@@ -1,0 +1,46 @@
+.Orders-div{
+    max-height: 500px;
+    margin-bottom:60px;
+    width: 48%;
+}
+.Orders-table{
+    width: 100%;
+    background: rgb(33,49,71);
+}
+
+.Orders-table-wrapper{
+    overflow: auto;
+    height: 500px;
+}
+
+.Orders-table-heading{
+    padding: 20px 0 10px 0;
+    color: rgb(92,108,132);
+    text-align: center;
+}
+.Orders-title{
+    padding-left: 15px;
+}
+
+.Orders-row-tr:nth-child(even){
+    background: rgb(29,43,63);
+}
+.Orders-row-td{
+    text-align: center;
+    padding: 10px 0;
+    border: none;
+}
+
+
+
+@media screen and (max-width: 1200px) {
+    .Orders-div{
+        width: 100%;
+    }
+    .Orders-row-tr{
+        font-size: 12px;
+    }
+    .Orders-table-heading{
+        font-size: 13px;
+    }
+}

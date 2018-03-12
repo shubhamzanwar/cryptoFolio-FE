@@ -1,0 +1,57 @@
+.MyCoins{
+    flex-grow: 1;
+    background: rgb(33,49,71);
+    overflow: auto;
+    font-family: 'Roboto', sans-serif;
+    margin: 10px;
+    padding: 10px;
+}
+
+.MyCoins-Header {
+    background-color: #293A54;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    min-height: 45px;
+}
+
+.MyCoins-Header-Title-CoinCount {
+    font-size: 10px;
+    margin: 0px;
+}
+
+.MyCoins-Header-Title {
+    font-size: 20px;
+    margin: 0px;
+    color: white;
+    display: flex;
+    flex: 1;
+    align-self: center;
+}
+
+.MyCoins-Header-ModifyButton {
+    color: #55A6D8;
+    display: flex;
+    font-size: 15px;
+    align-self: center;
+}
+
+.MyCoins-Header-ModifyButton:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.MyCoins-table{
+    width: 100%;
+    padding: 0 10px;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.MyCoins-table-header-th{
+    padding: 20px 0 10px 0;
+    color: rgb(92,108,132);
+    font-size: 14px;
+    font-weight: 100;
+    text-transform: uppercase;
+}
