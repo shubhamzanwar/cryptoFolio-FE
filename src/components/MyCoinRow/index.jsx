@@ -17,20 +17,13 @@ class MyCoinRow extends Component {
   };
 
   render() {
-    console.log('hey', this.props.transaction);
     return (
       <tr className="MyCoin-table-row">
         <EditCoinModal state={this.state.open} onCloseModal={this.onCloseModal} data={{ name: 'Bitcoin', quantity: 0.12, price: 3121 }} />
         <td className="MyCoin-table-row-td-Symbol">{this.props.transaction.coinSymbol}</td>
         <td className="MyCoin-table-row-td-Name">{this.props.transaction.coinName}</td>
-        <td className="MyCoin-table-row-td">$ {this.props.transaction.price}</td>
-        <td className="MyCoin-table-row-td">$ {this.props.transaction.currentPrice}</td>
         <td className="MyCoin-table-row-td">{this.props.transaction.quantity}</td>
-        <td className="MyCoin-table-row-td">{this.props.transaction.currentPrice * this.props.transaction.quantity}</td>
-        <td className={this.props.transaction.Change > 0 ? 'MyCoin-table-row-td MyCoin-table-row-td-profit' : 'MyCoin-table-row-td MyCoin-table-row-td-loss'}>
-          {this.props.transaction.Change}
-          <i className={this.props.transaction.Change > 0 ? 'fas fa-arrow-circle-up' : 'fas fa-arrow-circle-down'} />
-        </td>
+        <td className="MyCoin-table-row-td">$ {this.props.transaction.invested}</td>
         <td
           className="MyCoin-table-row-td-EditCoin"
           onClick={() => { this.onOpenModal(); }}
@@ -44,13 +37,10 @@ class MyCoinRow extends Component {
 
 MyCoinRow.propTypes = {
   transaction: PropTypes.shape({
-    Symbol: PropTypes.string.isRequired,
-    Name: PropTypes.string.isRequired,
-    PurchasedPrice: PropTypes.number.isRequired,
-    CurrentPrice: PropTypes.number.isRequired,
-    Volume: PropTypes.number.isRequired,
-    Total: PropTypes.number.isRequired,
-    Change: PropTypes.number.isRequired,
+    coinSymbol: PropTypes.string.isRequired,
+    coinName: PropTypes.string.isRequired,
+    quantity: PropTypes.number.isRequired,
+    invested: PropTypes.number.isRequired,
   }),
   editCoin: PropTypes.func.isRequired,
 };

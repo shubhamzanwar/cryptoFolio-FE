@@ -4,11 +4,40 @@ import './index.css';
 import MyCoinRow from '../MyCoinRow';
 import AddCoinModal from './../AddCoinModal';
 
+const summarize = (transactionsObject) => {
+  const transactions = Object.values(transactionsObject).map((coinTransactions) => {
+    const { coinName } = coinTransactions[0];
+    const { coinSymbol } = coinTransactions[0];
+    let quantity = 0;
+    let invested = 0;
+
+    coinTransactions.forEach((transaction) => {
+      quantity += transaction.quantity;
+      invested += transaction.quantity * transaction.price;
+    });
+    return {
+      coinName,
+      coinSymbol,
+      quantity,
+      invested,
+    };
+  });
+  return transactions;
+};
+
 class MyCoins extends Component {
-  state = {
-    open: false,
-    modifyType: null,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      transactions: [],
+      open: false,
+      modifyType: null,
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.updateState(nextProps.userTransactions);
+  }
 
   onOpenAddModal = () => {
     this.setState({ open: true, modifyType: 'addCoin' });
@@ -21,6 +50,12 @@ class MyCoins extends Component {
   onCloseModal = () => {
     this.setState({ open: false });
   };
+
+  updateState(userTransactions) {
+    this.setState({
+      transactions: summarize(userTransactions),
+    });
+  }
 
   editCoin = () => {
     alert('Edit');
@@ -44,16 +79,13 @@ class MyCoins extends Component {
             <tr>
               <th className="MyCoins-table-header-th">Coin</th>
               <th className="MyCoins-table-header-th">Name</th>
-              <th className="MyCoins-table-header-th">Purchased Date</th>
-              <th className="MyCoins-table-header-th">Current Price</th>
-              <th className="MyCoins-table-header-th">Volume (24 Hr)</th>
-              <th className="MyCoins-table-header-th">Total</th>
-              <th className="MyCoins-table-header-th">Change</th>
+              <th className="MyCoins-table-header-th">Quantity</th>
+              <th className="MyCoins-table-header-th">Invested</th>
               <th className="MyCoins-table-header-th">Edit</th>
             </tr>
           </thead>
           <tbody className="MyCoins-table-body">
-            {this.props.userTransactions.map(transaction => (<MyCoinRow
+            {this.state.transactions.map(transaction => (<MyCoinRow
               transaction={transaction}
               editCoin={this.editCoin}
             />))}
@@ -64,9 +96,8 @@ class MyCoins extends Component {
   }
 }
 
-export default MyCoins;
 MyCoins.defaultProps = {
-  userTransaction: [
+  userTransactions: [
     {
       Symbol: 'BTC',
       Name: 'Bitcoin',
@@ -96,4 +127,6 @@ MyCoins.defaultProps = {
     },
   ],
 };
+
+export default MyCoins;
 

@@ -5,11 +5,17 @@ import Investment from '../Investment';
 import PortfolioDistribution from '../PortfolioDistribution';
 import './index.css';
 
+const groupByCoin = transactions => transactions.reduce((acc, curr) => {
+  acc[curr.coinSymbol] = acc[curr.coinSymbol] || [];
+  acc[curr.coinSymbol].push(curr);
+  return acc;
+}, {});
+
 class Portfolio extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userTransactions: [],
+      userTransactions: {},
     };
   }
   componentWillMount() {
@@ -27,18 +33,18 @@ class Portfolio extends Component {
       .then(response => response.json())
       .then((response) => {
         this.setState({
-          userTransactions: response,
+          userTransactions: groupByCoin(response),
         });
+        console.log(groupByCoin(response));
       });
   }
   render() {
-    console.log(this.state.userTransactions);
     return (
       <div className="Portfolio">
         <div className="Portfolio-Left-Container">
           <Investment />
           <MyCoins
-            userTransactions={this.state.userTransactions}
+            userTransactions={Object.values(this.state.userTransactions)}
           />
         </div>
         <div className="Portfolio-Right-Container">
