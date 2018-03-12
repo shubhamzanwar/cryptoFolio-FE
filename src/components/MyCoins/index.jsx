@@ -59,7 +59,11 @@ class MyCoins extends Component {
   render() {
     return (
       <div className="MyCoins">
-        <AddCoinModal state={this.state.open} modifyType={this.state.modifyType} onCloseModal={this.onCloseModal} />
+        <AddCoinModal
+          state={this.state.open}
+          modifyType={this.state.modifyType}
+          onCloseModal={this.onCloseModal}
+        />
         <div className="MyCoins-Header">
           <p className="MyCoins-Header-Title">My Coins</p>
           <span className="MyCoins-Header-ModifyButton" onClick={this.onOpenAddModal} role="presentation"><i className="fas fa-plus" />&nbsp;&nbsp;Add Coin</span>&nbsp;&nbsp;&nbsp;
