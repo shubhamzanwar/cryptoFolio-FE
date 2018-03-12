@@ -1,55 +1,61 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import PortfolioDistributionChart from '../PortifolioDistributionChart';
 import PortfolioDistributionLabel from '../PortofolioDistributionLabel';
 import './index.css';
 
-const tempData = [{
-  name: 'XRP',
-  y: 56.33,
-  color: 'rgb(232, 74, 161)',
-}, {
-  name: 'BTC',
-  y: 96.33,
-  color: 'rgb(239, 179, 59)',
-}, {
-  name: 'PSD',
-  y: 39.38,
-  color: '#50ef3b',
-}, {
-  name: 'WDS',
-  y: 4.77,
-}, {
-  name: 'PQR',
-  y: 0.91,
-}, {
-  name: 'ABC',
-  y: 0.2,
-  color: 'yellow',
-}];
 
 class PortfolioDistribution extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      displayType: 'quantity',
+      pieData: [],
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.conditionInput(nextProps.userTransactions);
+  }
+
+  conditionInput(trans) {
+    const pieData = trans.map(transaction => ({
+      name: transaction.coinName,
+      y: transaction[this.state.displayType],
+    }));
+    this.setState({
+      pieData,
+    });
+  }
+
+  displayType(type) {
+    this.setState({
+      displayType: type,
+    }, () => {
+      this.conditionInput(this.props.userTransactions);
+    });
+  }
+
   render() {
     return (
       <div className="Distribution">
         <div className="Distribution-Header">
           <p className="Distribution-Header-Title">My Coins</p>
           <div className="Distribution-Tabs-Button">
-            <button className="selected">Investment</button>
-            <button>Current Value</button>
+            <button className={this.state.displayType === 'quantity' ? 'selected' : ''} onClick={() => this.displayType('quantity')} >Quantity</button>
+            <button className={this.state.displayType === 'invested' ? 'selected' : ''} onClick={() => this.displayType('invested')}>Invested</button>
           </div>
         </div>
         <div className="Distribution-GraphContainer">
           <div className="Graph">
-            <PortfolioDistributionChart portfolioData={tempData} />
+            <PortfolioDistributionChart portfolioData={this.state.pieData} />
           </div>
           <div className="GraphLabel">
             <div className="GraphLabelItemContainer">
-              { tempData.map(coin => (
+              { this.state.pieData.map(coin => (
                 <PortfolioDistributionLabel
-                  value={coin.y}
-                  symbol={coin.name}
-                  color={coin.color}
+                  value={coin.quantity}
+                  symbol={coin.coinName}
                 />))
               }
             </div>
@@ -60,5 +66,17 @@ class PortfolioDistribution extends Component {
   }
 }
 
+PortfolioDistribution.propTypes = {
+  userTransactions: PropTypes.shape({
+    coinName: PropTypes.string.isRequired,
+    coinSymbol: PropTypes.string.isRequired,
+    quantity: PropTypes.number.isRequired,
+    invested: PropTypes.number.isRequired,
+  }),
+};
+
+PortfolioDistribution.defaultProps = {
+  userTransactions: [],
+};
 
 export default PortfolioDistribution;
