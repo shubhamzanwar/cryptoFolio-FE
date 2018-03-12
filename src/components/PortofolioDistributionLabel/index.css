@@ -1,0 +1,26 @@
+.GraphLabelItem {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+    width: 40px;
+}
+
+.GraphLabelItem-Value {
+    color: white;
+    align-self: center;
+    padding-bottom: 10px;
+}
+
+.GraphLabelItem-Symbol {
+    border-top: solid;
+    border-width: 2px;
+    padding-top: 10px;
+    color: white;
+    align-self: center;
+}
+
+.GraphLabelItem span{
+    display: inline-flex;
+    font-size: 14px;
+}
