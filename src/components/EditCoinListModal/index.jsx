@@ -26,7 +26,7 @@ class EditCoinListModal extends Component {
         little
         styles={{
           modal: {
-            backgroundColor: 'rgb(255, 255, 255)',
+            backgroundColor: 'rgb(33,49,71)',
             borderRadius: '10px',
           },
         }}
