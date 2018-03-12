@@ -35,7 +35,7 @@ class EditCoinListModal extends Component {
         <table className="MyTransactionCoins-table" cellSpacing="0" cellPadding="0">
           <thead className="MyTransactionCoins-table-header">
             <tr>
-              <th className="MyTransactionCoins-table-header-th" />
+              <th className="MyTransactionCoins-table-header-th">Sl No</th>
               <th className="MyTransactionCoins-table-header-th">Purchased Price</th>
               <th className="MyTransactionCoins-table-header-th">Quantity</th>
               <th className="MyTransactionCoins-table-header-th">Edit</th>
