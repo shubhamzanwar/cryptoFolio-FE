@@ -29,14 +29,14 @@
     align-self: center;
 }
 
-.MyCoins-Header-AddButton {
+.MyCoins-Header-ModifyButton {
     color: #55A6D8;
     display: flex;
     font-size: 15px;
     align-self: center;
 }
 
-.MyCoins-Header-AddButton:hover {
+.MyCoins-Header-ModifyButton:hover {
     color: white;
     cursor: pointer;
 }

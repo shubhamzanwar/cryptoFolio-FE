@@ -18,6 +18,7 @@ const AddCoinModal = props => (
 AddCoinModal.propTypes = {
   onCloseModal: PropTypes.func.isRequired,
   state: PropTypes.string.isRequired,
+  modifyType: PropTypes.string.isRequired,
 };
 
 AddCoinModal.defaultProps = {
