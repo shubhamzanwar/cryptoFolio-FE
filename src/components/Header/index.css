@@ -98,6 +98,7 @@
 
 .Header-logout-button:hover{
     color: rgb(14,39,89);
+    cursor: pointer;
 }
 
 
