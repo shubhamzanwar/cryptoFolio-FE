@@ -12,6 +12,7 @@
     text-align: left;
     padding: 20px;
     padding-bottom: 0px;
+    padding-top: 0px;
     display: flex;
     flex-direction: column;
 }
@@ -36,13 +37,14 @@
 }
 
 .addCoinModal_addCoinForm_submit {
-    align-self: center;
     background-color:rgb(39, 59,86);
+    align-self: center;
     padding: 10px;
     color: white;
     font-size: 20px;
     margin: 15px;
     margin-right: 0px;
+    margin-top: 0px;
     border-radius: 4px;
     background:  rgb(0, 164, 236);
     align-self: flex-end;
