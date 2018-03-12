@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import MyCoins from '../MyCoins';
 import Investment from '../Investment';
 import PortfolioDistribution from '../PortfolioDistribution';
 import './index.css';
 
 class Portfolio extends Component {
+  componentWillMount() {
+    if (window.localStorage.getItem('cryptologgedin') !== 'true') {
+      this.props.history.push('/');
+    }
+  }
   render() {
     return (
       <div className="Portfolio">
@@ -20,5 +26,10 @@ class Portfolio extends Component {
   }
 }
 
+Portfolio.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Portfolio;
