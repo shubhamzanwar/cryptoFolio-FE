@@ -3,6 +3,26 @@ import PropTypes from 'prop-types';
 import './index.css';
 
 class Investment extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      invested: 0,
+      current: 0,
+      coinName: '',
+    };
+  }
+  componentWillMount() {
+    const transactions = Object.values(this.props.userTransactions);
+    transactions.reduce((acc, curr) => {
+      acc[curr.coinSymbol] = acc[curr.coinSymbol] || [];
+      acc[curr.coinSymbol].push(curr);
+      return acc;
+    }, {});
+
+    this.setState({
+
+    });
+  }
   render() {
     const progressStyle = {
       width: `${(this.props.currentValue / (this.props.invested + this.props.currentValue)) * 100}%`,
@@ -24,11 +44,11 @@ class Investment extends Component {
           <div className="Investment-Values">
             <p className="Investment-Invested">
               Invested<br />
-              <span className="Investment-Invested-span">$ {this.props.invested}</span>
+              <span className="Investment-Invested-span">$ {this.state.invested}</span>
             </p>
             <p className="Investment-Current">
               Current Value<br />
-              <span className={this.props.currentValue < this.props.invested ? 'Investment-Current-span-loss' : 'Investment-Current-span-profit'}>$ {this.props.currentValue}</span>
+              <span className={this.state.current < this.state.invested ? 'Investment-Current-span-loss' : 'Investment-Current-span-profit'}>$ {this.state.current}</span>
             </p>
           </div>
           <div className="Investment-Graph1">

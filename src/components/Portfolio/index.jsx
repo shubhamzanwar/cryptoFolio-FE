@@ -66,7 +66,6 @@ class Portfolio extends Component {
     }
   }
   addCoin(e, type) {
-    console.log('hey click');
     e.preventDefault();
     const data = new FormData(e.target);
     const payload = {
@@ -102,7 +101,9 @@ class Portfolio extends Component {
     return (
       <div className="Portfolio">
         <div className="Portfolio-Left-Container">
-          <Investment />
+          <Investment
+            userTransactions={summarize(this.state.userTransactions)}
+          />
           <MyCoins
             userTransactions={summarize(this.state.userTransactions)}
             allTransactions={this.state.userTransactions}
