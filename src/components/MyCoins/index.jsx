@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import './index.css';
 import MyCoinRow from '../MyCoinRow';
 import AddCoinModal from './../AddCoinModal';
-
 
 class MyCoins extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      transactions: [],
       open: false,
       modifyType: null,
     };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.updateState(nextProps.userTransactions);
   }
 
   onOpenAddModal = () => {
@@ -30,16 +24,6 @@ class MyCoins extends Component {
   onCloseModal = () => {
     this.setState({ open: false });
   };
-
-  updateState(userTransactions) {
-    this.setState({
-      transactions: userTransactions,
-    });
-  }
-
-  editCoin = () => {
-    alert('Edit');
-  }
 
   render() {
     return (
@@ -66,8 +50,9 @@ class MyCoins extends Component {
             </tr>
           </thead>
           <tbody className="MyCoins-table-body">
-            {this.state.transactions.map(transaction => (<MyCoinRow
+            {this.props.userTransactions.map(transaction => (<MyCoinRow
               transaction={transaction}
+              allTransactions={this.props.allTransactions[transaction.coinSymbol]}
               editCoin={this.editCoin}
             />))}
           </tbody>
@@ -77,36 +62,15 @@ class MyCoins extends Component {
   }
 }
 
+MyCoins.propTypes = {
+  userTransactions: PropTypes.arrayOf,
+  allTransactions: PropTypes.arrayOf,
+  addCoin: PropTypes.func,
+};
 MyCoins.defaultProps = {
-  userTransactions: [
-    {
-      Symbol: 'BTC',
-      Name: 'Bitcoin',
-      PurchasedPrice: 1231,
-      CurrentPrice: 1232,
-      Volume: 321,
-      Total: 123,
-      Change: 10.1,
-    },
-    {
-      Symbol: 'BTC',
-      Name: 'Bitcoin',
-      PurchasedPrice: 1231,
-      CurrentPrice: 1232,
-      Volume: 321,
-      Total: 123,
-      Change: -9.1,
-    },
-    {
-      Symbol: 'BTC',
-      Name: 'Bitcoin',
-      PurchasedPrice: 1231,
-      CurrentPrice: 1232,
-      Volume: 321,
-      Total: 123,
-      Change: 10.1,
-    },
-  ],
+  userTransactions: [],
+  allTransactions: [],
+  addCoin: null,
 };
 
 export default MyCoins;
