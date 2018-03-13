@@ -45,6 +45,7 @@ class Portfolio extends Component {
       editModal: false,
       modifyType: 'addCoin',
       editingCoin: 'BTC',
+      response: '',
     };
   }
 
@@ -106,8 +107,8 @@ class Portfolio extends Component {
     const data = new FormData(e.target);
     const payload = {
       coin: data.get('name'),
-      price: data.get('quantity'),
-      quantity: data.get('price'),
+      quantity: data.get('quantity'),
+      price: data.get('price'),
     };
     fetch('/editPortfolioCoin', {
       method: 'POST',
@@ -124,13 +125,55 @@ class Portfolio extends Component {
         const trans = this.state.userTransactions;
         trans[payload.coin] = trans[payload.coin] || [];
         trans[payload.coin].push({ ...result, coinSymbol: payload.coin });
+        this.onCloseAddModal();
         this.setState({
           userTransactions: trans,
         });
       });
   }
-
-
+  removeCoin(e) {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const coin = data.get('name');
+    let quantity = data.get('quantity');
+    const transactions = summarize(this.state.userTransactions)[0];
+    const groupedTransactions = groupByCoin(transactions);
+    console.log(quantity, groupedTransactions[coin][0].quantity);
+    if (groupedTransactions[coin][0].quantity > (quantity)) {
+      quantity *= -1;
+      const payload = {
+        coin: data.get('name'),
+        price: data.get('price'),
+        quantity,
+      };
+      fetch('/editPortfolioCoin', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: { authtoken: window.localStorage.getItem('cryptotoken') },
+      })
+        .then((result) => {
+          if (result.status === 201) {
+            return result.json();
+          }
+          return null;
+        })
+        .then((result) => {
+          const trans = this.state.userTransactions;
+          trans[payload.coin] = trans[payload.coin] || [];
+          trans[payload.coin].push({ ...result, coinSymbol: payload.coin });
+          this.onCloseAddModal();
+          this.setState({
+            userTransactions: trans,
+            response: '',
+          });
+        });
+    } else {
+      const response = 'Please enter a quantity lesser than the amount you have';
+      this.setState({
+        response,
+      });
+    }
+  }
   render() {
     return (
       <div className="Portfolio">
@@ -139,6 +182,8 @@ class Portfolio extends Component {
           modifyType={this.state.modifyType}
           onCloseModal={this.onCloseAddModal}
           addCoin={(e) => { this.addCoin(e); }}
+          removeCoin={(e) => { this.removeCoin(e); }}
+          response={this.state.response}
         />
         <EditCoinListModal
           state={this.state.editModal}
