@@ -60,11 +60,8 @@ class Portfolio extends Component {
         headers: { authtoken },
       })
         .then((response) => {
-          if (response.status === 401) {
-            window.localStorage.setItem('cryptotoken', null);
-            window.localStorage.setItem('cryptousername', null);
-            window.localStorage.setItem('cryptologgedin', false);
-            this.props.history.push('/');
+          if (response.status !== 200) {
+            throw new Error({ code: response.status, msg: response });
           }
           return response.json();
         })
@@ -72,6 +69,13 @@ class Portfolio extends Component {
           this.setState({
             userTransactions: groupByCoin(response),
           });
+        }).catch((err) => {
+          if (err.code === 401) {
+            window.localStorage.setItem('cryptotoken', null);
+            window.localStorage.setItem('cryptousername', null);
+            window.localStorage.setItem('cryptologgedin', false);
+            this.props.history.push('/');
+          }
         });
     }
   }
