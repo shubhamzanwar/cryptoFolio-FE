@@ -155,7 +155,9 @@ class Portfolio extends Component {
           />
         </div>
         <div className="Portfolio-Right-Container">
-          <PortfolioDistribution userTransactions={summarize(this.state.userTransactions)[0]} />
+          <PortfolioDistribution
+            userTransactions={summarize(this.state.userTransactions)[0]}
+          />
         </div>
       </div>
     );
