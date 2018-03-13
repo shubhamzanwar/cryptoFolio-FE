@@ -51,9 +51,17 @@ class Portfolio extends Component {
       })
         .then(response => response.json())
         .then((response) => {
-          this.setState({
-            userTransactions: groupByCoin(response),
-          });
+          if (response.message === 'Token Expired') {
+            window.localStorage.setItem('cryptologgedin', false);
+            window.localStorage.setItem('cryptotoken', null);
+            window.localStorage.setItem('cryptousername', null);
+            this.forceUpdate();
+            this.props.history.push('/login', { message: 'Please login to continue' });
+          } else {
+            this.setState({
+              userTransactions: groupByCoin(response),
+            });
+          }
         });
     }
   }
