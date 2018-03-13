@@ -51,6 +51,7 @@ class Portfolio extends Component {
 
 
   componentDidMount() {
+    console.log('mounted', new Date());
     const isLoggedinUser = window.localStorage.getItem('cryptologgedin');
     if (isLoggedinUser === 'false') {
       (this.props.history).push('/login');
@@ -161,16 +162,15 @@ class Portfolio extends Component {
           const trans = this.state.userTransactions;
           trans[payload.coin] = trans[payload.coin] || [];
           trans[payload.coin].push({ ...result, coinSymbol: payload.coin });
-          this.onCloseAddModal();
           this.setState({
             userTransactions: trans,
             response: '',
           });
+          this.onCloseAddModal();
         });
-    } else {
-      const response = 'Please enter a quantity lesser than the amount you have';
+    } else if (this.state.response === '') {
       this.setState({
-        response,
+        response: 'please re-enter since the quantity exceeds the added quantity',
       });
     }
   }
