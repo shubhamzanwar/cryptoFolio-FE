@@ -9,9 +9,7 @@ class AddCoinModal extends React.Component {
   onSubmit = (e) => {
     if (this.props.modifyType === 'addCoin') {
       this.props.addCoin(e);
-    } else if (this.props.response === '') {
-      this.props.removeCoin(e);
-    }
+    } else { this.props.removeCoin(e); }
   };
   render=() => (
     <Modal open={this.props.state} onClose={this.props.onCloseModal} little styles={{ modal: { backgroundColor: 'rgb(255, 255, 255)', borderRadius: '10px' } }}>
@@ -37,6 +35,8 @@ AddCoinModal.propTypes = {
   state: PropTypes.string.isRequired,
   modifyType: PropTypes.string.isRequired,
   addCoin: PropTypes.func.isRequired,
+  removeCoin: PropTypes.func.isRequired,
+  response: PropTypes.string.isRequired,
 };
 
 AddCoinModal.defaultProps = {

@@ -91,7 +91,7 @@ class Portfolio extends Component {
   };
 
   onCloseAddModal = () => {
-    this.setState({ addModal: false });
+    this.setState({ addModal: false, response: '' });
   };
 
   onOpenEditModal = (coin) => {
@@ -168,7 +168,7 @@ class Portfolio extends Component {
           });
           this.onCloseAddModal();
         });
-    } else if (this.state.response === '') {
+    } else {
       this.setState({
         response: 'please re-enter since the quantity exceeds the added quantity',
       });
