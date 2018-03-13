@@ -73,6 +73,11 @@ class Portfolio extends Component {
       price: type === 'addCoin' ? data.get('quantity') : -1 * data.get('quantity'),
       quantity: data.get('price'),
     };
+    if (type === 'removeCoin' && this.state.userTransactions[payload.coin] !== undefined) {
+      const transactionSummary = summarize(this.state.userTransactions[payload.coin]);
+      console.log(transactionSummary);
+      // if (transactionSummary) {}
+    }
     fetch('/editPortfolioCoin', {
       method: 'POST',
       body: JSON.stringify(payload),
