@@ -4,19 +4,6 @@ import PropTypes from 'prop-types';
 import MyTransactionRow from '../MyTransactionRow';
 import './index.css';
 
-const demoValue = [
-  {
-    transactionId: 1,
-    quantity: 2,
-    price: 3,
-  },
-  {
-    transactionId: 4,
-    quantity: 5,
-    price: 6,
-  },
-];
-
 class EditCoinListModal extends Component {
   render() {
     return (
@@ -42,7 +29,7 @@ class EditCoinListModal extends Component {
             </tr>
           </thead>
           <tbody className="MyCoins-table-body">
-            {demoValue.map((transaction, index) => (<MyTransactionRow
+            {this.props.transaction.map((transaction, index) => (<MyTransactionRow
               transaction={transaction}
               index={index + 1}
             />))}
@@ -57,6 +44,7 @@ EditCoinListModal.propTypes = {
   onCloseModal: PropTypes.func.isRequired,
   state: PropTypes.string.isRequired,
   coinName: PropTypes.string.isRequired,
+  transaction: PropTypes.arrayOf.isRequired,
 };
 
 export default EditCoinListModal;
