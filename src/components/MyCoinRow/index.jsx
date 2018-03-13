@@ -17,11 +17,13 @@ class MyCoinRow extends Component {
   };
 
   render() {
+    console.log(this.props.transaction);
     return (
       <tr className="MyCoin-table-row">
         <EditCoinListModal
           state={this.state.open}
           onCloseModal={this.onCloseModal}
+          transaction={this.props.allTransactions}
           coinName="BTC"
         />
         <td className="MyCoin-table-row-td-Symbol">{this.props.transaction.coinSymbol}</td>
