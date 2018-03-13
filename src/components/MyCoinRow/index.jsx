@@ -17,7 +17,6 @@ class MyCoinRow extends Component {
   };
 
   render() {
-    console.log(this.props.transaction);
     return (
       <tr className="MyCoin-table-row">
         <EditCoinListModal
