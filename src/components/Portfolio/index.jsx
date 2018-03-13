@@ -65,6 +65,39 @@ class Portfolio extends Component {
         });
     }
   }
+  addCoin(e, type) {
+    console.log('hey click');
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const payload = {
+      coin: data.get('name'),
+      price: type === 'addCoin' ? data.get('quantity') : -1 * data.get('quantity'),
+      quantity: data.get('price'),
+    };
+    if (type === 'removeCoin' && this.state.userTransactions[payload.coin] !== undefined) {
+      const transactionSummary = summarize(this.state.userTransactions[payload.coin]);
+      console.log(transactionSummary);
+      // if (transactionSummary) {}
+    }
+    fetch('/editPortfolioCoin', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: { authtoken: window.localStorage.getItem('cryptotoken') },
+    })
+      .then((result) => {
+        if (result.status === 201) {
+          return result.json();
+        }
+        return null;
+      })
+      .then((result) => {
+        const trans = this.state.userTransactions;
+        trans[payload.coin].push(result);
+        this.setState({
+          userTransactions: trans,
+        });
+      });
+  }
   render() {
     return (
       <div className="Portfolio">
