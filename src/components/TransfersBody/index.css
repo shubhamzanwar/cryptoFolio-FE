@@ -1,0 +1,73 @@
+.TransfersBody{
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.TransferBody-table-header{
+    padding: 20px 0 10px 0;
+    color: rgb(92,108,132);
+    text-align: center;
+}
+
+.TransferBody-table-row{
+    border-left: 1px solid white;
+    border-collapse: unset;
+    color: white;
+}
+
+.TransferBody-table-row-td{
+    text-align: center;
+    padding: 10px 0;
+}
+
+.TransferBody-table-row:nth-child(odd){
+    background: rgb(29,43,63);
+}
+
+.TransferBody-transfers{
+    width:80%;
+}
+
+.TransferBody-received{
+    /* border: 1px solid white; */
+    width: 100%;
+    padding: 0 10px;
+    text-align: center;
+    align-self: center;
+}
+
+.TransfersBody-make-transfer{
+    margin-top: 30px;
+}
+
+.TransfersBody-make-transfer-heading{
+    color:white;
+}
+
+.TransfersBody-make-transfer{
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.TransfersBody-make-transfer-button{
+    height: 40px;
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    color: white;
+    background: rgb(29,43,63);
+   
+}
+
+.TransfersBody-make-transfer-button:hover{
+    background:  rgb(77,170,233);
+    color: black;
+    padding: 7px;
+    cursor: pointer;
+}

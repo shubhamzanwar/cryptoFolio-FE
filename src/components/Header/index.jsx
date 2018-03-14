@@ -42,6 +42,13 @@ class Header extends Component {
                 >
                   <p>Portfolio</p>
                 </NavLink>
+                <NavLink
+                  className="register-button-a"
+                  activeClassName="Header-button-selected"
+                  to="/transfers"
+                >
+                  <p>Transfers</p>
+                </NavLink>
               </div>
               <div className="Header-user">
                 <p>{window.localStorage.getItem('cryptousername')} <i className="fas fa-caret-down" /></p>
