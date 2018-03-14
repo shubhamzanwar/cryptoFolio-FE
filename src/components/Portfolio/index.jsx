@@ -161,13 +161,14 @@ class Portfolio extends Component {
     const data = new FormData(e.target);
     const coin = data.get('name');
     let quantity = data.get('quantity');
+    const price = data.get('price');
     const transactions = summarize(this.state.userTransactions)[0];
     const groupedTransactions = groupByCoin(transactions);
     if (groupedTransactions[coin] && groupedTransactions[coin][0].quantity >= (quantity)) {
       quantity *= -1;
       const payload = {
-        coin: data.get('name'),
-        price: data.get('price'),
+        coin,
+        price,
         quantity,
       };
       fetch('/editPortfolioCoin', {
