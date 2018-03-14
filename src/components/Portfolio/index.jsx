@@ -4,37 +4,13 @@ import MyCoins from '../MyCoins';
 import Investment from '../Investment';
 import PortfolioDistribution from '../PortfolioDistribution';
 import './index.css';
+import summarize from '../../utils/helpers/summarize';
 
 const groupByCoin = transactions => transactions.reduce((acc, curr) => {
   acc[curr.coinSymbol] = acc[curr.coinSymbol] || [];
   acc[curr.coinSymbol].push(curr);
   return acc;
 }, {});
-
-const summarize = (transactionsObject) => {
-  const transactions = Object.values(transactionsObject).map((coinTransactions) => {
-    const { coinName } = coinTransactions[0];
-    const { coinSymbol } = coinTransactions[0];
-    let quantity = 0;
-    let invested = 0;
-
-    coinTransactions.forEach((transaction) => {
-      quantity += transaction.quantity;
-      invested += transaction.quantity * transaction.price;
-    });
-    return {
-      coinName,
-      coinSymbol,
-      quantity,
-      invested,
-    };
-  });
-  const filteredTransactions = Object.values(transactions).filter((transaction) => {
-    if (transaction.quantity > 0) return true;
-    return false;
-  });
-  return filteredTransactions;
-};
 
 class Portfolio extends Component {
   constructor(props) {
