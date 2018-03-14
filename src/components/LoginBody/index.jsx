@@ -14,6 +14,10 @@ class LoginBody extends Component {
   componentWillMount() {
     if (window.localStorage.getItem('cryptologgedin') === 'true') {
       this.props.history.push('/');
+    } else if (this.props.location.state && this.props.location.state.message) {
+      this.setState({
+        message: this.props.location.state.message,
+      });
     }
   }
   login(email, password) {
