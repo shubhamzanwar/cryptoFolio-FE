@@ -6,30 +6,8 @@ import PortfolioDistribution from '../PortfolioDistribution';
 import AddCoinModal from './../AddCoinModal';
 import EditCoinListModal from './../EditCoinListModal';
 import groupTransactionsByCoin from '../../utils/helpers/groupTransactionsByCoin';
+import summarizeTransactions from '../../utils/helpers/summarizeTransactions';
 import './index.css';
-
-const summarize = (transactionsObject) => {
-  let totalInvested = 0;
-  const transactions = Object.values(transactionsObject).map((coinTransactions) => {
-    const { coinName } = coinTransactions[0];
-    const { coinSymbol } = coinTransactions[0];
-    let quantity = 0;
-    let invested = 0;
-
-    coinTransactions.forEach((transaction) => {
-      quantity += transaction.quantity;
-      invested += transaction.quantity * transaction.price;
-    });
-    totalInvested += invested;
-    return {
-      coinName,
-      coinSymbol,
-      quantity,
-      invested,
-    };
-  });
-  return [transactions, totalInvested];
-};
 
 class Portfolio extends Component {
   constructor(props) {
@@ -156,7 +134,7 @@ class Portfolio extends Component {
     const data = new FormData(e.target);
     const coin = data.get('name');
     let quantity = data.get('quantity');
-    const transactions = summarize(this.state.userTransactions)[0];
+    const transactions = summarizeTransactions(this.state.userTransactions)[0];
     const groupedTransactions = groupTransactionsByCoin(transactions);
     if (groupedTransactions[coin] && groupedTransactions[coin][0].quantity >= (quantity)) {
       quantity *= -1;
@@ -218,11 +196,11 @@ class Portfolio extends Component {
         />
         <div className="Portfolio-Left-Container">
           <Investment
-            invested={summarize(this.state.userTransactions)[1]}
+            invested={summarizeTransactions(this.state.userTransactions)[1]}
             currentValue={this.state.currentValue}
           />
           <MyCoins
-            userTransactions={summarize(this.state.userTransactions)[0]}
+            userTransactions={summarizeTransactions(this.state.userTransactions)[0]}
             addCoin={() => this.onOpenAddModal()}
             editCoin={coin => this.onOpenEditModal(coin)}
             removeCoin={() => this.onOpenRemoveModal()}
@@ -230,7 +208,7 @@ class Portfolio extends Component {
         </div>
         <div className="Portfolio-Right-Container">
           <PortfolioDistribution
-            userTransactions={summarize(this.state.userTransactions)[0]}
+            userTransactions={summarizeTransactions(this.state.userTransactions)[0]}
           />
         </div>
       </div>
