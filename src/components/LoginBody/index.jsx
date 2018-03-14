@@ -69,6 +69,7 @@ LoginBody.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  location: PropTypes.string.isRequired,
 };
 
 
