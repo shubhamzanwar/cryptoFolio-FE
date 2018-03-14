@@ -49,7 +49,6 @@ class Portfolio extends Component {
     };
   }
   componentDidMount() {
-    console.log('mounted', new Date());
     const isLoggedinUser = window.localStorage.getItem('cryptologgedin');
     if (isLoggedinUser === 'false') {
       (this.props.history).push('/login');
@@ -58,14 +57,25 @@ class Portfolio extends Component {
     }
   }
   onClickUpdate = (data) => {
-    console.log(data);
     fetch(`/editTransaction?edit=${data.transactionId}`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
         authtoken: window.localStorage.getItem('cryptotoken'),
       },
-    }).then(() => this.fetchPortfolioData());
+    }).then(() => {
+      this.fetchPortfolioData();
+    });
+  }
+  onClickDelete = (data) => {
+    fetch(`/editTransaction?delete=${data.transactionId}`, {
+      method: 'POST',
+      headers: {
+        authtoken: window.localStorage.getItem('cryptotoken'),
+      },
+    }).then(() => {
+      this.fetchPortfolioData();
+    });
   }
 
 
@@ -153,8 +163,7 @@ class Portfolio extends Component {
     let quantity = data.get('quantity');
     const transactions = summarize(this.state.userTransactions)[0];
     const groupedTransactions = groupByCoin(transactions);
-    console.log(quantity, groupedTransactions[coin][0].quantity);
-    if (groupedTransactions[coin][0].quantity >= (quantity)) {
+    if (groupedTransactions[coin] && groupedTransactions[coin][0].quantity >= (quantity)) {
       quantity *= -1;
       const payload = {
         coin: data.get('name'),
@@ -182,9 +191,13 @@ class Portfolio extends Component {
           });
           this.onCloseAddModal();
         });
+    } else if (groupedTransactions[coin]) {
+      this.setState({
+        response: 'Please re-enter since the quantity exceeds the added quantity',
+      });
     } else {
       this.setState({
-        response: 'please re-enter since the quantity exceeds the added quantity',
+        response: 'You do not have the coin in your portfolio',
       });
     }
   }
@@ -206,6 +219,7 @@ class Portfolio extends Component {
           coinName={this.state.editingCoin}
           transactions={this.state.userTransactions[this.state.editingCoin]}
           onClickUpdate={data => this.onClickUpdate(data)}
+          onClickDelete={data => this.onClickDelete(data)}
         />
         <div className="Portfolio-Left-Container">
           <Investment
