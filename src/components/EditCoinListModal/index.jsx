@@ -47,6 +47,7 @@ EditCoinListModal.propTypes = {
   onCloseModal: PropTypes.func.isRequired,
   state: PropTypes.string.isRequired,
   coinName: PropTypes.string.isRequired,
+  onClickUpdate: PropTypes.func.isRequired,
 };
 EditCoinListModal.defaultProps = {
   transactions: [],
