@@ -9,6 +9,10 @@ class EditCoinModal extends React.Component {
      e.preventDefault();
      this.props.onClickUpdate(this.props.data);
    };
+   onClickDelete = (e) => {
+     e.preventDefault();
+     this.props.onClickDelete(this.props.data);
+   };
 
    render() {
      return (
@@ -52,7 +56,7 @@ class EditCoinModal extends React.Component {
            <button
              className="editCoinModal_editCoinForm_submit"
              name="RemoveTransaction"
-             onClick={data => this.props.onClickDelete(this.props.data)}
+             onClick={e => this.onClickDelete(e)}
            >
         Remove Transaction
            </button>
