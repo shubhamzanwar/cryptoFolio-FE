@@ -5,13 +5,8 @@ import Investment from '../Investment';
 import PortfolioDistribution from '../PortfolioDistribution';
 import AddCoinModal from './../AddCoinModal';
 import EditCoinListModal from './../EditCoinListModal';
+import groupTransactionsByCoin from '../../utils/helpers/groupTransactionsByCoin';
 import './index.css';
-
-const groupByCoin = transactions => transactions.reduce((acc, curr) => {
-  acc[curr.coinSymbol] = acc[curr.coinSymbol] || [];
-  acc[curr.coinSymbol].push(curr);
-  return acc;
-}, {});
 
 const summarize = (transactionsObject) => {
   let totalInvested = 0;
@@ -114,7 +109,7 @@ class Portfolio extends Component {
       })
       .then((response) => {
         this.setState({
-          userTransactions: groupByCoin(response),
+          userTransactions: groupTransactionsByCoin(response),
         });
       }).catch((err) => {
         if (err.code === 401) {
@@ -162,7 +157,7 @@ class Portfolio extends Component {
     const coin = data.get('name');
     let quantity = data.get('quantity');
     const transactions = summarize(this.state.userTransactions)[0];
-    const groupedTransactions = groupByCoin(transactions);
+    const groupedTransactions = groupTransactionsByCoin(transactions);
     if (groupedTransactions[coin] && groupedTransactions[coin][0].quantity >= (quantity)) {
       quantity *= -1;
       const payload = {
