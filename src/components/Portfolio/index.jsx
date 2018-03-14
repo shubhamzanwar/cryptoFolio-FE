@@ -23,8 +23,8 @@ class Portfolio extends Component {
   }
   componentDidMount() {
     const isLoggedinUser = window.localStorage.getItem('cryptologgedin');
-    if (isLoggedinUser === 'false') {
-      (this.props.history).push('/login');
+    if (isLoggedinUser === false) {
+      (this.props.history).push('/login', { message: 'Please login to continue' });
     } else {
       this.fetchPortfolioData();
     }
@@ -94,7 +94,8 @@ class Portfolio extends Component {
           window.localStorage.setItem('cryptotoken', null);
           window.localStorage.setItem('cryptousername', null);
           window.localStorage.setItem('cryptologgedin', false);
-          this.props.history.push('/');
+          this.forceUpdate();
+          this.props.history.push('/login', { message: 'Please login to continue' });
         }
       });
   }

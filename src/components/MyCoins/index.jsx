@@ -5,24 +5,6 @@ import MyCoinRow from '../MyCoinRow';
 
 
 class MyCoins extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      transactions: [],
-    };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.updateState(nextProps.userTransactions);
-  }
-
-
-  updateState(userTransactions) {
-    this.setState({
-      transactions: userTransactions,
-    });
-  }
-
   render() {
     return (
       <div className="MyCoins">
@@ -38,11 +20,12 @@ class MyCoins extends Component {
               <th className="MyCoins-table-header-th">Name</th>
               <th className="MyCoins-table-header-th">Quantity</th>
               <th className="MyCoins-table-header-th">Invested</th>
+              <th className="MyCoins-table-header-th">Current Value</th>
               <th className="MyCoins-table-header-th">Edit</th>
             </tr>
           </thead>
           <tbody className="MyCoins-table-body">
-            {this.state.transactions.map(transaction => (<MyCoinRow
+            {this.props.userTransactions.map(transaction => (<MyCoinRow
               transaction={transaction}
               editCoin={coin => this.props.editCoin(coin)}
             />))}
