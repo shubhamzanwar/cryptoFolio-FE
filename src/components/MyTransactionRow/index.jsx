@@ -27,6 +27,14 @@ class MyTransactionRow extends Component {
       price: e.target.value,
     });
   }
+  onClickUpdate =(data) => {
+    this.props.onClickUpdate(data);
+    this.onCloseModal();
+  }
+  onClickDelete=(data) => {
+    this.props.onClickDelete(data);
+    this.onCloseModal();
+  }
 
 render = () => (
   <tr className="MyTransactionCoin-table-row">
@@ -41,7 +49,8 @@ render = () => (
             }}
       onEditQuantity={e => this.onEditQuantity(e)}
       onEditPrice={e => this.onEditPrice(e)}
-      onClickUpdate={data => this.props.onClickUpdate(data)}
+      onClickUpdate={data => this.onClickUpdate(data)}
+      onClickDelete={data => this.onClickDelete(data)}
     />
     <td className="MyTransactionCoin-table-row-td">{this.props.index}</td>
     <td className="MyTransactionCoin-table-row-td">{this.state.price}</td>
@@ -62,7 +71,11 @@ MyTransactionRow.propTypes = {
     transactionId: PropTypes.number.isRequired,
     quantity: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
   }),
+  onClickDelete: PropTypes.func.isRequired,
+  coinName: PropTypes.string.isRequired,
+  onClickUpdate: PropTypes.func.isRequired,
 };
 
 MyTransactionRow.defaultProps = {
