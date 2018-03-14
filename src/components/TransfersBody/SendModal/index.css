@@ -1,0 +1,79 @@
+.TransferCoins-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.TransferCoins-receiver-name-container{
+    display:flex;
+    flex-direction:column;
+    position:relative;
+}
+
+.TransferCoins-receiver-name-suggestions{
+    display:none;
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    padding: 10px 0;
+    background: #ccc;
+}
+
+.show{
+    display: block;
+}
+
+.TransferCoins-receiver-name{
+    height: 40px;
+    box-sizing: border-box;
+    padding:10px;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: none;
+    border:1px solid black;
+    margin-top: 10px;
+}
+
+.TransferCoins-select-coin{
+    /* padding: 5px 8px;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: none; */
+    border:1px solid black;
+    margin-top: 10px;
+    background: white;
+   height: 40px;
+   overflow: hidden;
+}
+
+.TransferCoins-set-quantity{
+    height: 40px;
+    box-sizing: border-box;
+    padding:10px;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: none;
+    border:1px solid black;
+    margin-top: 10px;
+}
+
+.TransferCoins-select-coin > option {
+    width: 100%;
+    height: 40px;
+}
+
+.TransferCoins-pay-button{
+    width: 40%;
+    margin-top: 10px;
+    padding: 10px;
+    align-self: center;
+    border-radius: 5px;
+    outline: none;
+}
+
+.TransferCoins-form-errorMessage{
+    border: 1px solid red;
+    border-radius: 5px;
+    background-color: rgb(222, 130, 130);
+    padding: 10px;
+    text-align: center;
+}
