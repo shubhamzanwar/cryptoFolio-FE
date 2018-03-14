@@ -1,17 +1,22 @@
 .editCoinListModal_header {
     text-align: center;
     color: white;
-    margin: 0px;
 }
 
 .MyTransactionCoins-table{
     width: 100%;
-    padding: 0 10px;
+    padding: 10px 10px;
     text-align: center;
     border-collapse: collapse;
     width: 500px;
-}
+    overflow: auto;
+    max-height:600px;
 
+}
+.MyTransactionCoins-table-div{
+    max-height:600px;
+    overflow:auto;
+}
 .MyTransactionCoins-table-header-th{
     padding: 20px 0 10px 0;
     color: rgb(92,108,132);
