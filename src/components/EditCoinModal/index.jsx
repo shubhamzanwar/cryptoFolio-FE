@@ -39,6 +39,7 @@ class EditCoinModal extends React.Component {
              className="editCoinModal_editCoinForm_input"
              id="coinPurchasedPrice"
              type="number"
+             step="any"
              placeholder="Purchased Price"
              value={this.props.data.price}
              name="price"
@@ -56,6 +57,7 @@ class EditCoinModal extends React.Component {
              placeholder="Quantity"
              value={this.props.data.quantity}
              name="quantity"
+             step="any"
              onChange={(e) => { this.props.onEditQuantity(e); }}
            />
            </label>
