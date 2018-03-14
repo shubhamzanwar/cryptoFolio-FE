@@ -32,6 +32,8 @@ class EditCoinListModal extends Component {
             {this.props.transactions.map((transaction, index) => (<MyTransactionRow
               transaction={transaction}
               index={index + 1}
+              onClickUpdate={data => this.props.onClickUpdate(data)}
+              coinName={this.props.coinName}
             />))}
           </tbody>
         </table>
