@@ -6,7 +6,6 @@ import MyCoinRow from '../MyCoinRow';
 
 class MyCoins extends Component {
   render() {
-    // console.log(this.props.currentValues.XRP);
     return (
       <div className="MyCoins">
         <div className="MyCoins-Header">
@@ -19,8 +18,8 @@ class MyCoins extends Component {
             <tr>
               <th className="MyCoins-table-header-th">Coin</th>
               <th className="MyCoins-table-header-th">Name</th>
-              <th className="MyCoins-table-header-th">Quantity</th>
-              <th className="MyCoins-table-header-th">Invested</th>
+              <th className="MyCoins-table-header-th">Total Quantity</th>
+              <th className="MyCoins-table-header-th">Total Invested</th>
               <th className="MyCoins-table-header-th">Current Value</th>
               <th className="MyCoins-table-header-th">Edit</th>
             </tr>
@@ -43,6 +42,7 @@ MyCoins.propTypes = {
   editCoin: PropTypes.func.isRequired,
   addCoin: PropTypes.func.isRequired,
   removeCoin: PropTypes.func.isRequired,
+  currentValues: PropTypes.arrayOf.isRequired,
 };
 
 MyCoins.defaultProps = {
