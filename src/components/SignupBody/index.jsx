@@ -76,7 +76,7 @@ class SignupBody extends Component {
             <div className="signup-bullets">
               <ul>
                 <li>
-                  Get real time updates about your favortie coins<br />
+                  Get real time updates about your favourite coins<br />
                   with our live ticker and graph feature
                 </li>
                 <li>
