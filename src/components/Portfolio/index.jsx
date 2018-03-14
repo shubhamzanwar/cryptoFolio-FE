@@ -46,7 +46,7 @@ class Portfolio extends Component {
   componentDidMount() {
     const isLoggedinUser = window.localStorage.getItem('cryptologgedin');
     if (isLoggedinUser === 'false') {
-      (this.props.history).push('/login');
+      (this.props.history).push('/login', { message: 'Please login to continue' });
     } else {
       const authtoken = window.localStorage.getItem('cryptotoken');
       fetch('/portfolio', {
