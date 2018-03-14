@@ -19,25 +19,27 @@ class EditCoinListModal extends Component {
         }}
       >
         <h2 className="editCoinListModal_header">{this.props.coinName}</h2>
-        <table className="MyTransactionCoins-table" cellSpacing="0" cellPadding="0">
-          <thead className="MyTransactionCoins-table-header">
-            <tr>
-              <th className="MyTransactionCoins-table-header-th">Sl No</th>
-              <th className="MyTransactionCoins-table-header-th">Purchased Price</th>
-              <th className="MyTransactionCoins-table-header-th">Quantity</th>
-              <th className="MyTransactionCoins-table-header-th">Edit</th>
-            </tr>
-          </thead>
-          <tbody className="MyCoins-table-body">
-            {this.props.transactions.map((transaction, index) => (<MyTransactionRow
-              transaction={transaction}
-              index={index + 1}
-              onClickUpdate={data => this.props.onClickUpdate(data)}
-              onClickDelete={data => this.props.onClickDelete(data)}
-              coinName={this.props.coinName}
-            />))}
-          </tbody>
-        </table>
+        <div className="MyTransactionCoins-table-div">
+          <table className="MyTransactionCoins-table" cellSpacing="0" cellPadding="0">
+            <thead className="MyTransactionCoins-table-header">
+              <tr>
+                <th className="MyTransactionCoins-table-header-th">Sl No</th>
+                <th className="MyTransactionCoins-table-header-th">Purchased Price</th>
+                <th className="MyTransactionCoins-table-header-th">Quantity</th>
+                <th className="MyTransactionCoins-table-header-th">Edit</th>
+              </tr>
+            </thead>
+            <tbody className="MyCoins-table-body">
+              {this.props.transactions.map((transaction, index) => (<MyTransactionRow
+                transaction={transaction}
+                index={index + 1}
+                onClickUpdate={data => this.props.onClickUpdate(data)}
+                onClickDelete={data => this.props.onClickDelete(data)}
+                coinName={this.props.coinName}
+              />))}
+            </tbody>
+          </table>
+        </div>
       </Modal>
     );
   }
