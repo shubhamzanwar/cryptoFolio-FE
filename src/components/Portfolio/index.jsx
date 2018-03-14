@@ -7,11 +7,13 @@ import AddCoinModal from './../AddCoinModal';
 import EditCoinListModal from './../EditCoinListModal';
 import groupTransactionsByCoin from '../../utils/helpers/groupTransactionsByCoin';
 import summarizeTransactions from '../../utils/helpers/summarizeTransactions';
+import totalCurrentPortfolioValue from '../../utils/helpers/totalCurrentPortfolioValue';
 import './index.css';
 
 class Portfolio extends Component {
   constructor(props) {
     super(props);
+    this.fetchCurrentPrice();
     this.state = {
       userTransactions: {},
       addModal: false,
@@ -19,6 +21,7 @@ class Portfolio extends Component {
       modifyType: 'addCoin',
       editingCoin: 'BTC',
       response: '',
+      currentValues: [],
     };
   }
   componentDidMount() {
@@ -28,6 +31,7 @@ class Portfolio extends Component {
     } else {
       this.fetchPortfolioData();
     }
+    setInterval(this.fetchCurrentPrice, 10000);
   }
   onClickUpdate = (data) => {
     fetch(`/editTransaction?edit=${data.transactionId}`, {
@@ -73,7 +77,7 @@ class Portfolio extends Component {
     this.setState({ editModal: false });
   }
 
-  fetchPortfolioData=() => {
+  fetchPortfolioData = () => {
     const authtoken = window.localStorage.getItem('cryptotoken');
     fetch('/portfolio', {
       method: 'GET',
@@ -100,8 +104,7 @@ class Portfolio extends Component {
       });
   }
 
-
-  addCoin(e) {
+  addCoin = (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
     const payload = {
@@ -130,7 +133,7 @@ class Portfolio extends Component {
         });
       });
   }
-  removeCoin(e) {
+  removeCoin = (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
     const coin = data.get('name');
@@ -175,7 +178,19 @@ class Portfolio extends Component {
       });
     }
   }
-
+  fetchCurrentPrice = () => {
+    const object = {};
+    fetch('/prices')
+      .then(result => result.json())
+      .then(priceData => priceData.forEach((coin) => {
+        object[coin.Symbol] = coin.Price;
+      }))
+      .then(() => {
+        this.setState({
+          currentValues: object,
+        });
+      });
+  }
   render() {
     return (
       <div className="Portfolio">
@@ -198,10 +213,11 @@ class Portfolio extends Component {
         <div className="Portfolio-Left-Container">
           <Investment
             invested={summarizeTransactions(this.state.userTransactions)[1]}
-            currentValue={this.state.currentValue}
+            currentValue={totalCurrentPortfolioValue(this.state.currentValues, summarizeTransactions(this.state.userTransactions)[0])}
           />
           <MyCoins
             userTransactions={summarizeTransactions(this.state.userTransactions)[0]}
+            currentValues={this.state.currentValues}
             addCoin={() => this.onOpenAddModal()}
             editCoin={coin => this.onOpenEditModal(coin)}
             removeCoin={() => this.onOpenRemoveModal()}

@@ -6,6 +6,7 @@ import MyCoinRow from '../MyCoinRow';
 
 class MyCoins extends Component {
   render() {
+    // console.log(this.props.currentValues.XRP);
     return (
       <div className="MyCoins">
         <div className="MyCoins-Header">
@@ -27,6 +28,7 @@ class MyCoins extends Component {
           <tbody className="MyCoins-table-body">
             {this.props.userTransactions.map(transaction => (<MyCoinRow
               transaction={transaction}
+              currentValue={this.props.currentValues[transaction.coinSymbol]}
               editCoin={coin => this.props.editCoin(coin)}
             />))}
           </tbody>
