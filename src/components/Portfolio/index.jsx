@@ -29,7 +29,11 @@ const summarize = (transactionsObject) => {
       invested,
     };
   });
-  return transactions;
+  const filteredTransactions = Object.values(transactions).filter((transaction) => {
+    if (transaction.quantity > 0) return true;
+    return false;
+  });
+  return filteredTransactions;
 };
 
 class Portfolio extends Component {
@@ -111,7 +115,9 @@ class Portfolio extends Component {
           />
         </div>
         <div className="Portfolio-Right-Container">
-          <PortfolioDistribution userTransactions={summarize(this.state.userTransactions)} />
+          <PortfolioDistribution
+            userTransactions={summarize(this.state.userTransactions)}
+          />
         </div>
       </div>
     );

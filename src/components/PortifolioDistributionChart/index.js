@@ -39,6 +39,7 @@ class PortfolioDistributionChart extends Component {
     return <ReactHighcharts config={config} />;
   }
   render() {
+    console.log('distribution', this.props.portfolioData);
     return this.loadChart();
   }
 }
