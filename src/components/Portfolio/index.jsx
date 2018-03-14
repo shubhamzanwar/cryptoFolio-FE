@@ -5,6 +5,7 @@ import Investment from '../Investment';
 import PortfolioDistribution from '../PortfolioDistribution';
 import summarize from '../../utils/helpers/summarizeCoins';
 import groupByCoin from '../../utils/helpers/groupByCoins';
+import logout from '../../utils/helpers/logout';
 import './index.css';
 
 class Portfolio extends Component {
@@ -27,10 +28,7 @@ class Portfolio extends Component {
         .then(response => response.json())
         .then((response) => {
           if (response.message === 'Token Expired') {
-            window.localStorage.setItem('cryptologgedin', false);
-            window.localStorage.setItem('cryptotoken', null);
-            window.localStorage.setItem('cryptousername', null);
-            this.forceUpdate();
+            logout();
             this.props.history.push('/login', { message: 'Please login to continue' });
           } else {
             this.setState({
