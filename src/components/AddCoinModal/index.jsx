@@ -16,14 +16,14 @@ class AddCoinModal extends React.Component {
       <h2 className="addCoinModal_header">{this.props.modifyType === 'addCoin' ? 'Add Coin' : 'Remove Coin'}</h2>
       <form className="addCoinModal_addCoinForm" onSubmit={e => this.onSubmit(e)}>
         <label className="addCoinModal_addCoinForm_input_label" htmlFor="coindName">Coin Name
-          <select className="addCoinModal_addCoinForm_input" name="name">
+          <select className="addCoinModal_addCoinForm_input_select" name="name">
             {
             coins.map(coin => <option value={coin}>{coin}</option>)
           }
           </select>
         </label>
-        <label className="addCoinModal_addCoinForm_input_label" htmlFor="coinPurchasedPrice">Quantity<input className="addCoinModal_addCoinForm_input" name="quantity" type="number" placeholder="Quantity" /></label>
-        <label className="addCoinModal_addCoinForm_input_label" htmlFor="coinPurchasedPrice">{this.props.modifyType === 'addCoin' ? 'Purchased Price' : 'Sold Price'}<input className="addCoinModal_addCoinForm_input" name="price" type="number" placeholder={this.props.modifyType === 'addCoin' ? 'Purchased Price' : 'Sold Price'} /></label>
+        <label className="addCoinModal_addCoinForm_input_label" htmlFor="coinPurchasedPrice">Quantity<input className="addCoinModal_addCoinForm_input" name="quantity" type="number" placeholder="Quantity" required /></label>
+        <label className="addCoinModal_addCoinForm_input_label" htmlFor="coinPurchasedPrice">{this.props.modifyType === 'addCoin' ? 'Purchased Price' : 'Sold Price'}<input className="addCoinModal_addCoinForm_input" name="price" type="number" placeholder={this.props.modifyType === 'addCoin' ? 'Purchased Price' : 'Sold Price'} required /></label>
         <p>{this.props.response}</p>
         <button className="addCoinModal_addCoinForm_submit" type="submit">{this.props.modifyType === 'addCoin' ? 'Add Coin' : 'Remove Coin'}</button>
       </form>
