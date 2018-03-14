@@ -29,6 +29,7 @@ class Portfolio extends Component {
         .then((response) => {
           if (response.message === 'Token Expired') {
             logout();
+            this.forceUpdate();
             this.props.history.push('/login', { message: 'Please login to continue' });
           } else {
             this.setState({
