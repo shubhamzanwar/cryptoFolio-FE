@@ -61,7 +61,7 @@ class Portfolio extends Component {
       })
         .then((response) => {
           if (response.status !== 200) {
-            throw new Error({ code: response.status, msg: response });
+            throw new Error(401);
           }
           return response.json();
         })
@@ -70,7 +70,7 @@ class Portfolio extends Component {
             userTransactions: groupByCoin(response),
           });
         }).catch((err) => {
-          if (err.code === 401) {
+          if (err.message === '401') {
             window.localStorage.setItem('cryptotoken', null);
             window.localStorage.setItem('cryptousername', null);
             window.localStorage.setItem('cryptologgedin', false);
