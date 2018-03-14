@@ -3,14 +3,9 @@ import PropTypes from 'prop-types';
 import MyCoins from '../MyCoins';
 import Investment from '../Investment';
 import PortfolioDistribution from '../PortfolioDistribution';
+import summarize from '../../utils/helpers/summarizeCoins';
+import groupByCoin from '../../utils/helpers/groupByCoins';
 import './index.css';
-import summarize from '../../utils/helpers/summarize';
-
-const groupByCoin = transactions => transactions.reduce((acc, curr) => {
-  acc[curr.coinSymbol] = acc[curr.coinSymbol] || [];
-  acc[curr.coinSymbol].push(curr);
-  return acc;
-}, {});
 
 class Portfolio extends Component {
   constructor(props) {
