@@ -48,39 +48,26 @@ class Portfolio extends Component {
       response: '',
     };
   }
-
-
   componentDidMount() {
     console.log('mounted', new Date());
     const isLoggedinUser = window.localStorage.getItem('cryptologgedin');
     if (isLoggedinUser === 'false') {
       (this.props.history).push('/login');
     } else {
-      const authtoken = window.localStorage.getItem('cryptotoken');
-      fetch('/portfolio', {
-        method: 'GET',
-        headers: { authtoken },
-      })
-        .then((response) => {
-          if (response.status !== 200) {
-            throw new Error({ code: response.status, msg: response });
-          }
-          return response.json();
-        })
-        .then((response) => {
-          this.setState({
-            userTransactions: groupByCoin(response),
-          });
-        }).catch((err) => {
-          if (err.code === 401) {
-            window.localStorage.setItem('cryptotoken', null);
-            window.localStorage.setItem('cryptousername', null);
-            window.localStorage.setItem('cryptologgedin', false);
-            this.props.history.push('/');
-          }
-        });
+      this.fetchPortfolioData();
     }
   }
+  onClickUpdate = (data) => {
+    console.log(data);
+    fetch(`/editTransaction?edit=${data.transactionId}`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        authtoken: window.localStorage.getItem('cryptotoken'),
+      },
+    }).then(() => this.fetchPortfolioData());
+  }
+
 
   onOpenAddModal = () => {
     this.setState({ addModal: true, modifyType: 'addCoin' });
@@ -102,6 +89,33 @@ class Portfolio extends Component {
   onCloseEditModal = () => {
     this.setState({ editModal: false });
   }
+
+  fetchPortfolioData=() => {
+    const authtoken = window.localStorage.getItem('cryptotoken');
+    fetch('/portfolio', {
+      method: 'GET',
+      headers: { authtoken },
+    })
+      .then((response) => {
+        if (response.status !== 200) {
+          throw new Error({ code: response.status, msg: response });
+        }
+        return response.json();
+      })
+      .then((response) => {
+        this.setState({
+          userTransactions: groupByCoin(response),
+        });
+      }).catch((err) => {
+        if (err.code === 401) {
+          window.localStorage.setItem('cryptotoken', null);
+          window.localStorage.setItem('cryptousername', null);
+          window.localStorage.setItem('cryptologgedin', false);
+          this.props.history.push('/');
+        }
+      });
+  }
+
 
   addCoin(e) {
     e.preventDefault();
@@ -140,7 +154,7 @@ class Portfolio extends Component {
     const transactions = summarize(this.state.userTransactions)[0];
     const groupedTransactions = groupByCoin(transactions);
     console.log(quantity, groupedTransactions[coin][0].quantity);
-    if (groupedTransactions[coin][0].quantity > (quantity)) {
+    if (groupedTransactions[coin][0].quantity >= (quantity)) {
       quantity *= -1;
       const payload = {
         coin: data.get('name'),
@@ -174,6 +188,7 @@ class Portfolio extends Component {
       });
     }
   }
+
   render() {
     return (
       <div className="Portfolio">
@@ -190,6 +205,7 @@ class Portfolio extends Component {
           onCloseModal={this.onCloseEditModal}
           coinName={this.state.editingCoin}
           transactions={this.state.userTransactions[this.state.editingCoin]}
+          onClickUpdate={data => this.onClickUpdate(data)}
         />
         <div className="Portfolio-Left-Container">
           <Investment
