@@ -18,6 +18,10 @@ const summarizeTransactions = (transactionsObject) => {
       invested,
     };
   });
-  return [transactions, totalInvested];
+  const filteredTransactions = Object.values(transactions).filter((transaction) => {
+    if (transaction.quantity > 0) return true;
+    return false;
+  });
+  return [filteredTransactions, totalInvested];
 };
 export default summarizeTransactions;
