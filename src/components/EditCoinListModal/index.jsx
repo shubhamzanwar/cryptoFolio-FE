@@ -32,6 +32,9 @@ class EditCoinListModal extends Component {
             {this.props.transactions.map((transaction, index) => (<MyTransactionRow
               transaction={transaction}
               index={index + 1}
+              onClickUpdate={data => this.props.onClickUpdate(data)}
+              onClickDelete={data => this.props.onClickDelete(data)}
+              coinName={this.props.coinName}
             />))}
           </tbody>
         </table>
@@ -45,6 +48,8 @@ EditCoinListModal.propTypes = {
   onCloseModal: PropTypes.func.isRequired,
   state: PropTypes.string.isRequired,
   coinName: PropTypes.string.isRequired,
+  onClickUpdate: PropTypes.func.isRequired,
+  onClickDelete: PropTypes.func.isRequired,
 };
 EditCoinListModal.defaultProps = {
   transactions: [],
