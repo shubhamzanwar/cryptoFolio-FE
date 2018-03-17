@@ -18,7 +18,7 @@ class PortfolioDistributionChart extends Component {
         text: '',
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
+        pointFormat: '<b>{point.percentage:.1f}%</b>',
       },
       plotOptions: {
         pie: {
@@ -31,7 +31,6 @@ class PortfolioDistributionChart extends Component {
         },
       },
       series: [{
-        name: 'Coins',
         data: this.props.portfolioData,
       }],
     };

@@ -202,7 +202,7 @@ class Portfolio extends Component {
           });
       } else if (groupedTransactions[coin]) {
         this.setState({
-          response: 'Please re-enter since the quantity exceeds the added quantity',
+          response: 'Please re-enter since the quantity exceeds the existing quantity',
         });
       } else {
         this.setState({
