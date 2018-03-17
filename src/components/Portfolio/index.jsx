@@ -5,40 +5,15 @@ import Investment from '../Investment';
 import PortfolioDistribution from '../PortfolioDistribution';
 import AddCoinModal from './../AddCoinModal';
 import EditCoinListModal from './../EditCoinListModal';
+import groupTransactionsByCoin from '../../utils/helpers/groupTransactionsByCoin';
+import summarizeTransactions from '../../utils/helpers/summarizeTransactions';
+import totalCurrentPortfolioValue from '../../utils/helpers/totalCurrentPortfolioValue';
 import './index.css';
-
-const groupByCoin = transactions => transactions.reduce((acc, curr) => {
-  acc[curr.coinSymbol] = acc[curr.coinSymbol] || [];
-  acc[curr.coinSymbol].push(curr);
-  return acc;
-}, {});
-
-const summarize = (transactionsObject) => {
-  let totalInvested = 0;
-  const transactions = Object.values(transactionsObject).map((coinTransactions) => {
-    const { coinName } = coinTransactions[0];
-    const { coinSymbol } = coinTransactions[0];
-    let quantity = 0;
-    let invested = 0;
-
-    coinTransactions.forEach((transaction) => {
-      quantity += transaction.quantity;
-      invested += transaction.quantity * transaction.price;
-    });
-    totalInvested += invested;
-    return {
-      coinName,
-      coinSymbol,
-      quantity,
-      invested,
-    };
-  });
-  return [transactions, totalInvested];
-};
 
 class Portfolio extends Component {
   constructor(props) {
     super(props);
+    this.fetchCurrentPrice();
     this.state = {
       userTransactions: {},
       addModal: false,
@@ -46,12 +21,13 @@ class Portfolio extends Component {
       modifyType: 'addCoin',
       editingCoin: 'BTC',
       response: '',
+      currentValues: [],
     };
   }
   componentDidMount() {
     const isLoggedinUser = window.localStorage.getItem('cryptologgedin');
-    if (isLoggedinUser === 'false') {
-      (this.props.history).push('/login');
+    if (isLoggedinUser === false) {
+      (this.props.history).push('/login', { message: 'Please login to continue' });
     } else {
       const authtoken = window.localStorage.getItem('cryptotoken');
       fetch('/portfolio', {
@@ -78,6 +54,7 @@ class Portfolio extends Component {
         });
       this.fetchPortfolioData();
     }
+    setInterval(this.fetchCurrentPrice, 10000);
   }
   onClickUpdate = (data) => {
     fetch(`/editTransaction?edit=${data.transactionId}`, {
@@ -123,7 +100,7 @@ class Portfolio extends Component {
     this.setState({ editModal: false });
   }
 
-  fetchPortfolioData=() => {
+  fetchPortfolioData = () => {
     const authtoken = window.localStorage.getItem('cryptotoken');
     fetch('/portfolio', {
       method: 'GET',
@@ -137,20 +114,20 @@ class Portfolio extends Component {
       })
       .then((response) => {
         this.setState({
-          userTransactions: groupByCoin(response),
+          userTransactions: groupTransactionsByCoin(response),
         });
       }).catch((err) => {
         if (err.code === 401) {
           window.localStorage.setItem('cryptotoken', null);
           window.localStorage.setItem('cryptousername', null);
           window.localStorage.setItem('cryptologgedin', false);
-          this.props.history.push('/');
+          this.forceUpdate();
+          this.props.history.push('/login', { message: 'Please login to continue' });
         }
       });
   }
 
-
-  addCoin(e) {
+  addCoin = (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
     const quantity = data.get('quantity');
@@ -192,15 +169,15 @@ class Portfolio extends Component {
     const coin = data.get('name');
     let quantity = data.get('quantity');
     const price = data.get('price');
-    const transactions = summarize(this.state.userTransactions)[0];
-    const groupedTransactions = groupByCoin(transactions);
+    const transactions = summarizeTransactions(this.state.userTransactions)[0];
+    const groupedTransactions = groupTransactionsByCoin(transactions);
     if (quantity > 0 && price > 0) {
       if (groupedTransactions[coin] && groupedTransactions[coin][0].quantity >= (quantity)) {
         quantity *= -1;
         const payload = {
           coin,
-          price,
           quantity,
+          price,
         };
         fetch('/editPortfolioCoin', {
           method: 'POST',
@@ -238,7 +215,19 @@ class Portfolio extends Component {
       });
     }
   }
-
+  fetchCurrentPrice = () => {
+    const object = {};
+    fetch('/prices')
+      .then(result => result.json())
+      .then(priceData => priceData.forEach((coin) => {
+        object[coin.Symbol] = coin.Price;
+      }))
+      .then(() => {
+        this.setState({
+          currentValues: object,
+        });
+      });
+  }
   render() {
     return (
       <div className="Portfolio">
@@ -260,11 +249,13 @@ class Portfolio extends Component {
         />
         <div className="Portfolio-Left-Container">
           <Investment
-            invested={summarize(this.state.userTransactions)[1]}
-            currentValue={this.state.currentValue}
+            invested={summarizeTransactions(this.state.userTransactions)[1]}
+            sold={summarizeTransactions(this.state.userTransactions)[2]}
+            currentValue={totalCurrentPortfolioValue(this.state.currentValues, summarizeTransactions(this.state.userTransactions)[0])}
           />
           <MyCoins
-            userTransactions={summarize(this.state.userTransactions)[0]}
+            userTransactions={summarizeTransactions(this.state.userTransactions)[0]}
+            currentValues={this.state.currentValues}
             addCoin={() => this.onOpenAddModal()}
             editCoin={coin => this.onOpenEditModal(coin)}
             removeCoin={() => this.onOpenRemoveModal()}
@@ -272,7 +263,7 @@ class Portfolio extends Component {
         </div>
         <div className="Portfolio-Right-Container">
           <PortfolioDistribution
-            userTransactions={summarize(this.state.userTransactions)[0]}
+            userTransactions={summarizeTransactions(this.state.userTransactions)[0]}
           />
         </div>
       </div>

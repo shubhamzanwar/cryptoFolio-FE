@@ -18,7 +18,7 @@ class Investment extends Component {
     return (
       <div className="Investment">
         <div className="Investment-Header">
-          <p className="Investment-Header-Title">Ethereum</p>
+          <p className="Investment-Header-Title">Investment</p>
         </div>
         <div className="Investment-Body">
           <div className="Investment-Values">
@@ -28,7 +28,10 @@ class Investment extends Component {
             </p>
             <p className="Investment-Current">
               Current Value<br />
-              <span className={this.props.currentValue < this.props.invested ? 'Investment-Current-span-loss' : 'Investment-Current-span-profit'}>$ {this.props.currentValue}</span>
+              <span
+                className={this.props.currentValue < this.props.invested ? 'Investment-Current-span-loss' : 'Investment-Current-span-profit'}
+              >{ isNaN(this.props.currentValue) ? 'Calculating' : (this.props.currentValue).toFixed(4) }
+              </span>
             </p>
           </div>
           <div className="Investment-Graph1">
