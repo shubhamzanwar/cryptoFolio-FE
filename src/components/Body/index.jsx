@@ -3,6 +3,7 @@ import axios from 'axios';
 import { orderBy } from 'lodash';
 import PriceRow from '../PriceRow';
 import GraphContainer from '../GraphContainer';
+import GraphHistoricalContainer from '../GraphHistoricalContainer';
 import Ticker from '../Ticker';
 import Orders from '../Orders';
 import TwitterBox from '../twitterBox';
@@ -14,6 +15,7 @@ class Body extends Component {
     this.state = {
       selectedCoin: 'BTC',
       prices: [],
+      displayType: 'historical',
     };
     axios.get('/prices').then((priceData) => {
       this.setState({
@@ -41,12 +43,18 @@ class Body extends Component {
     });
   }
 
+  changeDisplayType(type) {
+    this.setState({
+      displayType: type,
+    });
+  }
+
   render() {
     return (
       <div className="Body">
         <PriceRow prices={orderBy(this.state.prices, ['Price', 'Change'], ['desc', 'desc']).slice(0, 8)} />
         <div className="Body-graph-and-ticker-container">
-          <GraphContainer coin={this.state.selectedCoin} />
+          {this.state.displayType === 'current' ? <GraphContainer displayType={this.state.displayType} changeDisplayType={type => this.changeDisplayType(type)} coin={this.state.selectedCoin} /> : <GraphHistoricalContainer displayType={this.state.displayType} changeDisplayType={type => this.changeDisplayType(type)} coin={this.state.selectedCoin} />}
           <Ticker
             select={sym => this.setSelectedCoin(sym)}
             row={this.state.selectedCoin}

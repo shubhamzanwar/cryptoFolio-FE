@@ -8,6 +8,7 @@
     margin: 15px 10px 0 10px;
     padding: 20px;
     background: rgb(39, 59,86);
+    display: flex;
 }
 
 .GraphContainer-header>h3{
@@ -21,8 +22,16 @@
     color: rgb(87,104,128);
 }
 
+.GraphContainer-info{
+    flex-grow: 1;
+}
+
 .GraphContainer-liveGraph{
     margin: 0 10px;
     padding: 20px;
 
+}
+
+.Chart-Tabs-Button{
+    align-self: flex-start;
 }

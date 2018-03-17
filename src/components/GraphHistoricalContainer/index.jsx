@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import Graph from '../Graph';
+import GraphHistorical from '../GraphHistorical';
 import './index.css';
 
-class GraphContainer extends Component {
+class GraphHistoricalContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,29 +14,37 @@ class GraphContainer extends Component {
       lastHigh: 0,
       lastClose: 0,
       lastOpen: 0,
+      first: true,
     };
-    this.getdata(this.props.coin);
-    this.interval = null;
+  }
+  // componentDidMount() {
+  //   this.getdata(this.props.coin);
+  // }
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log(nextProps.coin, this.props.coin);
+    if (nextProps.coin !== this.props.coin || this.state.first || this.state.lastHigh !== nextState.lastHigh) {
+      console.log('update');
+      this.setState({
+        first: false,
+      });
+      return true;
+    }
+    console.log('no update');
+    return false;
   }
   componentWillUpdate(nextProps) {
-    if (nextProps.coin !== this.props.coin) {
-      this.getdata(nextProps.coin);
-      clearInterval(this.interval);
-      this.interval = setInterval(() => this.getdata(nextProps.coin), 5000);
-    }
-  }
-  componentWillUnmount() {
-    clearInterval(this.interval);
+    console.log('updating');
+    this.getdata(nextProps.coin);
   }
   getdata(coin) {
-    axios.get(`/liveGraph?coin=${coin}`).then((priceData) => {
+    axios.get(`/historicalData?coin=${coin}`).then((priceData) => {
       this.setState({
-        prices: priceData.data.prices,
+        prices: priceData.data.price,
         volume: priceData.data.volume,
-        lastLow: priceData.data.prices[1439][3],
-        lastOpen: priceData.data.prices[1439][1],
-        lastHigh: priceData.data.prices[1439][2],
-        lastClose: priceData.data.prices[1439][4],
+        lastLow: priceData.data.price[2000][3],
+        lastOpen: priceData.data.price[2000][1],
+        lastHigh: priceData.data.price[2000][2],
+        lastClose: priceData.data.price[2000][4],
       });
     });
   }
@@ -58,7 +66,7 @@ class GraphContainer extends Component {
             <button className={this.props.displayType === 'historical' ? 'selected' : ''} onClick={() => this.props.changeDisplayType('historical')}>Historical</button>
           </div>
         </div>
-        <Graph
+        <GraphHistorical
           prices={this.state.prices}
           volume={this.state.volume}
           coin={this.props.coin}
@@ -69,14 +77,14 @@ class GraphContainer extends Component {
 }
 
 
-GraphContainer.propTypes = {
+GraphHistoricalContainer.propTypes = {
   coin: PropTypes.string,
   displayType: PropTypes.string.isRequired,
   changeDisplayType: PropTypes.func.isRequired,
 };
 
-GraphContainer.defaultProps = {
-  coin: 'BTC',
+GraphHistoricalContainer.defaultProps = {
+  coin: '',
 };
 
-export default GraphContainer;
+export default GraphHistoricalContainer;
