@@ -6,7 +6,7 @@ import './index.css';
 class TransfersTable extends Component {
   render() {
     return (
-      <div>
+      <div className="TransfersTable">
         <h3 className="TransfersTable-heading">
           {
                 this.props.type === 'sent' ? 'Coins transfered' : 'Coins received'

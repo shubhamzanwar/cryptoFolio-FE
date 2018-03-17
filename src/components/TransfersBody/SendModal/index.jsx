@@ -89,8 +89,8 @@ class SendModal extends Component {
 
   render() {
     return (
-      <Modal open={this.props.state} onClose={() => this.props.onCloseModal()} little styles={{ modal: { backgroundColor: 'rgb(255, 255, 255)', borderRadius: '10px', minWidth: '300px' } }} >
-        <h2>Transfer coins</h2>
+      <Modal open={this.props.state} onClose={() => this.props.onCloseModal()} little styles={{ modal: { backgroundColor: 'rgb(14, 39, 89)', borderRadius: '10px', minWidth: '300px' } }} >
+        <h2 style={{ color: 'white' }}>Transfer coins</h2>
         {
           this.state.errorMessage !== '' ? (
             <div className="TransferCoins-form-errorMessage">
@@ -100,15 +100,17 @@ class SendModal extends Component {
         }
         <div className="TransferCoins-form">
           <div className="TransferCoins-receiver-name-container">
-            <input
-              className="TransferCoins-receiver-name"
-              type="text"
-              onChange={e => this.getUserSuggestions(e.target.value)}
-              value={this.state.username}
-              placeholder="Enter your friend's full name"
-            />
-            <div className={this.state.displaySuggestions ? 'TransferCoins-receiver-name-suggestions show' : 'TransferCoins-receiver-name-suggestions'}>
-              {
+            <p style={{ width: '100%', marginBottom: 0 }}>
+              Enter receiver's name:
+              <input
+                className="TransferCoins-receiver-name"
+                type="text"
+                onChange={e => this.getUserSuggestions(e.target.value)}
+                value={this.state.username}
+                placeholder="Enter your friend's full name"
+              />
+              <div className={this.state.displaySuggestions ? 'TransferCoins-receiver-name-suggestions show' : 'TransferCoins-receiver-name-suggestions'}>
+                {
                 this.state.userSuggestions.map(user => (
                   <p
                     key={user.id}
@@ -116,27 +118,35 @@ class SendModal extends Component {
                     onClick={() => this.selectUser(user)}
                   >
                     {user.fullName}
+                    <hr />
                   </p>
                 ))
               }
-            </div>
+              </div>
+            </p>
           </div>
-          <select
-            className="TransferCoins-select-coin"
-            onChange={e => this.selectCoin(e)}
-            value={this.state.selectedCoin}
-          >
-            {
+          <p style={{ width: '100%' }}>
+            Choose coin:
+            <select
+              className="TransferCoins-select-coin"
+              onChange={e => this.selectCoin(e)}
+              value={this.state.selectedCoin}
+            >
+              {
               Object.keys(this.props.validCoins).map(coin => <option value={coin}>{coin}</option>)
             }
-          </select>
-          <input
-            className="TransferCoins-set-quantity"
-            type="number"
-            placeholder="Enter the number of coins"
-            onChange={e => this.setQuantity(e.target.value)}
-            value={this.state.quantity}
-          />
+            </select>
+          </p>
+          <p style={{ width: '100%' }}>
+            Enter Quantity:
+            <input
+              className="TransferCoins-set-quantity"
+              type="number"
+              placeholder="Enter the number of coins"
+              onChange={e => this.setQuantity(e.target.value)}
+              value={this.state.quantity}
+            />
+          </p>
           <button
             className="TransferCoins-pay-button"
             onClick={() => {

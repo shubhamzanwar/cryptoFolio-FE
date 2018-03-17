@@ -1,3 +1,17 @@
 .TransfersTable-heading{
     color: white;
+    padding: 10px 10px;
+    margin: 0;
+    color: white;
+    background: #293A54;
+}
+
+.TransfersTable{
+    background: rgb(33,49,71);
+    padding: 20px;
+    margin-top: 30px;
+
+    /* margin-bottom: 30px;
+    background: rgb(33, 49, 71);
+    padding: 20px; */
 }
