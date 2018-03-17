@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import PortfolioDistributionChart from '../PortifolioDistributionChart';
-import PortfolioDistributionLabel from '../PortofolioDistributionLabel';
 import './index.css';
 
 
