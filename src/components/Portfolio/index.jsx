@@ -45,11 +45,11 @@ class Portfolio extends Component {
             userTransactions: groupTransactionsByCoin(response),
           });
         }).catch((err) => {
-          if (err.message === '401') {
+          if (err.message === 'Token Expired') {
             window.localStorage.setItem('cryptotoken', null);
             window.localStorage.setItem('cryptousername', null);
             window.localStorage.setItem('cryptologgedin', false);
-            this.props.history.push('/');
+            this.props.history.push('/login', { message: 'Session Expired! Please re-login' });
           }
         });
       this.fetchPortfolioData();
