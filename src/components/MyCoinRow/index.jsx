@@ -10,6 +10,7 @@ class MyCoinRow extends Component {
         <td className="MyCoin-table-row-td-Name">{this.props.transaction.coinName}</td>
         <td className="MyCoin-table-row-td">{this.props.transaction.quantity}</td>
         <td className="MyCoin-table-row-td">$ {this.props.transaction.invested}</td>
+        <td className="MyCoin-table-row-td">$ {this.props.transaction.sold}</td>
         <td className="MyCoin-table-row-td">
           {isNaN(this.props.currentValue) ? 'Calculating' : `$ ${(this.props.currentValue * this.props.transaction.quantity).toFixed(4)}` }
         </td>
@@ -30,6 +31,7 @@ MyCoinRow.propTypes = {
     coinName: PropTypes.string.isRequired,
     quantity: PropTypes.number.isRequired,
     invested: PropTypes.number.isRequired,
+    sold: PropTypes.number.isRequired,
   }),
   editCoin: PropTypes.func.isRequired,
   currentValue: PropTypes.number.isRequired,
