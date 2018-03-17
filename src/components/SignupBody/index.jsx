@@ -42,7 +42,7 @@ class SignupBody extends Component {
         .then((response) => {
           switch (response.status) {
             case 201:
-              this.props.history.push('/login');
+              this.props.history.push('/login', { message: 'Registration Successfull! Please login' });
               break;
 
             case 409:
