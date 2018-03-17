@@ -14,7 +14,13 @@ class EditCoinModal extends React.Component {
    onClickUpdate = (e) => {
      e.preventDefault();
      if (this.props.data.quantity && this.props.data.price) {
-       this.props.onClickUpdate(this.props.data);
+       if (this.props.data.price > 0 && this.props.data.quantity > 0) {
+         this.props.onClickUpdate(this.props.data);
+       } else {
+         this.setState({
+           status: 'Please enter valid price and quantity',
+         });
+       }
      } else {
        this.setState({
          status: 'Please enter the price and quantity',
