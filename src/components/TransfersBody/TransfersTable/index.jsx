@@ -24,7 +24,7 @@ class TransfersTable extends Component {
             {
                 this.props.transfers.map(transfer => (
                   <tr className="TransferBody-table-row">
-                    <td className="TransferBody-table-row-td">{transfer.from.id === 1 ? 'Market' : this.props.type === 'sent' ? transfer.to.fullName : transfer.from.fullName}</td>
+                    <td className="TransferBody-table-row-td">{transfer.from.id === 1 ? 'Exchange' : this.props.type === 'sent' ? transfer.to.fullName : transfer.from.fullName}</td>
                     <td className="TransferBody-table-row-td">{transfer.coin.symbol}</td>
                     <td className="TransferBody-table-row-td">{transfer.quantity}</td>
                   </tr>
