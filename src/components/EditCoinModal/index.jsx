@@ -5,9 +5,21 @@ import './index.css';
 
 
 class EditCoinModal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      status: '',
+    };
+  }
    onClickUpdate = (e) => {
      e.preventDefault();
-     this.props.onClickUpdate(this.props.data);
+     if (this.props.data.quantity && this.props.data.price) {
+       this.props.onClickUpdate(this.props.data);
+     } else {
+       this.setState({
+         status: 'Please enter the price and quantity',
+       });
+     }
    };
    onClickDelete = (e) => {
      e.preventDefault();
@@ -23,9 +35,11 @@ class EditCoinModal extends React.Component {
              className="editCoinModal_editCoinForm_input_label"
              htmlFor="coinPurchasedPrice"
            >Purchased Price<input
+             required
              className="editCoinModal_editCoinForm_input"
              id="coinPurchasedPrice"
              type="number"
+             step="any"
              placeholder="Purchased Price"
              value={this.props.data.price}
              name="price"
@@ -36,19 +50,22 @@ class EditCoinModal extends React.Component {
              className="editCoinModal_editCoinForm_input_label"
              htmlFor="coinPurchasedPrice"
            >Quantity<input
+             required
              className="editCoinModal_editCoinForm_input"
              id="coinPurchasedPrice"
              type="number"
              placeholder="Quantity"
              value={this.props.data.quantity}
              name="quantity"
+             step="any"
              onChange={(e) => { this.props.onEditQuantity(e); }}
            />
            </label>
-
+           <p>{this.state.status}</p>
            <button
              className="editCoinModal_editCoinForm_submit"
              name="Update"
+             type="submit"
              onClick={e => this.onClickUpdate(e)}
            >
         Submit
