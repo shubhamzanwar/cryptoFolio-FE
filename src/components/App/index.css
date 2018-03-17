@@ -1,6 +1,6 @@
 .App{
-    border: 1px solid blue;
-    box-sizing: border-box;
-    height: 100%;
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

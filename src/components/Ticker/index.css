@@ -1,0 +1,17 @@
+.Ticker{
+    flex-grow: 1;
+    background: rgb(33,49,71);
+    overflow: auto;
+    height:600px;
+}
+
+.Ticker-table{
+    width: 100%;
+    padding: 0 10px;
+}
+
+.Ticker-table-header-th{
+    padding: 20px 0 10px 0;
+    color: rgb(92,108,132);
+    text-align: center;
+}

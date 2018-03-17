@@ -1,0 +1,81 @@
+.Investment{
+    flex-grow: 1;
+    background: rgb(33,49,71);
+    overflow: auto;
+    font-family: 'Roboto', sans-serif;
+    margin: 10px;
+    padding: 10px;
+}
+
+.Investment-Header {
+    background-color: #293A54;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    justify-content: center;
+    min-height: 45px;
+}
+
+.Investment-Body {
+    padding: 10px;
+}
+
+.Investment-Header-Title {
+    font-size: 20px;
+    margin: 0px;
+    color: white;
+    display: flex;
+    flex: 1;
+    align-self: center;
+}
+
+.Investment-Values {
+    display: flex;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.Investment-Invested {
+    flex: 1;
+    font-weight: 300;
+}
+
+.Investment-Current {
+    text-align: right;
+    font-weight: 300;
+}
+
+.Investment-Invested-span {
+    color: springgreen;
+}
+
+
+.Investment-Current-span-profit {
+    color: springgreen;
+}
+
+.Investment-Current-span-loss {
+    color: red;
+}
+
+.Investment-Graph1 {
+    display: flex;
+    align-items: center;
+}
+
+.Investment-bar {
+    display: flex;
+    width: 100%;
+    height: 30px;
+    background-color: yellow;
+    align-items: center;
+    border-radius: 5px;
+  }
+
+.Investment-progress {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    border-radius: 5px;
+  }

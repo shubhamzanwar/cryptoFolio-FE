@@ -1,0 +1,68 @@
+.TwitterBox{    
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.TwitterBox-posts{
+    flex-grow: 1;
+    overflow:auto;
+    max-height: 500px;
+    background:rgb(33,49,71);
+}
+
+.TwitterBox-icon{
+    color: rgb(0, 172, 237);
+    float: right;
+    font-size: 22px;
+}
+.TwitterBox-post{
+    height: 150px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.TwitterBox-user{
+    margin: 0;
+    width: 100%;
+    display:flex;
+    align-items: center;
+}
+
+.Twitter-user-image{
+    height: 40px;
+    width: 40px;
+    border:1px solid white;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.Twitter-user-name{
+    flex-grow: 1;
+}
+
+.Twitter-user-screenname{
+    color: rgba(200,200,200,0.5);
+    font-size: 13px;
+    margin:0;
+    padding:0;
+}
+
+.Twitter-user-fullname{
+    font-size: 15px;
+    margin:0;
+    padding:0;
+}
+
+.Twitter-post-content{
+    padding: 10px 0;
+}
+
+.Twitter-divider{
+    width: 95%;
+    border-color: rgba(100,100,100, 0.2);
+    color: rgba(100,100,100, 0.2);
+    background-color: rgba(100,100,100, 0.2);
+}
