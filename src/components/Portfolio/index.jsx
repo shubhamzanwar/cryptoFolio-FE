@@ -42,7 +42,7 @@ class Portfolio extends Component {
         })
         .then((response) => {
           this.setState({
-            userTransactions: groupByCoin(response),
+            userTransactions: groupTransactionsByCoin(response),
           });
         }).catch((err) => {
           if (err.message === '401') {
