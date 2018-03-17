@@ -15,7 +15,9 @@ class MyTransactionRow extends Component {
   };
 
   onCloseModal = () => {
-    this.setState({ open: false });
+    if (this.state.price > 0 && this.state.quantity > 0) {
+      this.setState({ open: false });
+    }
   };
   onEditQuantity=(e) => {
     this.setState({
