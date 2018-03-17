@@ -1,26 +1,84 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Indicators from 'highcharts/indicators/indicators';
 import './index.css';
 
 const ReactHighstock = require('react-highcharts/ReactHighstock.src');
+
+Indicators(ReactHighstock.Highcharts);
 
 class Graph extends Component {
   loadChart() {
     const config = {
       rangeSelector: {
         enabled: true,
+        buttons: [
+          {
+            type: 'day',
+            count: 1,
+            text: '1d',
+          }, {
+            type: 'day',
+            count: 7,
+            text: '1w',
+          }, {
+            type: 'month',
+            count: 1,
+            text: '1m',
+          }, {
+            type: 'ytd',
+            text: 'YTD',
+          }, {
+            type: 'all',
+            text: 'All',
+          }],
+        buttonTheme: {
+          fill: 'grey',
+          stroke: 'none',
+          'stroke-width': 0,
+          r: 5,
+          style: {
+            color: '#000',
+            // fontWeight: 'bold',
+          },
+          states: {
+            hover: {
+              fill: 'rgb(0, 164, 236)',
+              style: {
+                color: 'white',
+              },
+            },
+            select: {
+              fill: 'rgb(0, 164, 236)',
+              style: {
+                color: 'white',
+              },
+            },
+            // disabled: { ... }
+          },
+        },
+        inputStyle: {
+          display: 'none',
+        },
+        labelStyle: {
+          display: 'none',
+          verticalAlign: 'bottom',
+        },
+        inputPosition: {
+          align: 'center',
+        },
       },
       plotOptions: {
         candlestick: {
           color: 'rgb(55, 222, 231)',
           upColor: '#fff',
         },
-        // series: {
-        //   animation: {
-        //     duration: 2000,
-        //   },
-        //   animationLimit: 0,
-        // },
+        series: {
+          animation: {
+            duration: 2000,
+          },
+          animationLimit: 0,
+        },
       },
       chart: {
         backgroundColor: '#213147',
@@ -67,6 +125,7 @@ class Graph extends Component {
         type: 'candlestick',
         name: `${this.props.coin} / USD`,
         data: this.props.prices,
+        id: 'priceChart',
         dataGrouping: {
           enabled: true,
         },
@@ -83,12 +142,15 @@ class Graph extends Component {
           enabled: true,
         },
         yAxis: 1,
+      }, {
+        type: 'sma',
+        linkedTo: 'priceChart',
       }],
       navigator: {
         enabled: true,
       },
       scrollbar: {
-        enabled: true,
+        enabled: false,
       },
     };
 

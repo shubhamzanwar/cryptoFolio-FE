@@ -31,6 +31,40 @@
     justify-content: space-between;
 }
 
+.Chart-Tabs-Button {
+    background-color: rgb(38, 59, 86);
+    border: rgb(0, 164, 236);
+    border-style: solid;
+    border-radius: 8px;
+    border-width: 1px;
+}
+
+.Chart-Tabs-Button button {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    color: rgb(100, 150, 150);
+    outline: none;
+}
+
+.Chart-Tabs-Button button.selected {
+    background-color: rgb(0, 164, 236);
+    border-radius: 6px;
+    color: white;
+    border: none;
+    font-size: 14px;
+    margin: 3px;
+}
+
+.Chart-Tabs-Button button:hover {
+    color: white;
+    font-size: 14px;
+}
+
 .Body-order-source>p{
     color: rgb(87, 127, 180);
 }

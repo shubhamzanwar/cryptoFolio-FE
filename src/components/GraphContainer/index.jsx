@@ -25,6 +25,9 @@ class GraphContainer extends Component {
       this.interval = setInterval(() => this.getdata(nextProps.coin), 5000);
     }
   }
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
   getdata(coin) {
     axios.get(`/liveGraph?coin=${coin}`).then((priceData) => {
       this.setState({
@@ -41,13 +44,19 @@ class GraphContainer extends Component {
     return (
       <div className="GraphContainer">
         <div className="GraphContainer-header">
-          <h3>{this.props.coin} / USD</h3>
-          <p>Last Minute
-            <span> Open: {this.state.lastOpen} </span>
-            <span>High: {this.state.lastHigh} </span>
-            <span>Low: {this.state.lastLow} </span>
-            <span>Close: {this.state.lastClose} </span>
-          </p>
+          <div className="GraphContainer-info">
+            <h3>{this.props.coin} / USD</h3>
+            <p>Last Minute
+              <span> Open: {this.state.lastOpen} </span>
+              <span>High: {this.state.lastHigh} </span>
+              <span>Low: {this.state.lastLow} </span>
+              <span>Close: {this.state.lastClose} </span>
+            </p>
+          </div>
+          <div className="Chart-Tabs-Button">
+            <button className={this.props.displayType === 'current' ? 'selected' : ''} onClick={() => this.props.changeDisplayType('current')} >Current</button>
+            <button className={this.props.displayType === 'historical' ? 'selected' : ''} onClick={() => this.props.changeDisplayType('historical')}>Historical</button>
+          </div>
         </div>
         <Graph
           prices={this.state.prices}
@@ -62,6 +71,8 @@ class GraphContainer extends Component {
 
 GraphContainer.propTypes = {
   coin: PropTypes.string,
+  displayType: PropTypes.string.isRequired,
+  changeDisplayType: PropTypes.func.isRequired,
 };
 
 GraphContainer.defaultProps = {

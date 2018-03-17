@@ -14,27 +14,37 @@ class GraphHistoricalContainer extends Component {
       lastHigh: 0,
       lastClose: 0,
       lastOpen: 0,
+      first: true,
     };
   }
-  componentDidMount() {
-    console.log('componsnet mounted');
+  // componentDidMount() {
+  //   this.getdata(this.props.coin);
+  // }
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log(nextProps.coin, this.props.coin);
+    if (nextProps.coin !== this.props.coin || this.state.first || this.state.lastHigh !== nextState.lastHigh) {
+      console.log('update');
+      this.setState({
+        first: false,
+      });
+      return true;
+    }
+    console.log('no update');
+    return false;
   }
   componentWillUpdate(nextProps) {
-    if (nextProps.coin !== this.props.coin) {
-      console.log('inside component Update');
-      this.getdata(this.props.coin);
-    }
+    console.log('updating');
+    this.getdata(nextProps.coin);
   }
   getdata(coin) {
     axios.get(`/historicalData?coin=${coin}`).then((priceData) => {
-      console.log(priceData);
       this.setState({
         prices: priceData.data.price,
         volume: priceData.data.volume,
-        lastLow: priceData.data.price[1439][3],
-        lastOpen: priceData.data.price[1439][1],
-        lastHigh: priceData.data.price[1439][2],
-        lastClose: priceData.data.price[1439][4],
+        lastLow: priceData.data.price[2000][3],
+        lastOpen: priceData.data.price[2000][1],
+        lastHigh: priceData.data.price[2000][2],
+        lastClose: priceData.data.price[2000][4],
       });
     });
   }
@@ -42,13 +52,19 @@ class GraphHistoricalContainer extends Component {
     return (
       <div className="GraphContainer">
         <div className="GraphContainer-header">
-          <h3>{this.props.coin} / USD</h3>
-          <p>Last Minute
-            <span> Open: {this.state.lastOpen} </span>
-            <span>High: {this.state.lastHigh} </span>
-            <span>Low: {this.state.lastLow} </span>
-            <span>Close: {this.state.lastClose} </span>
-          </p>
+          <div className="GraphContainer-info">
+            <h3>{this.props.coin} / USD</h3>
+            <p>Last Minute
+              <span> Open: {this.state.lastOpen} </span>
+              <span>High: {this.state.lastHigh} </span>
+              <span>Low: {this.state.lastLow} </span>
+              <span>Close: {this.state.lastClose} </span>
+            </p>
+          </div>
+          <div className="Chart-Tabs-Button">
+            <button className={this.props.displayType === 'current' ? 'selected' : ''} onClick={() => this.props.changeDisplayType('current')} >Current</button>
+            <button className={this.props.displayType === 'historical' ? 'selected' : ''} onClick={() => this.props.changeDisplayType('historical')}>Historical</button>
+          </div>
         </div>
         <GraphHistorical
           prices={this.state.prices}
@@ -63,10 +79,12 @@ class GraphHistoricalContainer extends Component {
 
 GraphHistoricalContainer.propTypes = {
   coin: PropTypes.string,
+  displayType: PropTypes.string.isRequired,
+  changeDisplayType: PropTypes.func.isRequired,
 };
 
 GraphHistoricalContainer.defaultProps = {
-  coin: 'BTC',
+  coin: '',
 };
 
 export default GraphHistoricalContainer;

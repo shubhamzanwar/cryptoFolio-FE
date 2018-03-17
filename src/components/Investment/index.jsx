@@ -18,7 +18,7 @@ class Investment extends Component {
     return (
       <div className="Investment">
         <div className="Investment-Header">
-          <p className="Investment-Header-Title">Ethereum</p>
+          <p className="Investment-Header-Title">Investment</p>
         </div>
         <div className="Investment-Body">
           <div className="Investment-Values">
