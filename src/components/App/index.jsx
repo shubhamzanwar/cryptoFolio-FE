@@ -5,9 +5,9 @@ import SignupBody from '../SignupBody';
 import Body from '../Body';
 import LoginBody from '../LoginBody';
 import Portfolio from '../Portfolio';
+import TransfersBody from '../TransfersBody';
 import NotFound from '../NotFound404';
 import './index.css';
-
 
 const App = () => (
   <div className="App">
@@ -17,6 +17,7 @@ const App = () => (
       <Route path="/signup" component={SignupBody} />
       <Route path="/login" component={LoginBody} />
       <Route path="/portfolio" component={Portfolio} />
+      <Route path="/transfers" component={TransfersBody} />
       <Route path="*" exact component={NotFound} />
     </Switch>
   </div>

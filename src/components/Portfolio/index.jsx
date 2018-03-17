@@ -53,6 +53,29 @@ class Portfolio extends Component {
     if (isLoggedinUser === 'false') {
       (this.props.history).push('/login');
     } else {
+      const authtoken = window.localStorage.getItem('cryptotoken');
+      fetch('/portfolio', {
+        method: 'GET',
+        headers: { authtoken },
+      })
+        .then((response) => {
+          if (response.status !== 200) {
+            throw new Error(401);
+          }
+          return response.json();
+        })
+        .then((response) => {
+          this.setState({
+            userTransactions: groupByCoin(response),
+          });
+        }).catch((err) => {
+          if (err.message === '401') {
+            window.localStorage.setItem('cryptotoken', null);
+            window.localStorage.setItem('cryptousername', null);
+            window.localStorage.setItem('cryptologgedin', false);
+            this.props.history.push('/');
+          }
+        });
       this.fetchPortfolioData();
     }
   }
