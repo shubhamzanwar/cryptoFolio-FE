@@ -23,7 +23,7 @@ class AddCoinModal extends React.Component {
           </select>
         </label>
         <label className="addCoinModal_addCoinForm_input_label" htmlFor="coinPurchasedPrice">Quantity<input className="addCoinModal_addCoinForm_input" name="quantity" type="number" step="any" placeholder="Quantity" required /></label>
-        <label className="addCoinModal_addCoinForm_input_label" htmlFor="coinPurchasedPrice">{this.props.modifyType === 'addCoin' ? 'Purchased Price' : 'Sold Price'}<input className="addCoinModal_addCoinForm_input" step="any" name="price" type="number" placeholder={this.props.modifyType === 'addCoin' ? 'Purchased Price' : 'Sold Price'} required /></label>
+        <label className="addCoinModal_addCoinForm_input_label" htmlFor="coinPurchasedPrice">{this.props.modifyType === 'addCoin' ? 'Purchased Price (USD)' : 'Sold Price (USD)'}<input className="addCoinModal_addCoinForm_input" step="any" name="price" type="number" placeholder={this.props.modifyType === 'addCoin' ? 'Purchased Price' : 'Sold Price'} required /></label>
         <p>{this.props.response}</p>
         <button className="addCoinModal_addCoinForm_submit" type="submit">{this.props.modifyType === 'addCoin' ? 'Add Coin' : 'Remove Coin'}</button>
       </form>
