@@ -130,46 +130,12 @@ class Portfolio extends Component {
   addCoin(e) {
     e.preventDefault();
     const data = new FormData(e.target);
-    const payload = {
-      coin: data.get('name'),
-      quantity: data.get('quantity'),
-      price: data.get('price'),
-    };
-    fetch('/editPortfolioCoin', {
-      method: 'POST',
-      body: JSON.stringify(payload),
-      headers: { authtoken: window.localStorage.getItem('cryptotoken') },
-    })
-      .then((result) => {
-        if (result.status === 201) {
-          return result.json();
-        }
-        return null;
-      })
-      .then((result) => {
-        const trans = this.state.userTransactions;
-        trans[payload.coin] = trans[payload.coin] || [];
-        trans[payload.coin].push({ ...result, coinSymbol: payload.coin });
-        this.onCloseAddModal();
-        this.setState({
-          userTransactions: trans,
-        });
-      });
-  }
-  removeCoin(e) {
-    e.preventDefault();
-    const data = new FormData(e.target);
-    const coin = data.get('name');
-    let quantity = data.get('quantity');
-    const price = data.get('price');
-    const transactions = summarize(this.state.userTransactions)[0];
-    const groupedTransactions = groupByCoin(transactions);
-    if (groupedTransactions[coin] && groupedTransactions[coin][0].quantity >= (quantity)) {
-      quantity *= -1;
+    const quantity = data.get('quantity');
+    if (quantity > 0 && data.get('price') > 0) {
       const payload = {
-        coin,
-        price,
-        quantity,
+        coin: data.get('name'),
+        quantity: data.get('quantity'),
+        price: data.get('price'),
       };
       fetch('/editPortfolioCoin', {
         method: 'POST',
@@ -186,19 +152,66 @@ class Portfolio extends Component {
           const trans = this.state.userTransactions;
           trans[payload.coin] = trans[payload.coin] || [];
           trans[payload.coin].push({ ...result, coinSymbol: payload.coin });
+          this.onCloseAddModal();
           this.setState({
             userTransactions: trans,
-            response: '',
           });
-          this.onCloseAddModal();
         });
-    } else if (groupedTransactions[coin]) {
-      this.setState({
-        response: 'Please re-enter since the quantity exceeds the added quantity',
-      });
     } else {
       this.setState({
-        response: 'You do not have the coin in your portfolio',
+        response: 'Enter valid quantity and price',
+      });
+    }
+  }
+  removeCoin(e) {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    const coin = data.get('name');
+    let quantity = data.get('quantity');
+    const price = data.get('price');
+    const transactions = summarize(this.state.userTransactions)[0];
+    const groupedTransactions = groupByCoin(transactions);
+    if (quantity > 0 && price > 0) {
+      if (groupedTransactions[coin] && groupedTransactions[coin][0].quantity >= (quantity)) {
+        quantity *= -1;
+        const payload = {
+          coin,
+          price,
+          quantity,
+        };
+        fetch('/editPortfolioCoin', {
+          method: 'POST',
+          body: JSON.stringify(payload),
+          headers: { authtoken: window.localStorage.getItem('cryptotoken') },
+        })
+          .then((result) => {
+            if (result.status === 201) {
+              return result.json();
+            }
+            return null;
+          })
+          .then((result) => {
+            const trans = this.state.userTransactions;
+            trans[payload.coin] = trans[payload.coin] || [];
+            trans[payload.coin].push({ ...result, coinSymbol: payload.coin });
+            this.setState({
+              userTransactions: trans,
+              response: '',
+            });
+            this.onCloseAddModal();
+          });
+      } else if (groupedTransactions[coin]) {
+        this.setState({
+          response: 'Please re-enter since the quantity exceeds the added quantity',
+        });
+      } else {
+        this.setState({
+          response: 'You do not have the coin in your portfolio',
+        });
+      }
+    } else {
+      this.setState({
+        response: 'Enter valid quantity and price',
       });
     }
   }
