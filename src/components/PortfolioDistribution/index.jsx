@@ -9,7 +9,7 @@ class PortfolioDistribution extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayType: 'quantity',
+      displayType: 'invested',
       pieData: [],
     };
   }
@@ -40,10 +40,9 @@ class PortfolioDistribution extends Component {
     return (
       <div className="Distribution">
         <div className="Distribution-Header">
-          <p className="Distribution-Header-Title">My Coins</p>
+          <p className="Distribution-Header-Title">Investment</p>
           <div className="Distribution-Tabs-Button">
-            <button className={this.state.displayType === 'quantity' ? 'selected' : ''} onClick={() => this.displayType('quantity')} >Quantity</button>
-            <button className={this.state.displayType === 'invested' ? 'selected' : ''} onClick={() => this.displayType('invested')}>Invested</button>
+            {/* <button className={this.state.displayType === 'invested' ? 'selected' : ''} onClick={() => this.displayType('invested')}>Invested</button> */}
           </div>
         </div>
         <div className="Distribution-GraphContainer">
