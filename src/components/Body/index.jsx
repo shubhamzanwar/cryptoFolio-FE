@@ -15,7 +15,7 @@ class Body extends Component {
     this.state = {
       selectedCoin: 'BTC',
       prices: [],
-      displayType: 'historical',
+      displayType: 'current',
     };
     axios.get('/prices').then((priceData) => {
       this.setState({
