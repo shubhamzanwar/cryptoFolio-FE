@@ -25,42 +25,43 @@ class Header extends Component {
           </Link>
           {
           window.localStorage.getItem('cryptologgedin') === 'true' ?
-            <div className="Header-user-bar">
-              <div className="Header-button-container">
-                <NavLink
-                  className="register-button-a"
-                  activeClassName="Header-button-selected"
-                  to="/"
-                  exact
-                >
-                  <p>Home</p>
-                </NavLink>
-                <NavLink
-                  className="register-button-a"
-                  activeClassName="Header-button-selected"
-                  to="/portfolio"
-                >
-                  <p>Portfolio</p>
-                </NavLink>
-                <NavLink
-                  className="register-button-a"
-                  activeClassName="Header-button-selected"
-                  to="/transfers"
-                >
-                  <p>Transfers</p>
-                </NavLink>
-              </div>
-              <div className="Header-user">
-                <p>{window.localStorage.getItem('cryptousername')} <i className="fas fa-caret-down" /></p>
-                <div className="Header-logout-link">
-                  <button
-                    className="Header-logout-button"
-                    onClick={() => this.logout()}
-                  ><p>Logout </p><i className="fas fa-sign-out-alt" />
-                  </button>
-                </div>
-              </div>
+            <div className="Header-button-container">
+              <NavLink
+                className="register-button-a"
+                activeClassName="Header-button-selected"
+                to="/"
+                exact
+              >
+                <p>Home</p>
+              </NavLink>
+              <NavLink
+                className="register-button-a"
+                activeClassName="Header-button-selected"
+                to="/portfolio"
+              >
+                <p>Portfolio</p>
+              </NavLink>
+              <NavLink
+                className="register-button-a"
+                activeClassName="Header-button-selected"
+                to="/transfers"
+              >
+                <p>Transfers</p>
+              </NavLink>
+            </div>
+              : ''}
+          {
+          window.localStorage.getItem('cryptologgedin') === 'true' ?
 
+            <div className="Header-user">
+              <p>{window.localStorage.getItem('cryptousername')} <i className="fas fa-caret-down" /></p>
+              <div className="Header-logout-link">
+                <button
+                  className="Header-logout-button"
+                  onClick={() => this.logout()}
+                ><p>Logout </p><i className="fas fa-sign-out-alt" />
+                </button>
+              </div>
             </div> :
             <div className="Header-button-container">
               <NavLink
@@ -78,8 +79,7 @@ class Header extends Component {
                 <p>Login</p>
               </NavLink>
             </div>
-        }
-
+            }
         </div>
       </header>
     );
