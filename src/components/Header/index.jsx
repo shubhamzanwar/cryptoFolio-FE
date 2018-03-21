@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
 import { Link, NavLink, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Notification from '../Notification';
 import './index.css';
 
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showNotification: false,
+    };
+  }
   logout() {
     window.localStorage.setItem('cryptologgedin', false);
     window.localStorage.setItem('cryptotoken', null);
     window.localStorage.setItem('cryptousername', null);
     this.forceUpdate();
     this.props.history.push('/');
+  }
+  toggleNotifications=() => {
+    this.setState({
+      showNotification: !this.state.showNotification,
+    });
   }
   render() {
     return (
@@ -54,6 +66,15 @@ class Header extends Component {
           window.localStorage.getItem('cryptologgedin') === 'true' ?
 
             <div className="Header-user">
+              <span
+                onClick={() => this.toggleNotifications()}
+              >
+                <i className="material-icons">notifications_none</i>
+                {this.state.showNotification ?
+                  <Notification />
+                  : ''
+                }
+              </span>
               <p>{window.localStorage.getItem('cryptousername')} <i className="fas fa-caret-down" /></p>
               <div className="Header-logout-link">
                 <button
