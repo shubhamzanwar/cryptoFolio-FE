@@ -97,8 +97,6 @@ class TransfersBody extends Component {
           coins: {
             ...coins,
           },
-        }, () => {
-          console.log(this.state);
         });
       });
   }
@@ -119,7 +117,7 @@ class TransfersBody extends Component {
             onClick={() => this.togglePayments()}
             className="TransfersBody-make-transfer-button"
           >
-            Make Payment
+            Request Payment
           </button>
         </div>
         <div className="TransferBody-transfers">
