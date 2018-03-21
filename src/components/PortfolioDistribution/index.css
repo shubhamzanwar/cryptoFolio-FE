@@ -75,5 +75,6 @@
 .GraphLabelItemContainer {
     padding: 10px;
     display: flex;
+    /* display: inline; */
     flex-wrap: wrap;
 }
