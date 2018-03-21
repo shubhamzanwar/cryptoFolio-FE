@@ -9,12 +9,52 @@ class EditCoinModal extends React.Component {
     super(props);
     this.state = {
       status: '',
+      price: this.props.data.price,
+      quantity: this.props.data.quantity,
     };
+  }
+  onEditPrice=(e) => {
+    const { value } = e.target;
+    if (value > 0) {
+      this.props.onEditPrice(e);
+      this.setState({
+        status: '',
+        price: value,
+      });
+    } else if (value === '') {
+      this.setState({
+        status: '',
+        price: value,
+      });
+    } else {
+      this.setState({
+        status: 'Please enter valid price',
+      });
+    }
+  }
+  onEditQuantity=(e) => {
+    const { value } = e.target;
+    if (value > 0) {
+      this.props.onEditQuantity(e);
+      this.setState({
+        status: '',
+        quantity: value,
+      });
+    } else if (value === '') {
+      this.setState({
+        status: '',
+        quantity: value,
+      });
+    } else {
+      this.setState({
+        status: 'Please enter valid quantity',
+      });
+    }
   }
    onClickUpdate = (e) => {
      e.preventDefault();
-     if (this.props.data.quantity && this.props.data.price) {
-       if (this.props.data.price > 0 && this.props.data.quantity > 0) {
+     if (this.state.quantity && this.state.price) {
+       if (this.state.price > 0 && this.state.quantity > 0) {
          this.props.onClickUpdate(this.props.data);
        } else {
          this.setState({
@@ -47,9 +87,9 @@ class EditCoinModal extends React.Component {
              type="number"
              step="any"
              placeholder="Purchased Price"
-             value={this.props.data.price}
+             value={this.state.price}
              name="price"
-             onChange={(e) => { this.props.onEditPrice(e); }}
+             onChange={(e) => { this.onEditPrice(e); }}
            />
            </label>
            <label
@@ -61,10 +101,10 @@ class EditCoinModal extends React.Component {
              id="coinPurchasedPrice"
              type="number"
              placeholder="Quantity"
-             value={this.props.data.quantity}
+             value={this.state.quantity}
              name="quantity"
              step="any"
-             onChange={(e) => { this.props.onEditQuantity(e); }}
+             onChange={(e) => { this.onEditQuantity(e); }}
            />
            </label>
            <p>{this.state.status}</p>
