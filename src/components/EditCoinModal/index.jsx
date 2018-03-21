@@ -9,53 +9,43 @@ class EditCoinModal extends React.Component {
     super(props);
     this.state = {
       status: '',
-      price: this.props.data.price,
-      quantity: this.props.data.quantity,
+      price: 0,
+      quantity: 0,
     };
   }
   onEditPrice=(e) => {
     const { value } = e.target;
-    if (value > 0) {
-      this.props.onEditPrice(e);
-      this.setState({
-        status: '',
-        price: value,
-      });
-    } else if (value === '') {
-      this.setState({
-        status: '',
-        price: value,
-      });
-    } else {
-      this.setState({
-        status: 'Please enter valid price',
-      });
-    }
+    this.setState({
+      price: value,
+    });
   }
   onEditQuantity=(e) => {
     const { value } = e.target;
-    if (value > 0) {
-      this.props.onEditQuantity(e);
-      this.setState({
-        status: '',
-        quantity: value,
-      });
-    } else if (value === '') {
-      this.setState({
-        status: '',
-        quantity: value,
-      });
-    } else {
-      this.setState({
-        status: 'Please enter valid quantity',
-      });
-    }
+    this.setState({
+      quantity: value,
+    });
   }
    onClickUpdate = (e) => {
      e.preventDefault();
-     if (this.state.quantity && this.state.price) {
-       if (this.state.price > 0 && this.state.quantity > 0) {
-         this.props.onClickUpdate(this.props.data);
+     let { quantity } = this.state;
+     let { price } = this.state;
+     if (!quantity) {
+       quantity = this.props.data.quantity;
+     }
+     if (!price) {
+       price = this.props.data.price;
+     }
+     if (quantity && price) {
+       if (price > 0 && quantity > 0) {
+         const { data } = this.props;
+         data.quantity = quantity;
+         data.price = price;
+         this.props.onClickUpdate(data);
+         this.props.onEditPrice(price);
+         this.props.onEditQuantity(quantity);
+         this.setState({
+           status: '',
+         });
        } else {
          this.setState({
            status: 'Please enter valid price and quantity',
@@ -71,10 +61,14 @@ class EditCoinModal extends React.Component {
      e.preventDefault();
      this.props.onClickDelete(this.props.data);
    };
+   onCloseModal=() => {
+     this.forceUpdate();
+     this.props.onCloseModal();
+   }
 
    render() {
      return (
-       <Modal open={this.props.state} onClose={this.props.onCloseModal} little styles={{ modal: { backgroundColor: 'rgb(255, 255, 255)', borderRadius: '10px' } }}>
+       <Modal open={this.props.state} onClose={this.onCloseModal} little styles={{ modal: { backgroundColor: 'rgb(255, 255, 255)', borderRadius: '10px' } }}>
          <h2 className="editCoinModal_header">Edit coin</h2>
          <form className="editCoinModal_editCoinForm">
            <label
@@ -86,8 +80,8 @@ class EditCoinModal extends React.Component {
              id="coinPurchasedPrice"
              type="number"
              step="any"
-             placeholder="Purchased Price"
-             value={this.state.price}
+             placeholder={this.props.data.price}
+
              name="price"
              onChange={(e) => { this.onEditPrice(e); }}
            />
@@ -100,8 +94,8 @@ class EditCoinModal extends React.Component {
              className="editCoinModal_editCoinForm_input"
              id="coinPurchasedPrice"
              type="number"
-             placeholder="Quantity"
-             value={this.state.quantity}
+             placeholder={this.props.data.quantity}
+
              name="quantity"
              step="any"
              onChange={(e) => { this.onEditQuantity(e); }}

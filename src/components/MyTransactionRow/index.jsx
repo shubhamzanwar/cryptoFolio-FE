@@ -17,14 +17,14 @@ class MyTransactionRow extends Component {
   onCloseModal = () => {
     this.setState({ open: false });
   };
-  onEditQuantity=(e) => {
+  onEditQuantity=(value) => {
     this.setState({
-      quantity: e.target.value,
+      quantity: value,
     });
   }
-  onEditPrice=(e) => {
+  onEditPrice=(value) => {
     this.setState({
-      price: e.target.value,
+      price: value,
     });
   }
   onClickUpdate =(data) => {
