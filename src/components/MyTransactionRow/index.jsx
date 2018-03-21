@@ -56,7 +56,7 @@ render = () => (
     />
     <td className="MyTransactionCoin-table-row-td">{this.props.index}</td>
     <td className="MyTransactionCoin-table-row-td">{Math.abs(this.state.quantity)}</td>
-    <td className="MyTransactionCoin-table-row-td">{this.state.price}</td>
+    <td className="MyTransactionCoin-table-row-td">$ {this.state.price}</td>
     <td className="MyTransactionCoin-table-row-td">{this.state.quantity > 0 ? 'Purchased' : 'Sold'}</td>
     <td
       className="MyTransactionCoin-table-row-td-EditCoin"
