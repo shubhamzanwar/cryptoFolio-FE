@@ -79,6 +79,7 @@
 
 .Header-user{
     position: relative;
+    display: flex;
 }
 
 .Header-user:hover > .Header-logout-link{
