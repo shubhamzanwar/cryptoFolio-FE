@@ -10,6 +10,7 @@ class Header extends Component {
     super(props);
     this.state = {
       showNotification: false,
+      loginButton: false,
     };
   }
   logout() {
@@ -19,12 +20,18 @@ class Header extends Component {
     this.forceUpdate();
     this.props.history.push('/');
   }
-  toggleNotifications=() => {
+  toggleLogin = () => {
+    this.setState({
+      loginButton: !this.state.loginButton,
+      showNotification: false,
+    });
+  }
+  toggleNotifications = () => {
     this.setState({
       showNotification: !this.state.showNotification,
+      loginButton: false,
     });
     if (this.state.showNotification === false) {
-      console.log('put request');
       fetch('/notification', {
         method: 'PUT',
         headers: {
@@ -76,22 +83,32 @@ class Header extends Component {
 
             <div className="Header-user">
               <span
+                className="Header-notification"
                 onClick={() => this.toggleNotifications()}
               >
                 <i className="material-icons">notifications_none</i>
-                {this.state.showNotification ?
-                  <Notification />
+                <div className="Header-notification-body">
+                  {this.state.showNotification ?
+                    <Notification />
                   : ''
                 }
+                </div>
               </span>
-              <p>{window.localStorage.getItem('cryptousername')} <i className="fas fa-caret-down" /></p>
-              <div className="Header-logout-link">
-                <button
-                  className="Header-logout-button"
-                  onClick={() => this.logout()}
-                ><p>Logout </p><i className="fas fa-sign-out-alt" />
-                </button>
-              </div>
+              <p
+                onClick={() => this.toggleLogin()}
+              >
+                {window.localStorage.getItem('cryptousername')}
+                <i className="fas fa-caret-down" />
+                {this.state.loginButton ?
+                  <div className="Header-logout-link">
+                    <button
+                      className="Header-logout-button"
+                      onClick={() => this.logout()}
+                    ><p>Logout </p><i className="fas fa-sign-out-alt" />
+                    </button>
+                  </div>
+              : ''}
+              </p>
             </div> :
             <div className="Header-button-container">
               <NavLink
