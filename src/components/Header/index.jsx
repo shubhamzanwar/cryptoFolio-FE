@@ -23,6 +23,15 @@ class Header extends Component {
     this.setState({
       showNotification: !this.state.showNotification,
     });
+    if (this.state.showNotification === false) {
+      console.log('put request');
+      fetch('/notification', {
+        method: 'PUT',
+        headers: {
+          authtoken: window.localStorage.getItem('cryptotoken'),
+        },
+      });
+    }
   }
   render() {
     return (
