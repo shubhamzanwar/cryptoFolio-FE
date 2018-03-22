@@ -66,25 +66,39 @@
     align-items: center;
     justify-content: space-between;
 }
-
-.Header-logout-link{
+.Header-notification-body{
     width:100%;
+    margin-top:10px;
     min-width: 100px;
     border-radius: 5px;
-    display:none;
     position:absolute;
-    background: white;
+    left:-45%;
+    background: black;
     align-self: center;
 }
+.Header-logout-link{
+    width:60%;
+    min-width: 100px;
+    border-radius: 5px;
+    position:absolute;
+    top: 40px;
+    right: 0;
+    background: white;
+    align-self: center;
 
+}
+.Header-notification{
+    padding-right: 50px;
+    margin-top: 15px;
+}
 .Header-user{
     position: relative;
     display: flex;
 }
 
-.Header-user:hover > .Header-logout-link{
+/* .Header-user:hover > .Header-logout-link{
     display:block;
-}
+} */
 
 .Header-logout-button{
     width:100%;

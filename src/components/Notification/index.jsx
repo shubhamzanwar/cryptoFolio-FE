@@ -8,7 +8,7 @@ class Notification extends Component {
     const note = JSON.parse(window.localStorage.getItem('cryptoNotifications'));
     console.log(note[0].text);
     const allNotification = note.map(eachNotification => (
-      <div >
+      <div className="Notification-each" >
         {eachNotification.text}
       </div>
     ));
