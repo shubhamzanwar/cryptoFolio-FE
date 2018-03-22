@@ -9,10 +9,14 @@ const summarizeTransactions = (transactionsObject) => {
     let sold = 0;
 
     coinTransactions.forEach((transaction) => {
-      quantity += transaction.quantity;
       if (transaction.quantity > 0) {
+        if (transaction.fromId === 1 || transaction.toId === 1) quantity += transaction.quantity;
+        else quantity -= transaction.quantity;
         invested += transaction.quantity * transaction.price;
-      } else sold += transaction.quantity * transaction.price * -1;
+      } else {
+        sold += transaction.quantity * transaction.price * -1;
+        quantity += transaction.quantity;
+      }
     });
     totalInvested += invested;
     totalSold += sold;
