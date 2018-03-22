@@ -6,14 +6,15 @@ class Notification extends Component {
   render() {
     console.log('hi');
     const note = JSON.parse(window.localStorage.getItem('cryptoNotifications'));
-    console.log(note);
+    console.log(note[0].text);
+    const allNotification = note.map(eachNotification => (
+      <div >
+        {eachNotification.text}
+      </div>
+    ));
     return (
       <div className="Notification-body">
-        {note.map(eachNotification => (
-          <div >
-            {eachNotification.text}
-          </div>
-          ))}
+        {allNotification}
       </div>
     );
   }
