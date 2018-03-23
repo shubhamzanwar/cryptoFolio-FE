@@ -16,24 +16,40 @@ class Header extends Component {
     };
   }
   componentDidMount() {
-    const notifications = [];
-    // if (JSON.parse(window.localStorage.getItem('cryptoNotifications'))[0]) {
-    //   console.log(JSON.parse(window.localStorage.getItem('cryptoNotifications')));
-    //   notifications.push(JSON.parse(window.localStorage.getItem('cryptoNotifications')));
-    // }
-    const pusher = new Pusher('2f14d98336c0adcbc97b', {
-      cluster: 'ap2',
-      encrypted: true,
-    });
-    const channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', (data2) => {
-      if (data2.name === window.localStorage.getItem('cryptousername')) {
-        notifications.push(data2);
+    const authToken = window.localStorage.getItem('cryptotoken');
+    fetch('/notification', {
+      method: 'GET',
+      headers: {
+        authtoken: authToken,
+      },
+    }).then(data => data.json())
+      .then((data) => {
+        console.log(data);
+        window.localStorage.setItem('cryptoNotifications', JSON.stringify(data));
+      }).then(() => {
+        let notifications = [];
+        if (JSON.parse(window.localStorage.getItem('cryptoNotifications'))[0]) {
+          notifications.push(JSON.parse(window.localStorage.getItem('cryptoNotifications')));
+          notifications = notifications[0];
+          console.log(notifications);
+        }
+        const pusher = new Pusher('2f14d98336c0adcbc97b', {
+          cluster: 'ap2',
+          encrypted: true,
+        });
+        const channel = pusher.subscribe('my-channel');
+        channel.bind('my-event', (data2) => {
+          if (data2.name === window.localStorage.getItem('cryptousername')) {
+            notifications.unshift(data2);
+            this.setState({
+              notifications,
+            });
+          }
+        });
         this.setState({
           notifications,
         });
-      }
-    });
+      });
   }
   logout() {
     window.localStorage.setItem('cryptologgedin', false);
