@@ -15,3 +15,21 @@
     background: rgb(33, 49, 71);
     padding: 20px; */
 }
+
+.approve-transaction{
+    padding: 5px;
+    border: none;
+    outline: 0;
+    margin-right: 5px;
+    color: white;
+    background-color: rgb(28, 165, 28);
+}
+
+.reject-transaction{
+    padding: 5px;
+    border: none;
+    outline: 0;
+    /* margin-right: 5px; */
+    color: white;
+    background-color: rgb(207, 33, 33);
+}

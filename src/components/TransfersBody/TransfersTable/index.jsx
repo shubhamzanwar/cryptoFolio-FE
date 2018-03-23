@@ -38,13 +38,13 @@ class TransfersTable extends Component {
                   <tr className="TransferBody-table-row">
                     <td className="TransferBody-table-row-td">{transfer.from.id === 1 ? 'Exchange' : (this.props.type === 'sent' || this.props.type === 'requestToMe') ? transfer.to.fullName : transfer.from.fullName}</td>
                     <td className="TransferBody-table-row-td">{transfer.coin.symbol}</td>
-                    <td className="TransferBody-table-row-td">{transfer.quantity}</td>
+                    <td className="TransferBody-table-row-td">{Math.abs(transfer.quantity)}</td>
                     {
-                      (this.props.type === 'requestedByMe' || this.props.type === 'requestToMe')
+                      (this.props.type === 'requestToMe')
                     ? (transfer.status === 2)
                       ? <td className="TransferBody-table-row-td">Rejected</td>
-                      : <td className="TransferBody-table-row-td"><input type="submit" value="Approve" onClick={() => { this.props.requestOTP(transfer.from.id, transfer.id); }} /><input type="submit" value="Decline" onClick={() => { this.props.decline(transfer.from, transfer.id); }} /></td>
-                    : ''
+                      : <td className="TransferBody-table-row-td"><input type="submit" className="approve-transaction" value="Approve" onClick={() => { this.props.requestOTP(transfer.from.id, transfer.id, transfer.quantity, transfer.coin.symbol); }} /><input type="submit" className="reject-transaction" value="Decline" onClick={() => { this.props.decline(transfer.from, transfer.id); }} /></td>
+                    : (this.props.type === 'requestedByMe') ? (transfer.status === 2) ? <td className="TransferBody-table-row-td">Rejected</td> : <td>Pending</td> : ''
                     }
                   </tr>
                 ))

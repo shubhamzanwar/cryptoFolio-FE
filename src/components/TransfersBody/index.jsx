@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import SendModal from './SendModal/';
-import RequestModal from './RequestModal/';
+import RequestModal from './RequestModal';
 import OTPVerificationModal from './OTPVerificationModal';
 import TransfersTable from './TransfersTable';
 import './index.css';
 import coins from '../../utils/constants/coins';
 
-// const summarise = responses => responses.reduce((acc, curr) => {
-//   acc[curr.coin.symbol] = acc[curr.coin.symbol] || { id: curr.coinId, quantity: 0 };
-//   if (curr.to.fullName === window.localStorage.getItem('cryptousername')) {
-//     acc[curr.coin.symbol].quantity += curr.quantity;
-//   } else {
-//     acc[curr.coin.symbol].quantity -= curr.quantity;
-//   }
-//   return acc;
-// }, {});
+const summarise = responses => responses.reduce((acc, curr) => {
+  acc[curr.coin.symbol] = acc[curr.coin.symbol] || { id: curr.coinId, quantity: 0 };
+  if (curr.to.fullName === window.localStorage.getItem('cryptousername')) {
+    acc[curr.coin.symbol].quantity += curr.quantity;
+  } else {
+    acc[curr.coin.symbol].quantity -= curr.quantity;
+  }
+  return acc;
+}, {});
 
 class TransfersBody extends Component {
   constructor(props) {
@@ -30,6 +30,7 @@ class TransfersBody extends Component {
       coins: {},
       transactionId: null,
       from: null,
+      validCoins: {},
     };
   }
 
@@ -60,6 +61,7 @@ class TransfersBody extends Component {
           requestToMe: response[2],
           requestedByMe: response[3],
           coins,
+          validCoins: summarise(response[0].concat(response[1])),
         });
       }).catch((err) => {
         if (err.message === '401') {
@@ -87,7 +89,13 @@ class TransfersBody extends Component {
     });
   }
 
-  requestOTP(from, transactionId) {
+  requestOTP(from, transactionId, quantity, coinSymbol) {
+    if (this.state.validCoins[coinSymbol] === undefined) {
+      return alert('You do not have the requested coins in your portfolio');
+    }
+    if (this.state.validCoins[coinSymbol].quantity < quantity) {
+      return alert('You have insufficient coins');
+    }
     const authtoken = window.localStorage.getItem('cryptotoken');
     fetch('/otp', {
       method: 'PUT',
@@ -131,7 +139,7 @@ class TransfersBody extends Component {
       headers: { authtoken: window.localStorage.getItem('cryptotoken') },
     })
       .then(() => {
-        const { coins } = this.state;
+        // const { coins } = this.state;
         // coins[coin] = {
         //   id: payload.coinId,
         //   quantity: this.state.coins[coin].quantity - quantity,
@@ -150,9 +158,6 @@ class TransfersBody extends Component {
             },
             quantity,
           }],
-          coins: {
-            ...coins,
-          },
         });
       });
   }
@@ -211,7 +216,7 @@ class TransfersBody extends Component {
               decline={(user, transactionId) => this.decline(user, transactionId)}
               transfers={this.state.requestToMe}
               // toggleOTP={transactionId => this.toggleOTP(transactionId)}
-              requestOTP={(from, transactionId) => { this.requestOTP(from, transactionId); }}
+              requestOTP={(from, transactionId, quantity, coinSymbol) => { this.requestOTP(from, transactionId, quantity, coinSymbol); }}
               type="requestToMe"
             /> : ''
           }

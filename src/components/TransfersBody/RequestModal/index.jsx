@@ -12,17 +12,17 @@ class RequestModal extends Component {
       userSuggestions: [],
       displaySuggestions: false,
       selectedUser: null,
-      selectedCoin: '',
+      selectedCoin: 'ADA',
       quantity: 0,
       errorMessage: '',
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      selectedCoin: Object.keys(nextProps.validCoins)[0],
-    });
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   this.setState({
+  //     selectedCoin: Object.keys(nextProps.validCoins)[0],
+  //   });
+  // }
   getUserSuggestions(username) {
     this.setState({
       selectedUser: null,
@@ -64,6 +64,7 @@ class RequestModal extends Component {
   }
 
   request(user, coin, quantity) {
+    console.log(coin);
     this.setState({
       errorMessage: '',
     });
@@ -86,7 +87,7 @@ class RequestModal extends Component {
   render() {
     return (
       <Modal open={this.props.state} onClose={() => this.props.onCloseModal()} little styles={{ modal: { backgroundColor: 'rgb(14, 39, 89)', borderRadius: '10px', minWidth: '300px' } }} >
-        <h2 style={{ color: 'white' }}>Transfer coins</h2>
+        <h2 style={{ color: 'white' }}>Request coins</h2>
         {
           this.state.errorMessage !== '' ? (
             <div className="TransferCoins-form-errorMessage">
@@ -103,7 +104,7 @@ class RequestModal extends Component {
                 type="text"
                 onChange={e => this.getUserSuggestions(e.target.value)}
                 value={this.state.username}
-                placeholder="Enter your friend's full name"
+                placeholder="Enter sender's full name"
               />
               <div className={this.state.displaySuggestions ? 'TransferCoins-receiver-name-suggestions show' : 'TransferCoins-receiver-name-suggestions'}>
                 {
