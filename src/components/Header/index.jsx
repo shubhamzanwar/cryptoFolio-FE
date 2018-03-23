@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, NavLink, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Pusher from 'pusher-js';
 import Notification from '../Notification';
 import './index.css';
 
@@ -11,7 +12,30 @@ class Header extends Component {
     this.state = {
       showNotification: false,
       loginButton: false,
+      notifications: [],
     };
+  }
+  componentDidMount() {
+    console.log('component did mount header');
+    const notifications = [];
+    const pusher = new Pusher('2f14d98336c0adcbc97b', {
+      cluster: 'ap2',
+      encrypted: true,
+    });
+    const channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', (data2) => {
+      console.log(data2);
+      console.log('inside header');
+      console.log(data2.name);
+      if (data2.name === window.localStorage.getItem('cryptousername')) {
+        console.log('notification!', data2.text);
+        notifications.push(data2);
+        console.log('notifications in header', notifications);
+        this.setState({
+          notifications,
+        });
+      }
+    });
   }
   logout() {
     window.localStorage.setItem('cryptologgedin', false);
@@ -87,9 +111,10 @@ class Header extends Component {
                 onClick={() => this.toggleNotifications()}
               >
                 <i className="material-icons">notifications_none</i>
+                <span className="Header-notification-number">{this.state.notifications.length}</span>
                 <div className="Header-notification-body">
                   {this.state.showNotification ?
-                    <Notification />
+                    <Notification notifications={this.state.notifications} />
                   : ''
                 }
                 </div>
