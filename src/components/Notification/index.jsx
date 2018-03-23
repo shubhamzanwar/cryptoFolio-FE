@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Pusher from 'pusher-js';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import './index.css';
 
 class Notification extends Component {
@@ -11,36 +11,32 @@ class Notification extends Component {
     };
   }
   componentDidMount() {
-    const notifications = [];
-    const pusher = new Pusher('2f14d98336c0adcbc97b', {
-      cluster: 'ap2',
-      encrypted: true,
-    });
-    const channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', (data2) => {
-      console.log(data2);
-      if (data2.name === window.localStorage.getItem('cryptousername')) {
-        console.log('notification!', data2.text);
-        notifications.push(data2);
-      }
-    });
+    console.log('inside did mount in notification');
+    const { notifications } = this.props;
+    console.log('notifications in notifiaction', notifications);
     if (JSON.parse(window.localStorage.getItem('cryptoNotifications'))[0]) {
       notifications.push(JSON.parse(window.localStorage.getItem('cryptoNotifications')));
     }
     this.setState({
       notifications,
     });
+    console.log('inside did mount after setState in notification');
   }
   checkEmpty = () => {
+    console.log('inside checkempty');
     const notifs = this.state.notifications;
+
     if (notifs.length === 0) {
       return 'No New Notifications';
     }
-    const note = notifs.map(eachNotification => (
-      <div className="Notification-each" >
-        {eachNotification.text}
-      </div>
-    ));
+    const note = notifs.map((eachNotification) => {
+      console.log(eachNotification);
+      return (
+        <div className="Notification-each" >
+          {eachNotification.text}
+        </div>
+      );
+    });
     return note;
   }
   render() {
@@ -52,5 +48,9 @@ class Notification extends Component {
     );
   }
 }
+
+Notification.propTypes = {
+  notifications: PropTypes.arrayOf().isRequired,
+};
 
 export default Notification;
