@@ -16,21 +16,19 @@ class Header extends Component {
     };
   }
   componentDidMount() {
-    console.log('component did mount header');
     const notifications = [];
+    // if (JSON.parse(window.localStorage.getItem('cryptoNotifications'))[0]) {
+    //   console.log(JSON.parse(window.localStorage.getItem('cryptoNotifications')));
+    //   notifications.push(JSON.parse(window.localStorage.getItem('cryptoNotifications')));
+    // }
     const pusher = new Pusher('2f14d98336c0adcbc97b', {
       cluster: 'ap2',
       encrypted: true,
     });
     const channel = pusher.subscribe('my-channel');
     channel.bind('my-event', (data2) => {
-      console.log(data2);
-      console.log('inside header');
-      console.log(data2.name);
       if (data2.name === window.localStorage.getItem('cryptousername')) {
-        console.log('notification!', data2.text);
         notifications.push(data2);
-        console.log('notifications in header', notifications);
         this.setState({
           notifications,
         });
