@@ -1,12 +1,19 @@
 .Notification-body{
     width:100%;
-    background-color: rgb(0, 164, 236);
     border-radius: 5px;
 }
-.Notification-each{
+.Notification-each-true{
     padding:10px;
     border-bottom:1px solid white;
     width: 100%;
+    background-color: rgb(0, 164, 236);
+    box-sizing: border-box;
+}
+.Notification-each-false{
+    padding:10px;
+    border-bottom:1px solid white;
+    width: 100%;
+    background-color: rgb(34, 50, 71);
     box-sizing: border-box;
 }
 .Notification-each:hover{

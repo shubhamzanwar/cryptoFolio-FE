@@ -14,9 +14,6 @@ class Notification extends Component {
     console.log('inside did mount in notification');
     const { notifications } = this.props;
     console.log('notifications in notifiaction', notifications);
-    if (JSON.parse(window.localStorage.getItem('cryptoNotifications'))[0]) {
-      notifications.push(JSON.parse(window.localStorage.getItem('cryptoNotifications')));
-    }
     this.setState({
       notifications,
     });
@@ -27,12 +24,16 @@ class Notification extends Component {
     const notifs = this.state.notifications;
 
     if (notifs.length === 0) {
-      return 'No New Notifications';
+      return (
+        <div className="Notification-each-false">
+     No New Notifications
+        </div>
+      );
     }
     const note = notifs.map((eachNotification) => {
       console.log(eachNotification);
       return (
-        <div className="Notification-each" >
+        <div className={eachNotification.status ? 'Notification-each-true' : 'Notification-each-false'} >
           {eachNotification.text}
         </div>
       );
