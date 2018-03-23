@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Pusher from 'pusher-js';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './index.css';
 
@@ -43,7 +44,7 @@ class Notification extends Component {
   render() {
     const allNotification = this.checkEmpty();
     return (
-      <div className="Notification-body">
+      <div className="Notification-body" onClick={() => this.props.history.push('/transfers')}>
         {allNotification}
       </div>
     );
@@ -54,4 +55,4 @@ Notification.propTypes = {
   notifications: PropTypes.arrayOf().isRequired,
 };
 
-export default Notification;
+export default withRouter(Notification);
