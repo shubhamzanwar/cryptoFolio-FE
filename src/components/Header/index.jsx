@@ -17,7 +17,8 @@ class Header extends Component {
     };
   }
   componentDidMount() {
-    let numberNotifications = 0;
+    let { numberNotifications } = this.state;
+    console.log('nu', numberNotifications);
     const authToken = window.localStorage.getItem('cryptotoken');
     fetch('/notification', {
       method: 'GET',
@@ -49,10 +50,13 @@ class Header extends Component {
         channel.bind('my-event', (data2) => {
           if (data2.name === window.localStorage.getItem('cryptousername')) {
             notifications.unshift(data2);
+            const noNotifs = this.state.numberNotifications;
             window.localStorage.setItem('cryptoNotifications', JSON.stringify(notifications));
+            console.log('notification number changed', noNotifs);
+
             this.setState({
               notifications,
-              numberNotifications: numberNotifications + 1,
+              numberNotifications: noNotifs + 1,
             });
           }
         });
