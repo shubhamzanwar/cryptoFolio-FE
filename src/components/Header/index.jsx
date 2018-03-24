@@ -13,9 +13,11 @@ class Header extends Component {
       showNotification: false,
       loginButton: false,
       notifications: [],
+      numberNotifications: 0,
     };
   }
   componentDidMount() {
+    let numberNotifications = 0;
     const authToken = window.localStorage.getItem('cryptotoken');
     fetch('/notification', {
       method: 'GET',
@@ -32,6 +34,12 @@ class Header extends Component {
           notifications.push(JSON.parse(window.localStorage.getItem('cryptoNotifications')));
           notifications = notifications[0];
           console.log(notifications);
+          numberNotifications = notifications.reduce((accumulator, currentNotif) => {
+            if (currentNotif.status === false) {
+              accumulator += 1;
+            }
+            return accumulator;
+          }, 0);
         }
         const pusher = new Pusher('2f14d98336c0adcbc97b', {
           cluster: 'ap2',
@@ -41,15 +49,23 @@ class Header extends Component {
         channel.bind('my-event', (data2) => {
           if (data2.name === window.localStorage.getItem('cryptousername')) {
             notifications.unshift(data2);
+            window.localStorage.setItem('cryptoNotifications', JSON.stringify(notifications));
             this.setState({
               notifications,
+              numberNotifications: numberNotifications + 1,
             });
           }
         });
         this.setState({
           notifications,
+          numberNotifications,
         });
       });
+  }
+  notificationNumberChange=() => {
+    this.setState({
+      numberNotifications: 0,
+    });
   }
   logout() {
     window.localStorage.setItem('cryptologgedin', false);
@@ -125,10 +141,13 @@ class Header extends Component {
                 onClick={() => this.toggleNotifications()}
               >
                 <i className="material-icons">notifications_none</i>
-                <span className="Header-notification-number">{this.state.notifications.length}</span>
+                <span className="Header-notification-number">{this.state.numberNotifications}</span>
                 <div className="Header-notification-body">
                   {this.state.showNotification ?
-                    <Notification notifications={this.state.notifications} />
+                    <Notification
+                      notificationNumberChange={() => this.notificationNumberChange()}
+                      notifications={this.state.notifications}
+                    />
                   : ''
                 }
                 </div>

@@ -20,13 +20,21 @@ class Notification extends Component {
     });
     console.log('inside did mount after setState in notification');
   }
+  componentWillUnmount() {
+    const notifications = this.state.notifications;
+    this.props.notificationNumberChange();
+    const updateNotifications = notifications.map((eachNotification) => {
+      eachNotification.status = true;
+      return eachNotification;
+    });
+  }
   checkEmpty = () => {
     console.log('inside checkempty');
     const notifs = this.state.notifications;
 
     if (notifs.length === 0) {
       return (
-        <div className="Notification-each-false">
+        <div className="Notification-each-true">
      No New Notifications
         </div>
       );
