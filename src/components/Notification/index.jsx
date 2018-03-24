@@ -14,6 +14,7 @@ class Notification extends Component {
   componentDidMount() {
     console.log('inside did mount in notification');
     const { notifications } = this.props;
+
     console.log('notifications in notifiaction', notifications);
     this.setState({
       notifications,
