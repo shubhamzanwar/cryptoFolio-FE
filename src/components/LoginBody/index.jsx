@@ -29,8 +29,8 @@ class LoginBody extends Component {
       },
     }).then(data => data.json())
       .then((data) => {
-        console.log(data);
         window.localStorage.setItem('cryptoNotifications', JSON.stringify(data));
+        (this.props.history).push('/');
       });
   }
   login(email, password) {
@@ -50,7 +50,7 @@ class LoginBody extends Component {
             window.localStorage.setItem('cryptousername', response.data.username);
             window.localStorage.setItem('cryptologgedin', true);
             this.getNotifications();
-            (this.props.history).push('/');
+
             break;
 
           default: this.setState({
