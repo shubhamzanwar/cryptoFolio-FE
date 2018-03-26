@@ -39,7 +39,7 @@ class TransfersBody extends Component {
   componentWillMount() {
     const isLoggedinUser = window.localStorage.getItem('cryptologgedin');
     if (isLoggedinUser === 'false') {
-      (this.props.history).push('/login');
+      (this.props.history).push('/login', { message: 'Please login to continue' });
     }
     this.fetchTransactions();
   }
@@ -70,7 +70,7 @@ class TransfersBody extends Component {
           window.localStorage.setItem('cryptotoken', null);
           window.localStorage.setItem('cryptousername', null);
           window.localStorage.setItem('cryptologgedin', false);
-          this.props.history.push('/');
+          this.props.history.push('/login', { message: 'Please login to continue' });
         }
       });
   }
