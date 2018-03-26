@@ -43,7 +43,7 @@ class TransfersTable extends Component {
                       (this.props.type === 'requestToMe')
                     ? (transfer.status === 2)
                       ? <td className="TransferBody-table-row-td">Rejected</td>
-                      : <td className="TransferBody-table-row-td"><input type="submit" className="approve-transaction" value="Approve" onClick={() => { this.props.requestOTP(transfer.from.id, transfer.id, transfer.quantity, transfer.coin.symbol); }} /><input type="submit" className="reject-transaction" value="Decline" onClick={() => { this.props.decline(transfer.from, transfer.id); }} /></td>
+                      : <td className="TransferBody-table-row-td"><input type="submit" className="approve-transaction" value="Approve" onClick={() => { this.props.requestOTP(transfer.from.id, transfer.from.fullName, transfer.to.id, transfer.id, transfer.quantity, transfer.coin.symbol); }} /><input type="submit" className="reject-transaction" value="Decline" onClick={() => { this.props.decline(transfer.from, transfer.id); }} /></td>
                     : (this.props.type === 'requestedByMe') ? (transfer.status === 2) ? <td className="TransferBody-table-row-td">Rejected</td> : <td>Pending</td> : ''
                     }
                   </tr>
