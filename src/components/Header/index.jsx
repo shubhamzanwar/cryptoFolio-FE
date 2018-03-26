@@ -17,56 +17,39 @@ class Header extends Component {
     };
   }
   componentDidMount() {
-    let { numberNotifications } = this.state;
-    console.log('nu', numberNotifications);
-    const authToken = window.localStorage.getItem('cryptotoken');
-    fetch('/notification', {
-      method: 'GET',
-      headers: {
-        authtoken: authToken,
-      },
-    }).then(data => data.json())
-      .then((data) => {
-        console.log(data);
-        window.localStorage.setItem('cryptoNotifications', JSON.stringify(data));
-      }).then(() => {
-        let notifications = [];
-        if (JSON.parse(window.localStorage.getItem('cryptoNotifications'))[0]) {
-          notifications.push(JSON.parse(window.localStorage.getItem('cryptoNotifications')));
-          notifications = notifications[0];
-          console.log(notifications);
-          numberNotifications = notifications.reduce((accumulator, currentNotif) => {
-            if (currentNotif.status === false) {
-              accumulator += 1;
-            }
-            return accumulator;
-          }, 0);
-        }
-        const pusher = new Pusher('2f14d98336c0adcbc97b', {
-          cluster: 'ap2',
-          encrypted: true,
-        });
-        const channel = pusher.subscribe('my-channel');
-        channel.bind('my-event', (data2) => {
-          if (data2.name === window.localStorage.getItem('cryptousername')) {
-            notifications.unshift(data2);
-            const noNotifs = this.state.numberNotifications;
-            window.localStorage.setItem('cryptoNotifications', JSON.stringify(notifications));
-            console.log('notification number changed', noNotifs);
-
-            this.setState({
-              notifications,
-              numberNotifications: noNotifs + 1,
-            });
-          }
-        });
+    const pusher = new Pusher('2f14d98336c0adcbc97b', {
+      cluster: 'ap2',
+      encrypted: true,
+    });
+    const channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', (data2) => {
+      if (data2.name === window.localStorage.getItem('cryptousername')) {
+        const notifications = JSON.parse(window.localStorage.getItem('cryptoNotifications'));
+        notifications.unshift(data2);
+        const noNotifs = this.state.numberNotifications;
+        window.localStorage.setItem('cryptoNotifications', JSON.stringify(notifications));
         this.setState({
           notifications,
-          numberNotifications,
+          numberNotifications: noNotifs + 1,
         });
-      });
+      }
+    });
   }
-  notificationNumberChange=() => {
+  setNotification = () => {
+    let { numberNotifications } = this.state;
+    const notifications = JSON.parse(window.localStorage.getItem('cryptoNotifications'));
+    numberNotifications = notifications.reduce((accumulator, currentNotif) => {
+      if (currentNotif.status === false) {
+        accumulator += 1;
+      }
+      return accumulator;
+    }, 0);
+    this.setState({
+      notifications,
+      numberNotifications,
+    });
+  }
+  notificationNumberChange =() => {
     this.setState({
       numberNotifications: 0,
     });
@@ -88,6 +71,7 @@ class Header extends Component {
     this.setState({
       showNotification: !this.state.showNotification,
       loginButton: false,
+      numberNotifications: 0,
     });
     if (this.state.showNotification === false) {
       fetch('/notification', {
@@ -95,10 +79,29 @@ class Header extends Component {
         headers: {
           authtoken: window.localStorage.getItem('cryptotoken'),
         },
-      });
+      })
+        .then(() => {
+          const { notifications } = this.state;
+          return notifications.map((eachNotification) => {
+            const localNotification = eachNotification;
+            localNotification.status = true;
+            return localNotification;
+          });
+        })
+        .then((notifications) => {
+          window.localStorage.setItem('cryptoNotifications', JSON.stringify(notifications));
+        });
     }
   }
+
   render() {
+    if (
+      JSON.parse(window.localStorage.getItem('cryptoNotifications')) &&
+      JSON.parse(window.localStorage.getItem('cryptoNotifications')).message !== 'Token Expired' &&
+      this.state.notifications.length === 0
+    ) {
+      this.setNotification();
+    }
     return (
       <header className="Header">
         <div className="Header-container">
@@ -145,7 +148,10 @@ class Header extends Component {
                 onClick={() => this.toggleNotifications()}
               >
                 <i className="material-icons">notifications_none</i>
-                <span className="Header-notification-number">{this.state.numberNotifications}</span>
+                {this.state.numberNotifications !== 0 ?
+                  <span className="Header-notification-number">{this.state.numberNotifications}</span>
+                :
+                ''}
                 <div className="Header-notification-body">
                   {this.state.showNotification ?
                     <Notification
