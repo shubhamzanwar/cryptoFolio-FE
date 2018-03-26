@@ -116,14 +116,13 @@ class Portfolio extends Component {
         this.setState({
           userTransactions: groupTransactionsByCoin(response),
         });
-      }).catch((err) => {
-        if (err.code === 401) {
-          window.localStorage.setItem('cryptotoken', null);
-          window.localStorage.setItem('cryptousername', null);
-          window.localStorage.setItem('cryptologgedin', false);
-          this.forceUpdate();
-          this.props.history.push('/login', { message: 'Please login to continue' });
-        }
+      }).catch(() => {
+        window.localStorage.setItem('cryptotoken', null);
+        window.localStorage.setItem('cryptousername', null);
+        window.localStorage.setItem('cryptologgedin', false);
+        window.localStorage.setItem('cryptoNotifications', null);
+        this.forceUpdate();
+        this.props.history.push('/login', { message: 'Please login to continue' });
       });
   }
 
