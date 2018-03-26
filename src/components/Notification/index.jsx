@@ -12,14 +12,11 @@ class Notification extends Component {
     };
   }
   componentDidMount() {
-    console.log('inside did mount in notification');
     const { notifications } = this.props;
 
-    console.log('notifications in notifiaction', notifications);
     this.setState({
       notifications,
     });
-    console.log('inside did mount after setState in notification');
   }
   componentWillUnmount() {
     const notifications = this.state.notifications;
@@ -30,7 +27,6 @@ class Notification extends Component {
     });
   }
   checkEmpty = () => {
-    console.log('inside checkempty');
     const notifs = this.state.notifications;
 
     if (notifs.length === 0) {
@@ -40,14 +36,11 @@ class Notification extends Component {
         </div>
       );
     }
-    const note = notifs.map((eachNotification) => {
-      console.log(eachNotification);
-      return (
-        <div className={eachNotification.status ? 'Notification-each-true' : 'Notification-each-false'} >
-          {eachNotification.text}
-        </div>
-      );
-    });
+    const note = notifs.map(eachNotification => (
+      <div className={eachNotification.status ? 'Notification-each-true' : 'Notification-each-false'} >
+        {eachNotification.text}
+      </div>
+    ));
     return note;
   }
   render() {
