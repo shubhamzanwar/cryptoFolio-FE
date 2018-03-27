@@ -18,7 +18,7 @@ class MyCoins extends Component {
             <tr>
               <th className="MyCoins-table-header-th">Coin</th>
               <th className="MyCoins-table-header-th">Name</th>
-              <th className="MyCoins-table-header-th">Remaining Quantity</th>
+              <th className="MyCoins-table-header-th">Quantity</th>
               <th className="MyCoins-table-header-th">Total Invested</th>
               <th className="MyCoins-table-header-th">Total Sold</th>
               <th className="MyCoins-table-header-th">Current Value</th>
