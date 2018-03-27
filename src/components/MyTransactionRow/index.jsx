@@ -55,13 +55,22 @@ render = () => (
     <td className="MyTransactionCoin-table-row-td">{this.props.index}</td>
     <td className="MyTransactionCoin-table-row-td">{Math.abs(this.state.quantity)}</td>
     <td className="MyTransactionCoin-table-row-td">$ {this.state.price}</td>
-    <td className="MyTransactionCoin-table-row-td">{this.state.quantity > 0 ? 'Purchased' : 'Sold'}</td>
-    <td
-      className="MyTransactionCoin-table-row-td-EditCoin"
-      onClick={() => { this.onOpenModal(); }}
-    >
-      <i className="far fa-edit" />
-    </td>
+    <td className="MyTransactionCoin-table-row-td">{this.state.quantity > 0 ? this.state.price === 0 ? 'Transfered' : 'Purchased' : 'Sold'}</td>
+    {this.state.price !== 0 ?
+      <td
+        className="MyTransactionCoin-table-row-td-EditCoin"
+        onClick={() => { this.onOpenModal(); }}
+      >
+        <i className="far fa-edit" />
+      </td>
+    :
+      <td
+        className="MyTransactionCoin-table-row-td-EditCoin"
+        onClick={() => { alert('Can\'t Edit Transfer Transaction'); }}
+      >
+        <i className="far fa-edit" />
+      </td>
+    }
   </tr>
 );
 }

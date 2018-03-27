@@ -1,6 +1,8 @@
 const summarizeTransactions = (transactionsObject) => {
+  const userId = Number(window.localStorage.getItem('cryptouserid'));
   let totalInvested = 0;
   let totalSold = 0;
+
   const transactions = Object.values(transactionsObject).map((coinTransactions) => {
     const { coinName } = coinTransactions[0];
     const { coinSymbol } = coinTransactions[0];
@@ -9,10 +11,13 @@ const summarizeTransactions = (transactionsObject) => {
     let sold = 0;
 
     coinTransactions.forEach((transaction) => {
-      quantity += transaction.quantity;
-      if (transaction.quantity > 0) {
+      if (transaction.quantity > 0 && transaction.toId === userId) {
+        quantity += transaction.quantity;
         invested += transaction.quantity * transaction.price;
-      } else sold += transaction.quantity * transaction.price * -1;
+      } else {
+        quantity -= Math.abs(transaction.quantity);
+        sold += transaction.quantity * transaction.price * -1;
+      }
     });
     totalInvested += invested;
     totalSold += sold;
