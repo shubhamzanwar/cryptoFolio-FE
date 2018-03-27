@@ -98,9 +98,11 @@ class Header extends Component {
   render() {
     if (
       JSON.parse(window.localStorage.getItem('cryptoNotifications')) &&
+      JSON.parse(window.localStorage.getItem('cryptoNotifications')).length !== 0 &&
       JSON.parse(window.localStorage.getItem('cryptoNotifications')).message !== 'Token Expired' &&
       this.state.notifications.length === 0
     ) {
+      console.log(window.localStorage.getItem('cryptoNotifications'));
       this.setNotification();
     }
     return (
