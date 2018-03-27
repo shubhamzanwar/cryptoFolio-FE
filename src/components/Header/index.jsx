@@ -59,6 +59,10 @@ class Header extends Component {
     window.localStorage.setItem('cryptotoken', null);
     window.localStorage.setItem('cryptousername', null);
     window.localStorage.setItem('cryptoNotifications', null);
+    this.setState({
+      notifications: [],
+      numberNotifications: 0,
+    });
     this.forceUpdate();
     this.props.history.push('/');
   }
