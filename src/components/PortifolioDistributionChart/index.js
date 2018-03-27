@@ -27,7 +27,14 @@ class PortfolioDistributionChart extends Component {
           dataLabels: {
             enabled: false,
           },
+          showInLegend: true,
           borderWidth: 0,
+        },
+      },
+      legend: {
+        itemStyle: {
+          color: '#fff',
+          fontWeight: 'bold',
         },
       },
       series: [{
