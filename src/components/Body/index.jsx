@@ -22,10 +22,11 @@ class Body extends Component {
         prices: priceData.data,
       });
     });
+    this.interval = null;
   }
 
   componentDidMount() {
-    setInterval(
+    this.interval = setInterval(
       () => {
         axios.get('/prices').then((priceData) => {
           this.setState({
@@ -36,7 +37,9 @@ class Body extends Component {
       , 5000,
     );
   }
-
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
   setSelectedCoin(sym) {
     this.setState({
       selectedCoin: sym,

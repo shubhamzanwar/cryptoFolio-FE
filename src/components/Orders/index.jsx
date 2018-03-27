@@ -19,6 +19,9 @@ class Orders extends React.Component {
       this.interval = setInterval(() => this.getdata(nextProps.coin), 5000);
     }
   }
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
 
   getdata(coin) {
     axios.get(`/orders/${coin}`).then((data) => {
