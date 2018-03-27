@@ -20,6 +20,19 @@ class LoginBody extends Component {
       });
     }
   }
+  getNotifications=() => {
+    const authToken = window.localStorage.getItem('cryptotoken');
+    fetch('/notification', {
+      method: 'GET',
+      headers: {
+        authtoken: authToken,
+      },
+    }).then(data => data.json())
+      .then((data) => {
+        window.localStorage.setItem('cryptoNotifications', JSON.stringify(data));
+        (this.props.history).push('/');
+      });
+  }
   login(email, password) {
     const options = {
       url: '/login',
@@ -37,7 +50,8 @@ class LoginBody extends Component {
             window.localStorage.setItem('cryptouserid', response.data.userId);
             window.localStorage.setItem('cryptousername', response.data.username);
             window.localStorage.setItem('cryptologgedin', true);
-            (this.props.history).push('/');
+            this.getNotifications();
+
             break;
 
           default: this.setState({

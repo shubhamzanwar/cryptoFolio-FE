@@ -38,7 +38,7 @@ class OTPVerificationModal extends Component {
           <button
             className="TransferCoins-pay-button"
             onClick={() => {
-              this.props.approve(this.state.otp, this.props.fromId, this.props.transactionId);
+              this.props.approve(this.state.otp, this.props.fromId, this.props.fromFullName, this.props.toId, this.props.transactionId);
             }}
           >
             Verify
@@ -54,6 +54,8 @@ OTPVerificationModal.propTypes = {
   onCloseModal: PropTypes.func.isRequired,
   state: PropTypes.string.isRequired,
   fromId: PropTypes.number.isRequired,
+  fromFullName: PropTypes.string.isRequired,
+  toId: PropTypes.number.isRequired,
   transactionId: PropTypes.number.isRequired,
   approve: PropTypes.func.isRequired,
 };

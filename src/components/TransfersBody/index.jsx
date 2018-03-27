@@ -30,6 +30,8 @@ class TransfersBody extends Component {
       coins: {},
       transactionId: null,
       from: null,
+      fromFullName: null,
+      toId: null,
       validCoins: {},
     };
   }
@@ -37,7 +39,7 @@ class TransfersBody extends Component {
   componentWillMount() {
     const isLoggedinUser = window.localStorage.getItem('cryptologgedin');
     if (isLoggedinUser === 'false') {
-      (this.props.history).push('/login');
+      (this.props.history).push('/login', { message: 'Please login to continue' });
     }
     this.fetchTransactions();
   }
@@ -68,7 +70,7 @@ class TransfersBody extends Component {
           window.localStorage.setItem('cryptotoken', null);
           window.localStorage.setItem('cryptousername', null);
           window.localStorage.setItem('cryptologgedin', false);
-          this.props.history.push('/');
+          this.props.history.push('/login', { message: 'Please login to continue' });
         }
       });
   }
@@ -80,33 +82,39 @@ class TransfersBody extends Component {
     });
   }
 
-  toggleOTP(from, transactionId) {
+  toggleOTP(from, fromFullName, toId, transactionId) {
     const otpState = this.state.otpModal;
     this.setState({
       otpModal: !otpState,
       transactionId,
       from,
+      fromFullName,
+      toId,
     });
   }
 
-  requestOTP(from, transactionId, quantity, coinSymbol) {
+  requestOTP(from, fromFullName, toId, transactionId, quantity, coinSymbol) {
     if (this.state.validCoins[coinSymbol] === undefined) {
-      return alert('You do not have the requested coins in your portfolio');
+      alert('You do not have the requested coins in your portfolio');
+      return;
     }
     if (this.state.validCoins[coinSymbol].quantity < quantity) {
-      return alert('You have insufficient coins');
+      alert('You have insufficient coins');
+      return;
     }
     const authtoken = window.localStorage.getItem('cryptotoken');
     fetch('/otp', {
       method: 'PUT',
       headers: { authtoken },
     }).then(() => {
-      this.toggleOTP(from, transactionId);
+      this.toggleOTP(from, fromFullName, toId, transactionId);
     });
   }
 
-  approve(otp, userID, transactionId) {
+  approve(otp, userID, fromFullName, toId, transactionId) {
     const payload = {
+      fromName: fromFullName,
+      toId,
       fromId: userID,
       transactionId,
       status: 0,
@@ -161,11 +169,21 @@ class TransfersBody extends Component {
         });
       });
   }
-
-  decline(user, transactionId) {
+  // otp, userID,  transactionId
+  decline(user, transactionId, fromFullName, toId) {
+    // const payload = {
+    //   fromName: fromFullName,
+    //   toId,
+    //   fromId: userID,
+    //   transactionId,
+    //   status: 2,
+    //   otp,
+    // };
     const payload = {
       fromId: user.id,
       transactionId,
+      fromName: fromFullName,
+      toId,
       status: 2,
     };
     fetch('/transfer', {
@@ -191,7 +209,9 @@ class TransfersBody extends Component {
           onCloseModal={() => this.toggleOTP()}
           transactionId={this.state.transactionId}
           fromId={this.state.from}
-          approve={(otp, fromId, transactionId) => this.approve(otp, fromId, transactionId)}
+          fromFullName={this.state.fromFullName}
+          toId={this.state.toId}
+          approve={(otp, fromId, fromFullName, toId, transactionId) => this.approve(otp, fromId, fromFullName, toId, transactionId)}
         />
         <div className="TransfersBody-make-transfer">
           <h3 className="TransfersBody-make-transfer-heading">
@@ -213,10 +233,9 @@ class TransfersBody extends Component {
           }
           {
             (this.state.requestToMe.length > 0) ? <TransfersTable
-              decline={(user, transactionId) => this.decline(user, transactionId)}
+              decline={(user, transactionId, fullName, toId) => this.decline(user, transactionId, fullName, toId)}
               transfers={this.state.requestToMe}
-              // toggleOTP={transactionId => this.toggleOTP(transactionId)}
-              requestOTP={(from, transactionId, quantity, coinSymbol) => { this.requestOTP(from, transactionId, quantity, coinSymbol); }}
+              requestOTP={(from, fromFullName, toId, transactionId, quantity, coinSymbol) => { this.requestOTP(from, fromFullName, toId, transactionId, quantity, coinSymbol); }}
               type="requestToMe"
             /> : ''
           }
