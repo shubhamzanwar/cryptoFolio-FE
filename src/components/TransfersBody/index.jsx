@@ -95,10 +95,12 @@ class TransfersBody extends Component {
 
   requestOTP(from, fromFullName, toId, transactionId, quantity, coinSymbol) {
     if (this.state.validCoins[coinSymbol] === undefined) {
-      return alert('You do not have the requested coins in your portfolio');
+      alert('You do not have the requested coins in your portfolio');
+      return;
     }
     if (this.state.validCoins[coinSymbol].quantity < quantity) {
-      return alert('You have insufficient coins');
+      alert('You have insufficient coins');
+      return;
     }
     const authtoken = window.localStorage.getItem('cryptotoken');
     fetch('/otp', {
@@ -167,11 +169,21 @@ class TransfersBody extends Component {
         });
       });
   }
-
-  decline(user, transactionId) {
+  // otp, userID,  transactionId
+  decline(user, transactionId, fromFullName, toId) {
+    // const payload = {
+    //   fromName: fromFullName,
+    //   toId,
+    //   fromId: userID,
+    //   transactionId,
+    //   status: 2,
+    //   otp,
+    // };
     const payload = {
       fromId: user.id,
       transactionId,
+      fromName: fromFullName,
+      toId,
       status: 2,
     };
     fetch('/transfer', {
@@ -221,9 +233,8 @@ class TransfersBody extends Component {
           }
           {
             (this.state.requestToMe.length > 0) ? <TransfersTable
-              decline={(user, transactionId) => this.decline(user, transactionId)}
+              decline={(user, transactionId, fullName, toId) => this.decline(user, transactionId, fullName, toId)}
               transfers={this.state.requestToMe}
-              // toggleOTP={transactionId => this.toggleOTP(transactionId)}
               requestOTP={(from, fromFullName, toId, transactionId, quantity, coinSymbol) => { this.requestOTP(from, fromFullName, toId, transactionId, quantity, coinSymbol); }}
               type="requestToMe"
             /> : ''
