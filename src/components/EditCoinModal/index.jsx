@@ -68,7 +68,17 @@ class EditCoinModal extends React.Component {
 
    render() {
      return (
-       <Modal open={this.props.state} onClose={this.onCloseModal} little styles={{ modal: { backgroundColor: 'rgb(255, 255, 255)', borderRadius: '10px' } }}>
+       <Modal
+         open={this.props.state}
+         onClose={this.onCloseModal}
+         little
+         styles={
+        {
+          modal: {
+            backgroundColor: 'rgb(14, 39, 89)', borderRadius: '10px', minWidth: '300px', color: 'white',
+          },
+        }
+      }>
          <h2 className="editCoinModal_header">Edit coin</h2>
          <form className="editCoinModal_editCoinForm">
            <label
@@ -81,7 +91,6 @@ class EditCoinModal extends React.Component {
              type="number"
              step="any"
              placeholder={this.props.data.price}
-
              name="price"
              onChange={(e) => { this.onEditPrice(e); }}
            />
@@ -95,7 +104,6 @@ class EditCoinModal extends React.Component {
              id="coinPurchasedPrice"
              type="number"
              placeholder={this.props.data.quantity}
-
              name="quantity"
              step="any"
              onChange={(e) => { this.onEditQuantity(e); }}
