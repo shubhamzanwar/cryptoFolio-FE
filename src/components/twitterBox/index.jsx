@@ -15,6 +15,9 @@ class TwitterBox extends Component {
   }
   componentWillUpdate(nextProps) {
     if (nextProps.coin !== this.props.coin) {
+      this.setState({
+        tweets: [],
+      });
       this.getTweets(nextProps.coin);
     }
   }
