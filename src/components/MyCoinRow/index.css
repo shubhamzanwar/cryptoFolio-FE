@@ -25,3 +25,11 @@
     border-width: 1px;
     border-color: rgb(74,172,233);
 }
+.MyCoin-table-row-loader{
+    background: url('./loader2.svg');
+    background-position: center;
+    background-size: cover;
+    /* min-height: 300px; */
+    /* width: 100%; */
+    height: 20px;
+}
