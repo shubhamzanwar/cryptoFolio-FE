@@ -30,7 +30,7 @@ class Investment extends Component {
               Current Value<br />
               <span
                 className={this.props.currentValue < this.props.invested ? 'Investment-Current-span-loss' : 'Investment-Current-span-profit'}
-              >{ isNaN(this.props.currentValue) ? 'Calculating' : `$ ${(this.props.currentValue).toFixed(4)}`}
+              >{ isNaN(this.props.currentValue) ? <div className="Investment-loader" /> : `$ ${(this.props.currentValue).toFixed(4)}`}
               </span>
             </p>
           </div>

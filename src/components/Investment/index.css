@@ -79,3 +79,11 @@
     align-items: center;
     border-radius: 5px;
   }
+
+.Investment-loader{
+    margin-top: 5px;
+    background: url('../MyCoinRow/loader2.svg');
+    background-position: center;
+    background-size: cover;
+    height: 20px;
+}
