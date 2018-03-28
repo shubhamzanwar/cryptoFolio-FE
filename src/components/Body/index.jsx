@@ -16,10 +16,12 @@ class Body extends Component {
       selectedCoin: 'BTC',
       prices: [],
       displayType: 'current',
+      loading: true,
     };
     axios.get('/prices').then((priceData) => {
       this.setState({
         prices: priceData.data,
+        loading: false,
       });
     });
     this.interval = null;
@@ -62,6 +64,7 @@ class Body extends Component {
             select={sym => this.setSelectedCoin(sym)}
             row={this.state.selectedCoin}
             prices={this.state.prices}
+            loading={this.state.loading}
           />
         </div>
         <div className="Body-orders-and-twitter-container">
