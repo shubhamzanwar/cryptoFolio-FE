@@ -12,7 +12,18 @@ class AddCoinModal extends React.Component {
     } else { this.props.removeCoin(e); }
   };
   render=() => (
-    <Modal open={this.props.state} onClose={this.props.onCloseModal} little styles={{ modal: { backgroundColor: 'rgb(255, 255, 255)', borderRadius: '10px' } }}>
+    <Modal
+      open={this.props.state}
+      onClose={this.props.onCloseModal}
+      little
+      styles={
+        {
+          modal: {
+            backgroundColor: 'rgb(14, 39, 89)', borderRadius: '10px', minWidth: '300px', color: 'white',
+          },
+        }
+      }
+    >
       <h2 className="addCoinModal_header">{this.props.modifyType === 'addCoin' ? 'Add Coin' : 'Remove Coin'}</h2>
       <form className="addCoinModal_addCoinForm" onSubmit={e => this.onSubmit(e)}>
         <label className="addCoinModal_addCoinForm_input_label" htmlFor="coindName">Coin Name
