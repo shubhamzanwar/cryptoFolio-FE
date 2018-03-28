@@ -35,3 +35,8 @@
 .Chart-Tabs-Button{
     align-self: flex-start;
 }
+
+.vertical-flex{
+    display: flex;
+    flex-direction: column;
+}

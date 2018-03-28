@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import Loader from '../Loader';
 import './index.css';
 
 class Orders extends React.Component {
@@ -32,7 +33,7 @@ class Orders extends React.Component {
   }
   render() {
     if (Object.keys(this.state.data).length === 0) {
-      return <p>Loading</p>;
+      return <div className="Orders-div"><Loader /></div>;
     }
     const dataToBeRendered = this.state.data.data[this.props.keys];
     const table = dataToBeRendered.map(row =>

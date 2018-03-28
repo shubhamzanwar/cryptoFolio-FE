@@ -1,0 +1,19 @@
+.loader{
+    flex-grow: 1;
+    /* height: 100%; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-div{
+    background: url('loader.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 140px;
+    width: 140px;
+    border-radius: 100%;
+    overflow: hidden;
+}
