@@ -27,7 +27,6 @@
     color: white;
 }
 
-
 .register-button-a,
 .login-button-a
 {
@@ -67,13 +66,14 @@
 }
 .Header-notification-body{
     width:100%;
-    margin-top:10px;
-    min-width: 200px;
+    width: 170px;
     border-radius: 5px;
     position:absolute;
+    background: rgb(33,49,71);
+    box-shadow: -1px 1px 10px 0.5px #111;
     transform: translateX(-45%);
-    background: black;
-    align-self: center;
+    top: 45px;
+    overflow: hidden;
 }
 .Header-notification-number{
     width: 15px;
@@ -92,11 +92,11 @@
     min-width: 100px;
     border-radius: 5px;
     position:absolute;
-    top: 40px;
+    top: 60px;
     right: 0;
-    background: white;
+    background: rgb(33,49,71);
+    box-shadow: -1px 1px 10px 0.5px #111;
     align-self: center;
-
 }
 .Header-notification{
     padding-right: 50px;
@@ -108,14 +108,14 @@
     display: flex;
 }
 
-/* .Header-user:hover > .Header-logout-link{
-    display:block;
-} */
-
 .Header-logout-button{
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    padding: 3px 0;
     width:100%;
     background: none;
-    color:black;    
     outline: none;
     border: none;
     display: flex;
@@ -124,15 +124,24 @@
 }
 
 .Header-logout-button:hover{
-    color: rgb(14,39,89);
     cursor: pointer;
 }
 
+.display-xs{
+    display: none;
+}
+.Header-notification{
+    cursor: pointer;
+}
+
+.Header-username-container{
+    cursor: pointer;
+}
 
 @media screen and (max-width: 768px) {
     .Header-container{
         width: 100%;
-        padding-left: 15px;
+        padding: 0 15px;
     }
     .Header-heading{
         font-size: 15px;
@@ -148,5 +157,17 @@
     {
         font-size: 15px;
         padding: 0;
+    }
+    .hidden-xs{
+        display: none;
+    }
+    .display-xs{
+        display: flex;
+    }
+    .links-divider{
+        padding: 0;
+        margin: 0;
+        width: 80%;
+        margin: auto;
     }
 }

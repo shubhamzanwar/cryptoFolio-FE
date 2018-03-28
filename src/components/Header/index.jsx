@@ -106,7 +106,6 @@ class Header extends Component {
       JSON.parse(window.localStorage.getItem('cryptoNotifications')).message !== 'Token Expired' &&
       this.state.notifications.length === 0
     ) {
-      console.log(window.localStorage.getItem('cryptoNotifications'));
       this.setNotification();
     }
     return (
@@ -116,12 +115,12 @@ class Header extends Component {
             <h3
               className="Header-heading"
             >
-              <i className="fa fa-briefcase" aria-hidden="true" /> Crypto Folio
+              <i className="fa fa-briefcase" aria-hidden="true" /> <span className="hidden-xs">Crypto Folio</span>
             </h3>
           </Link>
           {
           window.localStorage.getItem('cryptologgedin') === 'true' ?
-            <div className="Header-button-container">
+            <div className="Header-button-container hidden-xs">
               <NavLink
                 className="register-button-a"
                 activeClassName="Header-button-selected"
@@ -159,23 +158,38 @@ class Header extends Component {
                   <span className="Header-notification-number">{this.state.numberNotifications}</span>
                 :
                 ''}
-                <div className="Header-notification-body">
-                  {this.state.showNotification ?
+                {this.state.showNotification ?
+                  <div className="Header-notification-body">
                     <Notification
                       notificationNumberChange={() => this.notificationNumberChange()}
                       notifications={this.state.notifications}
                     />
-                  : ''
+
+                  </div>
+                    : ''
                 }
-                </div>
               </span>
               <p
+                className="Header-username-container"
                 onClick={() => this.toggleLogin()}
               >
-                {window.localStorage.getItem('cryptousername')}
-                <i className="fas fa-caret-down" />
+                {window.localStorage.getItem('cryptousername')} <i className="fas fa-caret-down" />
                 {this.state.loginButton ?
                   <div className="Header-logout-link">
+                    <NavLink
+                      className="Header-logout-button display-xs"
+                      to="/portfolio"
+                    >
+                      <p>Portfolio</p><i className="fab fa-bitcoin" />
+                    </NavLink>
+                    <hr className="links-divider display-xs" />
+                    <NavLink
+                      className="Header-logout-button display-xs"
+                      to="/transfers"
+                    >
+                      <p>Transfers</p><i className="fas fa-exchange-alt" />
+                    </NavLink>
+                    <hr className="links-divider display-xs" />
                     <button
                       className="Header-logout-button"
                       onClick={() => this.logout()}

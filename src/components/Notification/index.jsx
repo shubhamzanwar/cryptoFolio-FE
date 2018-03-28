@@ -19,7 +19,7 @@ class Notification extends Component {
     });
   }
   componentWillUnmount() {
-    const notifications = this.state.notifications;
+    const { notifications } = this.state;
     this.props.notificationNumberChange();
     const updateNotifications = notifications.map((eachNotification) => {
       eachNotification.status = true;
@@ -32,13 +32,15 @@ class Notification extends Component {
     if (notifs.length === 0) {
       return (
         <div className="Notification-each-true">
-     No New Notifications
+          <p className="Header-notifications-text">No New Notifications</p>
+          <hr className="Header-notification-divider" />
         </div>
       );
     }
     const note = notifs.map(eachNotification => (
       <div className={eachNotification.status ? 'Notification-each-true' : 'Notification-each-false'} >
-        {eachNotification.text}
+        <p className="Header-notifications-text">{eachNotification.text}</p>
+        <hr className="Header-notification-divider" />
       </div>
     ));
     return note;
@@ -55,6 +57,10 @@ class Notification extends Component {
 
 Notification.propTypes = {
   notifications: PropTypes.arrayOf().isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+  notificationNumberChange: PropTypes.func.isRequired,
 };
 
 export default withRouter(Notification);
