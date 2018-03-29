@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-s-alert';
 import Form from '../Form';
 import './index.css';
 
@@ -24,8 +25,12 @@ class SignupBody extends Component {
     const confirmPassword = data.get('confirmpassword');
     const mobileNumbe = data.get('contact');
     if (password !== confirmPassword) {
-      this.setState({
-        error: 'Ops! Password Mismatch',
+      Alert.error('Passwords do not match', {
+        position: 'top-right',
+        effect: 'jelly',
+        customFields: {
+          button: false,
+        },
       });
     } else {
       const payload = {
@@ -42,25 +47,55 @@ class SignupBody extends Component {
         .then((response) => {
           switch (response.status) {
             case 201:
-              this.props.history.push('/login', { message: 'Registration Successfull! Please login' });
+              // this.props.history.push('/login', { message: 'Registration Successfull! Please login' });
+              Alert.success('Registration Successfull! Please login', {
+                position: 'top-right',
+                effect: 'jelly',
+                customFields: {
+                  button: true,
+                  onClick: () => this.props.history.push('/login'),
+                },
+              });
               break;
 
             case 409:
-              this.setState({
-                error: 'You are already registered',
+              Alert.info('You are already registered', {
+                position: 'top-right',
+                effect: 'jelly',
+                customFields: {
+                  button: true,
+                  onClick: () => this.props.history.push('/login'),
+                },
               });
               break;
 
             case 422:
-              this.setState({
-                error: 'Please provide correct details',
+              Alert.error('Please provide correct details', {
+                position: 'top-right',
+                effect: 'jelly',
+                customFields: {
+                  button: false,
+                },
               });
               break;
 
-            default: this.setState({
-              error: 'Sorry! some internal error occured',
+            default: Alert.error('Internal server error. Please try again', {
+              position: 'top-right',
+              effect: 'jelly',
+              customFields: {
+                button: false,
+              },
             });
           }
+        })
+        .catch(() => {
+          Alert.error('Internal server error. Please try again', {
+            position: 'top-right',
+            effect: 'jelly',
+            customFields: {
+              button: false,
+            },
+          });
         });
     }
   }
