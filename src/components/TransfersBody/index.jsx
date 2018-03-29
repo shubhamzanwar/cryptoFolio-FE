@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import SendModal from './SendModal/';
+import Alert from 'react-s-alert';
 import RequestModal from './RequestModal';
 import OTPVerificationModal from './OTPVerificationModal';
 import TransfersTable from './TransfersTable';
 import './index.css';
 import coins from '../../utils/constants/coins';
+
 
 const summarise = responses => responses.reduce((acc, curr) => {
   acc[curr.coin.symbol] = acc[curr.coin.symbol] || { id: curr.coinId, quantity: 0 };
@@ -95,11 +96,23 @@ class TransfersBody extends Component {
 
   requestOTP(from, fromFullName, toId, transactionId, quantity, coinSymbol) {
     if (this.state.validCoins[coinSymbol] === undefined) {
-      alert('You do not have the requested coins in your portfolio');
+      Alert.error('You don\'t have that coin', {
+        position: 'top-right',
+        effect: 'jelly',
+        customFields: {
+          button: false,
+        },
+      });
       return;
     }
     if (this.state.validCoins[coinSymbol].quantity < quantity) {
-      alert('You have insufficient coins');
+      Alert.error('You don\'t have enough coins', {
+        position: 'top-right',
+        effect: 'jelly',
+        customFields: {
+          button: false,
+        },
+      });
       return;
     }
     const authtoken = window.localStorage.getItem('cryptotoken');
@@ -126,9 +139,21 @@ class TransfersBody extends Component {
       headers: { authtoken: window.localStorage.getItem('cryptotoken') },
     }).then((result) => {
       if (result.status === 403) {
-        alert('Invalid OTP');
+        Alert.error('Invalid OTP', {
+          position: 'top-right',
+          effect: 'jelly',
+          customFields: {
+            button: false,
+          },
+        });
       } else {
-        alert('Transfer Successful');
+        Alert.success('Transaction complete', {
+          position: 'top-right',
+          effect: 'jelly',
+          customFields: {
+            button: false,
+          },
+        });
         this.setState({ otpModal: false });
         this.fetchTransactions();
       }
@@ -147,11 +172,6 @@ class TransfersBody extends Component {
       headers: { authtoken: window.localStorage.getItem('cryptotoken') },
     })
       .then(() => {
-        // const { coins } = this.state;
-        // coins[coin] = {
-        //   id: payload.coinId,
-        //   quantity: this.state.coins[coin].quantity - quantity,
-        // };
         this.setState({
           paymentModal: false,
           requestedByMe: [...this.state.requestedByMe, {
@@ -169,16 +189,7 @@ class TransfersBody extends Component {
         });
       });
   }
-  // otp, userID,  transactionId
   decline(user, transactionId, fromFullName, toId) {
-    // const payload = {
-    //   fromName: fromFullName,
-    //   toId,
-    //   fromId: userID,
-    //   transactionId,
-    //   status: 2,
-    //   otp,
-    // };
     const payload = {
       fromId: user.id,
       transactionId,
@@ -191,6 +202,13 @@ class TransfersBody extends Component {
       body: JSON.stringify(payload),
       headers: { authtoken: window.localStorage.getItem('cryptotoken') },
     }).then(() => {
+      Alert.info('Request Rejected', {
+        position: 'top-right',
+        effect: 'jelly',
+        customFields: {
+          button: false,
+        },
+      });
       this.fetchTransactions();
     });
   }
