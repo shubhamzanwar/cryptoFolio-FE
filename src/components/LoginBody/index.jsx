@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-s-alert';
 import axios from 'axios';
 import LoginForm from '../LoginForm';
 import './index.css';
@@ -54,14 +55,22 @@ class LoginBody extends Component {
 
             break;
 
-          default: this.setState({
-            message: 'Username or password incorrect',
+          default: Alert.error('Incorrect Username or Password', {
+            position: 'top-right',
+            effect: 'jelly',
+            customFields: {
+              button: false,
+            },
           });
         }
       })
       .catch(() => {
-        this.setState({
-          message: 'Sorry! some internal error occured',
+        Alert.error('Internal server error. Please try again', {
+          position: 'top-right',
+          effect: 'jelly',
+          customFields: {
+            button: false,
+          },
         });
       });
   }
