@@ -248,8 +248,6 @@ class Portfolio extends Component {
         />
         <div className="Portfolio-Left-Container">
           <Investment
-            invested={summarizeTransactions(this.state.userTransactions)[1]}
-            sold={summarizeTransactions(this.state.userTransactions)[2]}
             currentValue={totalCurrentPortfolioValue(this.state.currentValues, summarizeTransactions(this.state.userTransactions)[0])}
           />
           <MyCoins
