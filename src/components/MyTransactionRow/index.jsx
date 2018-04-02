@@ -55,7 +55,9 @@ render = () => (
     <td className="MyTransactionCoin-table-row-td">{this.props.index}</td>
     <td className="MyTransactionCoin-table-row-td">{Math.abs(this.state.quantity)}</td>
     <td className="MyTransactionCoin-table-row-td">$ {this.state.price}</td>
-    <td className="MyTransactionCoin-table-row-td">{this.state.quantity > 0 ? this.state.price === 0 ? 'Transfered' : 'Purchased' : 'Sold'}</td>
+    <td className="MyTransactionCoin-table-row-td">
+      {this.state.quantity > 0 ? this.state.price === 0 ? this.props.transaction.toId === Number(window.localStorage.getItem('cryptouserid')) ? 'Received' : 'Transfered' : 'Purchased' : 'Sold'}
+    </td>
     {this.state.price !== 0 ?
       <td
         className="MyTransactionCoin-table-row-td-EditCoin"
@@ -82,6 +84,7 @@ MyTransactionRow.propTypes = {
     quantity: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
+    toId: PropTypes.number.isRequired,
   }),
   onClickDelete: PropTypes.func.isRequired,
   coinName: PropTypes.string.isRequired,

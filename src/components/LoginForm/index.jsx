@@ -16,6 +16,7 @@ class LoginForm extends Component {
       <div className="LoginForm">
         <Form
           error={this.props.message}
+          errorType={this.props.messageType}
           formHeading="Login"
           buttonMessage="Login"
           submit={(e) => { this.submit(e); }}
@@ -41,6 +42,7 @@ class LoginForm extends Component {
 LoginForm.propTypes = {
   login: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
+  messageType: PropTypes.string.isRequired,
 };
 
 export default LoginForm;

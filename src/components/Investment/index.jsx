@@ -18,30 +18,10 @@ class Investment extends Component {
     return (
       <div className="Investment">
         <div className="Investment-Header">
-          <p className="Investment-Header-Title">Investment</p>
+          <p className="Investment-Header-Title">Current Value</p>
         </div>
         <div className="Investment-Body">
-          <div className="Investment-Values">
-            <p className="Investment-Invested">
-              Invested<br />
-              <span className="Investment-Invested-span">$ {this.props.invested}</span>
-            </p>
-            <p className="Investment-Current">
-              Current Value<br />
-              <span
-                className={this.props.currentValue < this.props.invested ? 'Investment-Current-span-loss' : 'Investment-Current-span-profit'}
-              >{ isNaN(this.props.currentValue) ? <div className="Investment-loader" /> : `$ ${(this.props.currentValue).toFixed(4)}`}
-              </span>
-            </p>
-          </div>
-          <div className="Investment-Graph1">
-            <div className="Investment-bar">
-              <div
-                className="Investment-progress"
-                style={progressStyle}
-              />
-            </div>
-          </div>
+          {isNaN(this.props.currentValue) ? <div className="Investment-table-row-loader" /> : `$ ${(this.props.currentValue).toFixed(4)}` }
         </div>
       </div>
     );

@@ -4,6 +4,12 @@ import './index.css';
 
 const ReactHighstock = require('react-highcharts/ReactHighstock.src');
 
+ReactHighstock.Highcharts.setOptions({
+  global: {
+    useUTC: false,
+  },
+});
+
 class Graph extends Component {
   loadChart() {
     const config = {

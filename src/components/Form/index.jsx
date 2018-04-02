@@ -13,7 +13,10 @@ class SignupBody extends Component {
               {this.props.formHeading}
             </div><br />
             {this.props.error ?
-              <ErrorMessage message={this.props.error} />
+              <ErrorMessage
+                message={this.props.error}
+                messageType={this.props.errorType}
+              />
                 : ''
               }
           </div>
@@ -44,9 +47,10 @@ SignupBody.defaultProps = {
 };
 
 SignupBody.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.objectOf,
   error: PropTypes.string,
   submit: PropTypes.func,
   buttonMessage: PropTypes.string,
   formHeading: PropTypes.string,
+  errorType: PropTypes.string.isRequired,
 };
