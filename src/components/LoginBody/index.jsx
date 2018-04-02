@@ -9,15 +9,27 @@ class LoginBody extends Component {
     super(props);
     this.state = {
       message: '',
+      messageType: 'Error',
     };
   }
   componentWillMount() {
     if (window.localStorage.getItem('cryptologgedin') === 'true') {
       this.props.history.push('/');
-    } else if (this.props.location.state && this.props.location.state.message) {
-      this.setState({
-        message: this.props.location.state.message,
-      });
+    } else {
+      if (this.props.location.state && this.props.location.state.message) {
+        this.setState({
+          message: this.props.location.state.message,
+        });
+      }
+      if (this.props.location.state && this.props.location.state.messageType === 'Success') {
+        this.setState({
+          messageType: 'Success',
+        });
+      } else {
+        this.setState({
+          messageType: 'Error',
+        });
+      }
     }
   }
   getNotifications=() => {
@@ -66,11 +78,13 @@ class LoginBody extends Component {
       });
   }
   render() {
+    console.log('login', this.state.messageType);
     return (
       <div className="LoginBody">
         <div className="LoginBody-tint">
           <LoginForm
             message={this.state.message}
+            messageType={this.state.messageType}
             login={(email, password) => this.login(email, password)}
           />
         </div>

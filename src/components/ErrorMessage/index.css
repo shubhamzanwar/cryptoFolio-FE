@@ -9,3 +9,7 @@
   margin: 15px auto;
   box-sizing: border-box;
 }
+.ErrorMessage-Success{
+  background: lightgreen;
+  border: 1px solid green;
+}
