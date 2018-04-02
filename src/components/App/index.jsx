@@ -24,7 +24,7 @@ const App = () => (
       <Route path="/transfers" component={TransfersBody} />
       <Route path="*" exact component={NotFound} />
     </Switch>
-    <Alert stack timeout="none" contentTemplate={MyCustomContentTemplate} />
+    <Alert stack timeout={3000} contentTemplate={MyCustomContentTemplate} />
   </div>
 );
 

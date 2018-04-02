@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-responsive-modal';
+import Alert from 'react-s-alert';
 import PropTypes from 'prop-types';
 import './index.css';
 
@@ -47,13 +48,21 @@ class EditCoinModal extends React.Component {
            status: '',
          });
        } else {
-         this.setState({
-           status: 'Please enter valid price and quantity',
+         Alert.error('Please enter valid quantity and price', {
+           position: 'top-right',
+           effect: 'jelly',
+           customFields: {
+             button: false,
+           },
          });
        }
      } else {
-       this.setState({
-         status: 'Please enter the price and quantity',
+       Alert.error('Please enter valid quantity and price', {
+         position: 'top-right',
+         effect: 'jelly',
+         customFields: {
+           button: false,
+         },
        });
      }
    };

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-s-alert';
 import MyCoins from '../MyCoins';
 import Investment from '../Investment';
 import PortfolioDistribution from '../PortfolioDistribution';
@@ -157,8 +158,12 @@ class Portfolio extends Component {
           });
         });
     } else {
-      this.setState({
-        response: 'Enter valid quantity and price',
+      Alert.error('Please enter valid quantity and price', {
+        position: 'top-right',
+        effect: 'jelly',
+        customFields: {
+          button: false,
+        },
       });
     }
   }
@@ -200,17 +205,29 @@ class Portfolio extends Component {
             this.onCloseAddModal();
           });
       } else if (groupedTransactions[coin]) {
-        this.setState({
-          response: 'Please re-enter since the quantity exceeds the existing quantity',
+        Alert.error('You do not have enough coins to remove', {
+          position: 'top-right',
+          effect: 'jelly',
+          customFields: {
+            button: false,
+          },
         });
       } else {
-        this.setState({
-          response: 'You do not have the coin in your portfolio',
+        Alert.error('You do not have the coin in your portfolio', {
+          position: 'top-right',
+          effect: 'jelly',
+          customFields: {
+            button: false,
+          },
         });
       }
     } else {
-      this.setState({
-        response: 'Enter valid quantity and price',
+      Alert.error('Please enter valid quantity and price', {
+        position: 'top-right',
+        effect: 'jelly',
+        customFields: {
+          button: false,
+        },
       });
     }
   }
@@ -250,7 +267,10 @@ class Portfolio extends Component {
           <Investment
             invested={summarizeTransactions(this.state.userTransactions)[1]}
             sold={summarizeTransactions(this.state.userTransactions)[2]}
-            currentValue={totalCurrentPortfolioValue(this.state.currentValues, summarizeTransactions(this.state.userTransactions)[0])}
+            currentValue={totalCurrentPortfolioValue(
+              this.state.currentValues,
+              summarizeTransactions(this.state.userTransactions)[0],
+            )}
           />
           <MyCoins
             userTransactions={summarizeTransactions(this.state.userTransactions)[0]}

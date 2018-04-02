@@ -14,7 +14,7 @@ const MyCustomContentTemplate = ({
     Alert.close(id);
   };
   return (
-    <div className={classNames} id={id} style={styles}>
+    <div className={classNames} id={id} style={{ ...styles, zIndex: 100 }}>
       <div className="s-alert-box-inner">
         {message}
       </div>
