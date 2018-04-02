@@ -49,6 +49,7 @@ class Portfolio extends Component {
             window.localStorage.setItem('cryptotoken', null);
             window.localStorage.setItem('cryptousername', null);
             window.localStorage.setItem('cryptologgedin', false);
+            window.localStorage.setItem('cryptoNotifications', null);
             this.props.history.push('/login', { message: 'Session Expired! Please re-login' });
           }
         });
@@ -122,7 +123,7 @@ class Portfolio extends Component {
         window.localStorage.setItem('cryptologgedin', false);
         window.localStorage.setItem('cryptoNotifications', null);
         this.forceUpdate();
-        this.props.history.push('/login', { message: 'Please login to continue' });
+        this.props.history.push('/login', { message: 'Session Expired! Please re-login' });
       });
   }
 
